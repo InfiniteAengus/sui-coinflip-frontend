@@ -11,12 +11,6 @@ import '@suiet/wallet-kit/style.css';
 
 import type { AppProps } from 'next/app';
 
-const customChain: Chain = {
-  id: "",
-  name: "",
-  rpcUrl: "",
-};
-
 const SupportedChains: Chain[] = [
   // ...DefaultChains,
   SuiDevnetChain,

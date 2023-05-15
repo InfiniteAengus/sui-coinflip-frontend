@@ -1,13 +1,15 @@
 import Button from "@/components/Button"
+
 import { useState, useEffect } from "react"
+import Confetti from 'react-confetti';
+import { ToastContainer, toast } from 'react-toastify';
+
 import { TransactionBlock, devnetConnection, JsonRpcProvider } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { bytesToHex, randomBytes } from "@noble/hashes/utils";
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Confetti from 'react-confetti';
 import { useWindowSize } from '@react-hook/window-size';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const statusList = ['init', 'deposit', 'flipping', 'won', 'lost']
 
