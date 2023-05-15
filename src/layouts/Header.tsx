@@ -6,20 +6,26 @@ const Header = () => {
   const wallet = useWallet();
   const [balance, setBalance] = useState<string>('');
 
+  const refreshBalance = async () => {
+    setTimeout(() => {
+      refreshBalance();
+    }, 3000);
+    if (!wallet.address) return;
+    const provider = new JsonRpcProvider(devnetConnection);
+    setBalance(
+      Math.round(
+        (
+          await provider.getBalance({
+            owner: wallet.address || '',
+          })
+        ).totalBalance / 1e8
+      ) / 10
+    );
+  };
+
   useEffect(() => {
-    (async () => {
-      if (!wallet.address) return;
-      const provider = new JsonRpcProvider(devnetConnection);
-      const providerBalance = await provider.getBalance({
-        owner: wallet.address || '',
-      });
-
-      const accountBalance: any = Math.round(providerBalance.totalBalance / 1e7) / 100;
-
-      setBalance(accountBalance.toString());
-    })();
-  }, [wallet]);
-
+    refreshBalance();
+  }, []);
   const disconnect = () => {
     wallet.disconnect();
     window.location.href = '/';

@@ -8,6 +8,7 @@ import { TransactionBlock, devnetConnection, JsonRpcProvider } from '@mysten/sui
 import { useWallet } from '@suiet/wallet-kit';
 import { bytesToHex, randomBytes } from '@noble/hashes/utils';
 import { useWindowSize } from '@react-hook/window-size';
+import axios from 'axios';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -73,26 +74,6 @@ const Play = () => {
     })();
   }, [status]);
 
-  const readDigest = async (digestId: string) => {
-    const provider = new JsonRpcProvider(devnetConnection);
-    const txn = await provider.getTransactionBlock({
-      digest: digestId,
-      // only fetch the effects field
-      options: {
-        showEffects: true,
-        showInput: false,
-        showEvents: false,
-        showObjectChanges: false,
-        showBalanceChanges: false,
-      },
-    });
-    let data = await provider.getObject({
-      id: '0xe30dfe21e6a70d93d7362c05ab5c00a00a70b270777e3abf75ca45be87b0e6fc',
-      options: { showContent: true },
-    });
-    console.log(data);
-  };
-
   const playGame = async () => {
     // console.log(guess, betAmount, wallet.connected);
     // if (!guess || !betAmount) {
@@ -132,7 +113,11 @@ const Play = () => {
       let result = await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
       nextStatus();
 
-      console.log(result);
+      setTimeout(() => {
+        axios.post('/api/add_digest', {
+          digest: result.digest,
+        });
+      }, 2000);
     } catch (e) {
       console.log(e);
     }
@@ -233,7 +218,7 @@ const Play = () => {
         <div className='w-full flex flex-col items-center justify-center pb-20'>
           <img src='/images/smile-coin.png' className='w-[300px]' />
           <p className='mt-10 text-2xl'>flipping..</p>
-          <p className='text-base'>heads for 2.0 sui</p>
+          <p className='text-base'>heads for {betAmount} sui</p>
         </div>
       )}
 
@@ -242,7 +227,7 @@ const Play = () => {
           <div className='w-full flex flex-col items-center justify-center pb-20'>
             <img src='/images/smile-coin.png' className='w-[300px]' />
             <p className='mt-10 text-4xl'>you won!</p>
-            <div className='text-xl bg-black py-2 px-8 text-[#53DD82] mt-1 rounded-md'>2.0 sui</div>
+            <div className='text-xl bg-black py-2 px-8 text-[#53DD82] mt-1 rounded-md'>{betAmount} sui</div>
             <div className='mt-5'>
               <Button
                 label='try again?'
@@ -263,7 +248,7 @@ const Play = () => {
         <div className='w-full flex flex-col items-center justify-center pb-20'>
           <img src='/images/cry-icon.png' className='w-[300px]' />
           <p className='mt-10 text-4xl'>you lost!</p>
-          <div className='text-xl bg-black py-2 px-8 text-[#F02323] mt-1 rounded-md'>2.0 sui</div>
+          <div className='text-xl bg-black py-2 px-8 text-[#F02323] mt-1 rounded-md'>{betAmount} sui</div>
           <div className='mt-5'>
             <Button
               label='try again?'
