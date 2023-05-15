@@ -32,7 +32,7 @@ const Main = () => {
         <span className="text-2xl">RECENT PLAYERS</span>
         <div className="flex flex-col gap-4 mt-5">
           {recent.map((item: any, id: number) => (
-            <HistoryItem address={item.address} betAmount={item.betAmount} time={item.timestamp} win={item.won} key={id} />
+            <HistoryItem address={item.address} betAmount={item.betAmount} time={item.time} win={item.won} key={id} />
           ))}
         </div>
       </div>
