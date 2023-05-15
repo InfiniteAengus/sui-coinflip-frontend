@@ -75,13 +75,8 @@ const Play = () => {
   }, [status]);
 
   const playGame = async () => {
-    // console.log(guess, betAmount, wallet.connected);
-    // if (!guess || !betAmount) {
-    //   console.log("hey, kidding?");
-    //   return;
-    // }
     const provider = new JsonRpcProvider(devnetConnection);
-    const txb = new TransactionBlock();
+    const txb: any = new TransactionBlock();
 
     const ser = bytesToHex(randomBytes(16));
 
@@ -115,7 +110,7 @@ const Play = () => {
 
       setTimeout(() => {
         axios.post('/api/add_digest', {
-          digest: result.digest,
+          digest: (result as any).digest,
         });
       }, 2000);
     } catch (e) {
