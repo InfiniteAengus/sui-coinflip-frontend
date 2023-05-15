@@ -1,18 +1,20 @@
-import { useAccountBalance, useWallet } from "@suiet/wallet-kit";
+import { useWallet } from "@suiet/wallet-kit";
+import { devnetConnection, JsonRpcProvider } from '@mysten/sui.js';
 import { useState, useEffect } from "react"
 
 const Header = () => {
   const wallet = useWallet();
   const [balance, setBalance] = useState<string>("");
-  const { balance: accountBalance } = useAccountBalance();
 
   useEffect(() => {
     (async () => {
       if (!wallet.address) return;
-      setBalance(Math.round(accountBalance||0).toString());
+      const provider = new JsonRpcProvider(devnetConnection);
+      setBalance(Math.round((await provider.getBalance({
+        owner: wallet.address || ""
+      })).totalBalance / 1e7) / 100);
     })();
   }, [wallet]);
-
   const disconnect = () => {
     wallet.disconnect();
     window.location.href = "/";
@@ -35,7 +37,7 @@ const Header = () => {
           <img src="/images/down-arrow.png" className="w-fit h-fit" />
         </div>
         <div className="flex flex-col items-center -mt-3">
-          <img src="/images/small-icon.png" className="" onClick={disconnect} />
+          <img src="/images/small-icon.png" className="" onClick={disconnect}/>
           <span>{`${balance ?? 100} sui`}</span>
         </div>
       </div>
