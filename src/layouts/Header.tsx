@@ -12,15 +12,11 @@ const Header = () => {
     }, 3000);
     if (!wallet.address) return;
     const provider = new JsonRpcProvider(devnetConnection);
-    setBalance(
-      Math.round(
-        (
-          await provider.getBalance({
-            owner: wallet.address || '',
-          })
-        ).totalBalance / 1e8
-      ) / 10
-    );
+    const providerBalance = await provider.getBalance({
+      owner: wallet.address || '',
+    });
+    const accountBalance = Math.round(+providerBalance.totalBalance / 1e8) / 10;
+    setBalance(accountBalance.toString());
   };
 
   useEffect(() => {
