@@ -5,7 +5,7 @@
 @import url('./button.css');
 
 @font-face {
-  font-family: "Symtext";
+  font-family: 'Symtext';
   src: url('../assets/fonts/Symtext/Symtext.ttf');
 }
 
@@ -14,12 +14,12 @@ body {
   @apply bg-primary-palette uppercase;
 }
 
-a {
-  @apply text-blue-700;
+.container {
+  @apply mx-auto max-w-[1600px] px-5;
 }
 
-a:hover {
-  @apply border-b-2 border-blue-700;
+.trans {
+  @apply transition-all duration-300 ease-in-out;
 }
 
 .content p {
