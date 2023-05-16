@@ -1,5 +1,5 @@
-export const PACKAGE_ID = "0xfa281658ff4a8f0b30b1c491cc4150eb929b7abd07a5fd9fa64c243e34d0266f";
-export const HOUSE_DATA_ID = "0x48c6dbd2e93749ca27c80d8c1a46274944c792046cd107bec047e792bcf469b1";
+export const PACKAGE_ID = "0x966036476538776644d6ed815e6adc140226bd4e161ef1f267e7663c2e1239b9";
+export const HOUSE_DATA_ID = "0x5b74621fde91da9d2e8a887943fd11912eafbcd9f91adc1df57abf81174bbf69";
 
 export const HOLDER_REVENUE_WALLET = "";
 export const SMART_CONTRACT_WALLET = "";
