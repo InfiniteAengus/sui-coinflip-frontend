@@ -17,7 +17,7 @@ const Won: React.FC<Props> = ({ betAmount, claimWinning }) => {
         <img src='/images/smile-coin.png' width={360} />
         <div className='flex flex-col items-center'>
           <p className='text-[80px]'>you won!</p>
-          <div className='rounded-md bg-black px-16 py-2 text-5xl text-green'>{betAmount} sui</div>
+          <div className='rounded-md bg-black px-16 py-2 text-5xl text-green'>{betAmount < 10 ? betAmount + ".0" : betAmount} sui</div>
         </div>
         <button
           className='rounded-3xl bg-primary px-20 py-4 text-[60px] text-white shadow-[0px_12px_#242424]'
