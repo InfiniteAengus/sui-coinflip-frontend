@@ -44,10 +44,10 @@ const Play = () => {
       if (status == 'deposit') {
         setTimeout(() => {
           setStatus('flipping');
-        }, 1500);
+        }, 2000);
       }
       if (status == 'flipping') {
-        await new Promise((r) => setTimeout(r, 1500));
+        await new Promise((r) => setTimeout(r, 2000));
         if (!playResult.won) {
           setStatus('lost');
           loseSfx();
@@ -96,10 +96,11 @@ const Play = () => {
       ],
     });
 
-    txb.setGasBudget(50000000);
+    // txb.setGasBudget(50000000);
 
     try {
       let tx = await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
+      console.log(tx);
 
       nextStatus();
 
@@ -109,7 +110,7 @@ const Play = () => {
           playResult,
         });
         setPlayResult(playResult);
-      }, 2000);
+      }, 3000);
     } catch (e) {
       console.log(e);
     }
@@ -129,10 +130,9 @@ const Play = () => {
         target: `${PACKAGE_ID}::coin_flip::claim`,
         arguments: [txb.pure(playResult.gameId)],
       });
-      txb.setGasBudget(50000000);
       await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
 
-      toast.info(`Claimed ${betAmount} SUI`, {
+      toast.info(`Claimed ${betAmount * 2} SUI`, {
         position: 'top-right',
         autoClose: 2000,
         hideProgressBar: false,
@@ -142,11 +142,10 @@ const Play = () => {
         progress: undefined,
         theme: 'colored',
       });
+      handleTryAgain();
     } catch (e) {
       console.log(e);
     }
-
-    handleTryAgain();
   };
 
   return (
@@ -163,7 +162,7 @@ const Play = () => {
         )}
         {status === 'deposit' && <Deposit guess={guess} betAmount={betAmount} />}
         {status === 'flipping' && <Flipping guess={guess} betAmount={betAmount} />}
-        {status === 'won' && <Won betAmount={betAmount} claimWinning={handleClaimWinning} />}
+        {status === 'won' && <Won betAmount={betAmount*2} claimWinning={handleClaimWinning} />}
         {status === 'lost' && <Lost betAmount={betAmount} tryAgain={handleTryAgain} />}
       </div>
     </Layout>
