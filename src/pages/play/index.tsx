@@ -14,14 +14,24 @@ import Won from '@/components/pages/play/Won';
 import Lost from '@/components/pages/play/Lost';
 
 import { winSfx, loseSfx, buttonClickSfx } from '@/utils';
+import { PlayResult } from '@/utils/types';
+import { getPlayResultFromTx } from '@/utils/web3';
+import { HOUSE_DATA_ID, PACKAGE_ID } from '@/config';
 
 const statusList = ['init', 'deposit', 'flipping', 'won', 'lost'];
+const mockPlayResult = {
+  timestamp: 0,
+  won: false,
+  betAmount: 0,
+  address: '',
+};
 
 const Play = () => {
   const [width, height] = useWindowSize();
   const [status, setStatus] = useState<string>('init');
   const [guess, setGuess] = useState<string>('');
   const [betAmount, setBetAmount] = useState<number>(0);
+  const [playResult, setPlayResult] = useState<PlayResult>(mockPlayResult);
   const [previousBalance, setPreviousBalance] = useState<string>('0');
   const wallet = useWallet();
 
@@ -30,25 +40,15 @@ const Play = () => {
   };
 
   useEffect(() => {
-    const getBalance = async () => {
-      const provider = new JsonRpcProvider(devnetConnection);
-      return (
-        await provider.getBalance({
-          owner: wallet.address || '',
-        })
-      ).totalBalance;
-    };
-
     (async () => {
       if (status == 'deposit') {
         setTimeout(() => {
           setStatus('flipping');
-        }, 1000);
+        }, 1500);
       }
       if (status == 'flipping') {
-        await new Promise((r) => setTimeout(r, 1000));
-        let balance = await getBalance();
-        if (Number(balance) < Number(previousBalance)) {
+        await new Promise((r) => setTimeout(r, 1500));
+        if (!playResult.won) {
           setStatus('lost');
           loseSfx();
           toast.error('You lost :(', {
@@ -84,43 +84,31 @@ const Play = () => {
     const txb: any = new TransactionBlock();
     const ser = bytesToHex(randomBytes(16));
     const coins = txb.splitCoins(txb.gas, [txb.pure(betAmount * 1000000000)]);
-    const packageObjectId = '0xcd43c69d5ad829f979a89e9394c5831445e2090bda3a9374ad80361f3576ab4a';
-    const houseDataId = '0xe252026aa62a5e91aeb769dad9266a9cdc53288594f774d00a89cd451a6ad170';
 
     txb.moveCall({
-      target: `${packageObjectId}::coin_flip::play`,
+      target: `${PACKAGE_ID}::coin_flip::play`,
       arguments: [
         txb.pure(guess === 'head' ? 1 : 0),
         txb.pure(ser),
         coins[0] as any,
         txb.pure(betAmount * 1000000000),
-        txb.pure(houseDataId),
+        txb.pure(HOUSE_DATA_ID),
       ],
     });
 
     txb.setGasBudget(50000000);
 
-    const getBalance = async () => {
-      return (
-        await provider.getBalance({
-          owner: wallet.address || '',
-        })
-      ).totalBalance;
-    };
-
     try {
-      let prvBalance = await getBalance();
-
-      setPreviousBalance(prvBalance);
-
-      let result = await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
+      let tx = await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
 
       nextStatus();
 
-      setTimeout(() => {
+      setTimeout(async () => {
+        let playResult: PlayResult = await getPlayResultFromTx((tx as any).digest);
         axios.post('/api/add_digest', {
-          digest: (result as any).digest,
+          playResult,
         });
+        setPlayResult(playResult);
       }, 2000);
     } catch (e) {
       console.log(e);
@@ -132,6 +120,33 @@ const Play = () => {
     setStatus('init');
     setGuess('');
     setBetAmount(0);
+  };
+
+  const handleClaimWinning = async (): Promise<void> => {
+    try {
+      const txb: any = new TransactionBlock();
+      txb.moveCall({
+        target: `${PACKAGE_ID}::coin_flip::claim`,
+        arguments: [txb.pure(playResult.gameId)],
+      });
+      txb.setGasBudget(50000000);
+      await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
+
+      toast.info(`Claimed ${betAmount} SUI`, {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
+    handleTryAgain();
   };
 
   return (
@@ -148,7 +163,7 @@ const Play = () => {
         )}
         {status === 'deposit' && <Deposit guess={guess} betAmount={betAmount} />}
         {status === 'flipping' && <Flipping guess={guess} betAmount={betAmount} />}
-        {status === 'won' && <Won betAmount={betAmount} tryAgain={handleTryAgain} />}
+        {status === 'won' && <Won betAmount={betAmount} claimWinning={handleClaimWinning} />}
         {status === 'lost' && <Lost betAmount={betAmount} tryAgain={handleTryAgain} />}
       </div>
     </Layout>
