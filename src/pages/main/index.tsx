@@ -16,12 +16,12 @@ const Main = () => {
 
   useEffect(() => {
     (async () => {
-      // setRecent(await getRecent());
+      setRecent(await getRecent());
     })();
   }, []);
 
   return (
-    <div className='container py-20'>
+    <div className='container py-20' style={{ zoom: '0.5' }}>
       <div className='flex flex-col items-center space-y-20'>
         <h3 className='text-[60px]'>sui or nothing?</h3>
         <div className='flex flex-col items-center space-y-12'>

@@ -65,8 +65,8 @@ const Header = () => {
   };
 
   return (
-    <header>
-      <div className='container py-[60px]'>
+    <header style={{ zoom: '0.7' }}>
+      <div className='container py-10'>
         <div className='flex justify-between'>
           <div className='flex h-fit space-x-6'>
             <SoundButton />
@@ -76,7 +76,7 @@ const Header = () => {
           </div>
           <div className='flex space-x-5'>
             <div
-              className='relative flex h-fit cursor-pointer items-center space-x-1 rounded-md bg-white px-4 py-3'
+              className='relative hidden h-fit cursor-pointer items-center space-x-1 rounded-md bg-white px-4 py-3 sm:flex'
               onClick={() =>
                 setRecentVisible((prev) => {
                   setLeaderboardVisible(false);
@@ -90,7 +90,7 @@ const Header = () => {
               <Menu open={recentVisible} data={recentData} />
             </div>
             <div
-              className='relative flex h-fit cursor-pointer items-center space-x-1 rounded-md bg-white px-4 py-3'
+              className='relative hidden h-fit cursor-pointer items-center space-x-1 rounded-md bg-white px-4 py-3 sm:flex'
               onClick={() =>
                 setLeaderboardVisible((prev) => {
                   setRecentVisible(false);

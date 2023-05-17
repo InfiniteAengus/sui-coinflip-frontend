@@ -17,7 +17,7 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ address, betAmount, timestamp
     >
       <img src='/images/small-icon.png' className='h-14 w-14' />
       <div className='flex gap-2 text-2xl'>
-        <span>{`${shortenAddress(address)} flipped ${betAmount / 10 ** 9} sui and `}</span>
+        <span>{`${shortenAddress(address)} flipped ${betAmount} sui and `}</span>
         <span className={`${won ? 'text-[#7DD955]' : 'text-[#E33030]'}`}>{`${
           won ? 'doubled 2 times' : 'got ruggged'
         }`}</span>
