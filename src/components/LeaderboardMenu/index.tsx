@@ -7,7 +7,7 @@ interface MenuProps {
   open: boolean;
 }
 
-const Menu: React.FC<MenuProps> = (props) => {
+const LeaderboardMenu: React.FC<MenuProps> = (props) => {
   const { data, open } = props;
   const id = useId();
 
@@ -15,7 +15,7 @@ const Menu: React.FC<MenuProps> = (props) => {
     <div
       className={cx(
         open ? 'block' : 'hidden',
-        'absolute left-0 top-[calc(100%+10px)] bg-white p-2',
+        'absolute top-[calc(100%+10px)] right-0 bg-white p-2',
       )}
     >
       {Array.isArray(data) && data.length > 0 ? (
@@ -26,16 +26,13 @@ const Menu: React.FC<MenuProps> = (props) => {
           >
             {/* <img src='/images/small-icon.png' className='h-14 w-14' /> */}
             <div className='flex gap-2 text-sm'>
-              <span className='whitespace-nowrap'>{`${shortenAddress(item.address)} flipped ${
-                item.betAmount
-              } sui and `}</span>
-              <span
-                className={`${item.won ? 'text-[#7DD955]' : 'text-[#E33030]'} whitespace-nowrap`}
-              >{`${item.won ? 'doubled 2 times' : 'got ruggged'}`}</span>
+              <span className='whitespace-nowrap'>{`${shortenAddress(item.address)} earned ${
+                item.profit
+              } sui`}</span>
             </div>
-            <div className='flex w-full'>
+            {/* <div className='flex w-full'>
               <span className='ml-auto text-xs'>{getTimeHistoryString(item.timestamp)}</span>
-            </div>
+            </div> */}
           </div>
         ))
       ) : (
@@ -45,4 +42,4 @@ const Menu: React.FC<MenuProps> = (props) => {
   );
 };
 
-export default Menu;
+export default LeaderboardMenu;
