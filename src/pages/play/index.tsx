@@ -15,7 +15,7 @@ import Lost from '@/components/pages/play/Lost';
 
 import Layout from '@/layouts';
 
-import { winSfx, loseSfx, buttonClickSfx } from '@/utils';
+import { winSfx, loseSfx, buttonClickSfx, flippingSfx } from '@/utils/sound';
 import { PlayResult } from '@/utils/types';
 import { getPlayResultFromTx } from '@/utils/web3';
 
@@ -58,6 +58,7 @@ const Play = () => {
     if (status == 'deposit') {
       setTimeout(() => {
         setStatus('flipping');
+        flippingSfx();
       }, 2000);
     }
 
