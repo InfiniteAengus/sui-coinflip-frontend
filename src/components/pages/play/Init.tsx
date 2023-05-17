@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 
-import { cx, buttonClickSfx } from '@/utils';
+import { cx, buttonClickSfx } from '@/utils/sound';
 
 interface Props {
   guess: string;
