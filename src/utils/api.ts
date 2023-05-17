@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const getRecent = async () => {
-  const playData = (await axios.get('/api/recent')).data;
   // return [
   //   {
   //     betAmount: '1000000000',
@@ -22,6 +21,7 @@ export const getRecent = async () => {
   //     won: false,
   //   },
   // ];
+  const playData = (await axios.get('/api/recent')).data;
   return playData;
 };
 

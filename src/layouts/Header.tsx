@@ -5,14 +5,14 @@ import { useWallet } from '@suiet/wallet-kit';
 import SoundOnIcon from '@/assets/icons/sound-on.svg';
 import DropdownIcon from '@/assets/icons/dropdown.svg';
 import Menu from '@/components/Menu';
-import axios from 'axios';
 import { getRecent } from '@/utils/api';
+import { PlayResult } from '@/utils/types';
 
 const Header = () => {
   const router = useRouter();
   const [balance, setBalance] = useState<string>('');
   const [recentVisible, setRecentVisible] = useState<boolean>(false);
-  const [recentData, setRecentData] = useState<any[]>([]);
+  const [recentData, setRecentData] = useState<PlayResult[]>([]);
   const wallet = useWallet();
 
   useEffect(() => {
