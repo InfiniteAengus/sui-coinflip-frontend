@@ -50,7 +50,8 @@ const Header = () => {
 
     if (!wallet.address) return;
 
-    const provider = new JsonRpcProvider(devnetConnection);
+    // const provider = new JsonRpcProvider(devnetConnection);
+    const provider = new JsonRpcProvider();
     const providerBalance = await provider.getBalance({
       owner: wallet.address || '',
     });

@@ -13,7 +13,8 @@ export const getPlayResultFromTx = async (digestId: string) => {
     betAmount: 0,
   };
 
-  const provider = new JsonRpcProvider(devnetConnection);
+  // const provider = new JsonRpcProvider(devnetConnection);
+  const provider = new JsonRpcProvider();
   const txn = await provider.getTransactionBlock({
     digest: digestId,
     // only fetch the effects field
