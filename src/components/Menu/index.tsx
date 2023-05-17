@@ -1,4 +1,4 @@
-import { cx } from '@/utils';
+import { cx } from '@/utils/sound';
 import { getTimeHistoryString, shortenAddress } from '@/utils/helper';
 import { useId } from 'react';
 

@@ -2,17 +2,20 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { devnetConnection, JsonRpcProvider } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
-import SoundOnIcon from '@/assets/icons/sound-on.svg';
+
 import DropdownIcon from '@/assets/icons/dropdown.svg';
+
 import Menu from '@/components/Menu';
 import { getRecent, getLeaderboard } from '@/utils/api';
 import { PlayResult, LeaderboardProps } from '@/utils/types';
 import LeaderboardMenu from '@/components/LeaderboardMenu';
+import SoundButton from '@/components/Button/SoundButton';
 
 const Header = () => {
   const router = useRouter();
   const [balance, setBalance] = useState<string>('');
   const [recentVisible, setRecentVisible] = useState<boolean>(false);
+  const [muted, setMuted] = useState(false);
   const [recentData, setRecentData] = useState<PlayResult[]>([]);
   const [leaderboardVisible, setLeaderboardVisible] = useState<boolean>(false);
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardProps[]>([]);
@@ -66,9 +69,7 @@ const Header = () => {
       <div className='container py-[60px]'>
         <div className='flex justify-between'>
           <div className='flex h-fit space-x-6'>
-            <div className='flex h-14 w-16 cursor-pointer items-center justify-center rounded-md border-[3px] border-black'>
-              <SoundOnIcon width={34} height={27} />
-            </div>
+            <SoundButton />
             <div className='flex h-14 w-24 items-center justify-center rounded-md border-[3px] border-black bg-primary text-xl font-semibold text-black'>
               BETA
             </div>
