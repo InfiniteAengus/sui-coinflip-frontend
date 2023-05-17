@@ -1,5 +1,4 @@
 import { devnetConnection, JsonRpcProvider } from '@mysten/sui.js';
-import console from 'console';
 import { PlayResult } from '@/utils/types';
 
 
@@ -9,7 +8,7 @@ let earning: any = {};
 const RECENT_LIMIT = 10;
 
 export const getRecent = () => {
-  return playData;
+  return playData.slice().reverse();
 };
 
 export const addPlayData = async (playResult: PlayResult) => {
@@ -18,7 +17,7 @@ export const addPlayData = async (playResult: PlayResult) => {
   if (!earning[playResult?.address]) {
     earning[playResult.address] = 0;
   }
-  earning[playResult.address] += playResult.betAmount;
+  earning[playResult.address] += playResult.betAmount * (playResult.won ? 1 : -1);
   if (playData.length > RECENT_LIMIT) playData = playData.splice(0, 1);
 }
 

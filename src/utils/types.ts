@@ -6,3 +6,8 @@ export interface PlayResult {
   gameId?: string;
   outcomeId?: string;
 }
+
+export interface LeaderboardProps {
+  address: string;
+  profit: number;
+}
