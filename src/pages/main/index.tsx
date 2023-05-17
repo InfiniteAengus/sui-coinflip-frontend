@@ -35,8 +35,8 @@ const Main = () => {
               <HistoryItem
                 address={item.address}
                 betAmount={item.betAmount}
-                time={item.time}
-                win={item.won}
+                timestamp={item.timestamp}
+                won={item.won}
                 key={`${id}`}
               />
             ))}

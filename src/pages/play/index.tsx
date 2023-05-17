@@ -100,7 +100,6 @@ const Play = () => {
 
     try {
       let tx = await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
-      console.log(tx);
 
       nextStatus();
 
