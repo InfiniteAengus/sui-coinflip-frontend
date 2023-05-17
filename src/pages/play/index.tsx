@@ -43,11 +43,10 @@ const Play = () => {
     (async () => {
       if (status == 'deposit') {
         setTimeout(() => {
-          setStatus('flipping');
+          nextStatus();
         }, 2000);
       }
-      if (status == 'flipping') {
-        await new Promise((r) => setTimeout(r, 2000));
+      if (status == 'flipping' && playResult.timestamp) {
         if (!playResult.won) {
           setStatus('lost');
           loseSfx();
@@ -64,6 +63,7 @@ const Play = () => {
         } else {
           setStatus('won');
           winSfx();
+          localStorage.setItem('_gameId', playResult.gameId || '');
           toast.success('You won :)', {
             position: 'top-right',
             autoClose: 2000,
@@ -77,7 +77,14 @@ const Play = () => {
         }
       }
     })();
-  }, [status]);
+  }, [status, playResult]);
+
+  useEffect(() => {
+    const gameId = localStorage.getItem('_gameId');
+    if (gameId) {
+      setStatus('won');
+    }
+  }, []);
 
   const handlePlayGame = async (guess: string) => {
     const provider = new JsonRpcProvider(devnetConnection);
@@ -95,8 +102,6 @@ const Play = () => {
         txb.pure(HOUSE_DATA_ID),
       ],
     });
-
-    // txb.setGasBudget(50000000);
 
     try {
       let tx = await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
@@ -124,24 +129,28 @@ const Play = () => {
 
   const handleClaimWinning = async (): Promise<void> => {
     try {
-      const txb: any = new TransactionBlock();
-      txb.moveCall({
-        target: `${PACKAGE_ID}::coin_flip::claim`,
-        arguments: [txb.pure(playResult.gameId)],
-      });
-      await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
+      const gameId = localStorage.getItem('_gameId');
 
-      toast.info(`Claimed ${betAmount * 2} SUI`, {
-        position: 'top-right',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-      });
-      handleTryAgain();
+      if (gameId) {
+        const txb: any = new TransactionBlock();
+        txb.moveCall({
+          target: `${PACKAGE_ID}::coin_flip::claim`,
+          arguments: [txb.pure(gameId)],
+        });
+        await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
+        localStorage.removeItem('_gameId');
+        toast.info(`Claimed ${betAmount * 2} SUI`, {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+        handleTryAgain();
+      }
     } catch (e) {
       console.log(e);
     }
@@ -161,7 +170,7 @@ const Play = () => {
         )}
         {status === 'deposit' && <Deposit guess={guess} betAmount={betAmount} />}
         {status === 'flipping' && <Flipping guess={guess} betAmount={betAmount} />}
-        {status === 'won' && <Won betAmount={betAmount*2} claimWinning={handleClaimWinning} />}
+        {status === 'won' && <Won betAmount={betAmount * 2} claimWinning={handleClaimWinning} />}
         {status === 'lost' && <Lost betAmount={betAmount} tryAgain={handleTryAgain} />}
       </div>
     </Layout>
