@@ -1,24 +1,24 @@
-import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
-import { useWindowSize } from '@react-hook/window-size';
-import axios from 'axios';
-import { TransactionBlock, devnetConnection, JsonRpcProvider } from '@mysten/sui.js';
+import { TransactionBlock } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 import { bytesToHex, randomBytes } from '@noble/hashes/utils';
+import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
-import Layout from '@/layouts';
+import { HOUSE_DATA_ID, PACKAGE_ID } from '@/config';
+
 import Init from '@/components/pages/play/Init';
 import Deposit from '@/components/pages/play/Deposit';
 import Flipping from '@/components/pages/play/Flipping';
 import Won from '@/components/pages/play/Won';
 import Lost from '@/components/pages/play/Lost';
 
+import Layout from '@/layouts';
+
 import { winSfx, loseSfx, buttonClickSfx } from '@/utils';
 import { PlayResult } from '@/utils/types';
 import { getPlayResultFromTx } from '@/utils/web3';
-import { HOUSE_DATA_ID, PACKAGE_ID } from '@/config';
 
-const statusList = ['init', 'deposit', 'flipping', 'won', 'lost'];
 const mockPlayResult = {
   timestamp: 0,
   won: false,
@@ -27,67 +27,54 @@ const mockPlayResult = {
 };
 
 const Play = () => {
-  const [width, height] = useWindowSize();
+  const wallet = useWallet();
+
   const [status, setStatus] = useState<string>('init');
   const [guess, setGuess] = useState<string>('');
   const [betAmount, setBetAmount] = useState<number>(0);
   const [playResult, setPlayResult] = useState<PlayResult>(mockPlayResult);
-  const [previousBalance, setPreviousBalance] = useState<string>('0');
-  const wallet = useWallet();
-
-  const nextStatus = () => {
-    setStatus(statusList[(statusList.indexOf(status) + 1) % statusList.length] ?? 'init');
-  };
 
   useEffect(() => {
-    (async () => {
-      if (status == 'deposit') {
-        setTimeout(() => {
-          nextStatus();
-        }, 2000);
+    const setWinningStatus = async () => {
+      await new Promise((r) => setTimeout(r, 2000));
+      setStatus(playResult.won ? 'won' : 'lost');
+      (playResult.won ? winSfx : loseSfx)();
+      toast[playResult.won ? 'success' : 'error'](`You ${playResult.won ? 'won' : 'lost'} :)`, {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
+
+      if (playResult.won) {
+        localStorage.setItem('_gameInfo', JSON.stringify(playResult));
       }
-      if (status == 'flipping' && playResult.timestamp) {
-        if (!playResult.won) {
-          setStatus('lost');
-          loseSfx();
-          toast.error('You lost :(', {
-            position: 'top-right',
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'colored',
-          });
-        } else {
-          setStatus('won');
-          winSfx();
-          localStorage.setItem('_gameId', playResult.gameId || '');
-          toast.success('You won :)', {
-            position: 'top-right',
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'colored',
-          });
-        }
-      }
-    })();
+    };
+
+    if (status == 'deposit') {
+      setTimeout(() => {
+        setStatus('flipping');
+      }, 2000);
+    }
+
+    if (status === 'flipping' && playResult.timestamp) {
+      setWinningStatus();
+    }
   }, [status, playResult]);
 
   useEffect(() => {
-    const gameId = localStorage.getItem('_gameId');
-    if (gameId) {
+    const gameInfo = JSON.parse(localStorage.getItem('_gameInfo') || '{}');
+    if (Object.keys(gameInfo).length) {
       setStatus('won');
+      setPlayResult(gameInfo);
     }
   }, []);
 
   const handlePlayGame = async (guess: string) => {
-    const provider = new JsonRpcProvider(devnetConnection);
     const txb: any = new TransactionBlock();
     const ser = bytesToHex(randomBytes(16));
     const coins = txb.splitCoins(txb.gas, [txb.pure(betAmount * 1000000000)]);
@@ -106,7 +93,7 @@ const Play = () => {
     try {
       let tx = await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
 
-      nextStatus();
+      setStatus('deposit');
 
       setTimeout(async () => {
         let playResult: PlayResult = await getPlayResultFromTx((tx as any).digest);
@@ -124,22 +111,23 @@ const Play = () => {
     buttonClickSfx();
     setStatus('init');
     setGuess('');
+    setPlayResult(mockPlayResult);
     setBetAmount(0);
   };
 
   const handleClaimWinning = async (): Promise<void> => {
     try {
-      const gameId = localStorage.getItem('_gameId');
+      const gameStatus = JSON.parse(localStorage.getItem('_gameInfo') || '{}');
 
-      if (gameId) {
+      if (Object.keys(gameStatus).length) {
         const txb: any = new TransactionBlock();
         txb.moveCall({
           target: `${PACKAGE_ID}::coin_flip::claim`,
-          arguments: [txb.pure(gameId)],
+          arguments: [txb.pure(gameStatus.gameId)],
         });
         await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
-        localStorage.removeItem('_gameId');
-        toast.info(`Claimed ${betAmount * 2} SUI`, {
+        localStorage.removeItem('_gameInfo');
+        toast.info(`Claimed ${gameStatus.betAmount * 2} SUI`, {
           position: 'top-right',
           autoClose: 2000,
           hideProgressBar: false,
@@ -170,8 +158,10 @@ const Play = () => {
         )}
         {status === 'deposit' && <Deposit guess={guess} betAmount={betAmount} />}
         {status === 'flipping' && <Flipping guess={guess} betAmount={betAmount} />}
-        {status === 'won' && <Won betAmount={betAmount * 2} claimWinning={handleClaimWinning} />}
-        {status === 'lost' && <Lost betAmount={betAmount} tryAgain={handleTryAgain} />}
+        {status === 'won' && (
+          <Won betAmount={playResult.betAmount * 2} claimWinning={handleClaimWinning} />
+        )}
+        {status === 'lost' && <Lost betAmount={playResult.betAmount} tryAgain={handleTryAgain} />}
       </div>
     </Layout>
   );
