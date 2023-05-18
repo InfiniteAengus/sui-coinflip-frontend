@@ -1,5 +1,6 @@
 import { devnetConnection, JsonRpcProvider } from '@mysten/sui.js';
 import { PlayResult } from '@/utils/types';
+import { mode } from '@/config';
 
 export const getPlayResultFromTx = async (digestId: string) => {
   if (!digestId) {
@@ -13,8 +14,8 @@ export const getPlayResultFromTx = async (digestId: string) => {
     betAmount: 0,
   };
 
-  // const provider = new JsonRpcProvider(devnetConnection);
-  const provider = new JsonRpcProvider();
+  const provider = new JsonRpcProvider(mode == "dev" ? devnetConnection : undefined);
+  // const provider = new JsonRpcProvider();
   const txn = await provider.getTransactionBlock({
     digest: digestId,
     // only fetch the effects field
