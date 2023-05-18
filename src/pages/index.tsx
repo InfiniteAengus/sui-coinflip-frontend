@@ -4,7 +4,6 @@ import Play from './play';
 
 const Index = () => {
   const wallet = useWallet();
-  console.log(wallet.connected);
 
   return <>{wallet?.connected ? <Play /> : <Main />}</>;
 };
