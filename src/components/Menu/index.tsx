@@ -25,7 +25,7 @@ const Menu: React.FC<MenuProps> = (props) => {
             key={`${id}-${key}`}
           >
             {/* <img src='/images/small-icon.png' className='h-14 w-14' /> */}
-            <div className='flex gap-2 text-2xl'>
+            <div className='flex gap-2 text-xl'>
               <span className='whitespace-nowrap'>{`${shortenAddress(item.address)} flipped ${
                 item.betAmount
               } sui and `}</span>
