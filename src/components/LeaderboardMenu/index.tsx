@@ -25,7 +25,7 @@ const LeaderboardMenu: React.FC<MenuProps> = (props) => {
             key={`${id}-${key}`}
           >
             {/* <img src='/images/small-icon.png' className='h-14 w-14' /> */}
-            <div className='flex gap-2 text-sm'>
+            <div className='flex gap-2 text-xl'>
               <span className='whitespace-nowrap'>{`${shortenAddress(item.address)} earned ${
                 item.profit
               } sui`}</span>
