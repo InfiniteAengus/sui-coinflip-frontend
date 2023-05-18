@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { shortenAddress, getTimeHistoryString } from '@/utils/helper';
 
 interface HistoryItemProps {
@@ -10,10 +10,11 @@ interface HistoryItemProps {
 }
 
 const HistoryItem: React.FC<HistoryItemProps> = ({ address, betAmount, timestamp, won, key }) => {
+  const id = useId();
   return (
     <div
       className='relative flex w-full items-center gap-9 rounded-md bg-white px-4 py-3 pr-[100px]'
-      key={key}
+      key={`${id}-${key}`}
     >
       <img src='/images/small-icon.png' className='h-14 w-14' />
       <div className='flex gap-2 text-2xl'>
