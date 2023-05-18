@@ -1,4 +1,3 @@
-import { devnetConnection, JsonRpcProvider } from '@mysten/sui.js';
 import { PlayResult } from '@/utils/types';
 
 // controller
