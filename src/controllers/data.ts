@@ -16,7 +16,7 @@ export const addPlayData = async (playResult: PlayResult) => {
     earning[playResult.address] = 0;
   }
   earning[playResult.address] += playResult.betAmount * (playResult.won ? 1 : -1);
-  if (playData.length > RECENT_LIMIT) playData = playData.splice(0, 1);
+  if (playData.length > RECENT_LIMIT) playData.splice(0, 1);
 };
 
 export const getLeaderboard = () => {
