@@ -24,8 +24,7 @@ const Menu: React.FC<MenuProps> = (props) => {
             className='relative w-full flex-col items-center gap-9 border-2 bg-white px-4 py-3'
             key={`${id}-${key}`}
           >
-            {/* <img src='/images/small-icon.png' className='h-14 w-14' /> */}
-            <div className='flex gap-2 text-xl'>
+            <div className='text-md flex gap-2'>
               <span className='whitespace-nowrap'>{`${shortenAddress(item.address)} flipped ${
                 item.betAmount
               } sui and `}</span>
