@@ -92,7 +92,17 @@ const Play = () => {
     });
 
     try {
-      let tx = await wallet.signAndExecuteTransactionBlock({ transactionBlock: txb });
+      let tx = await wallet.signAndExecuteTransactionBlock({
+        transactionBlock: txb,
+        options: {
+          showEffects: true,
+          showInput: true,
+          showEvents: true,
+          showObjectChanges: true,
+          showBalanceChanges: true,
+        },
+      });
+      console.log(tx);
 
       setStatus('deposit');
 

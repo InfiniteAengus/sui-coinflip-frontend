@@ -10,6 +10,7 @@ import { getRecent, getLeaderboard } from '@/utils/api';
 import { PlayResult, LeaderboardProps } from '@/utils/types';
 import LeaderboardMenu from '@/components/LeaderboardMenu';
 import SoundButton from '@/components/Button/SoundButton';
+import { mode } from '@/config';
 
 const Header = () => {
   const router = useRouter();
@@ -50,8 +51,8 @@ const Header = () => {
 
     if (!wallet.address) return;
 
-    // const provider = new JsonRpcProvider(devnetConnection);
-    const provider = new JsonRpcProvider();
+    const provider = new JsonRpcProvider(mode == "dev" ? devnetConnection : undefined);
+    // const provider = new JsonRpcProvider();
     const providerBalance = await provider.getBalance({
       owner: wallet.address || '',
     });
