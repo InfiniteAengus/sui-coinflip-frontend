@@ -1,6 +1,4 @@
-import { devnetConnection, JsonRpcProvider } from '@mysten/sui.js';
 import { PlayResult } from '@/utils/types';
-
 
 // controller
 let playData: PlayResult[] = [];
@@ -12,20 +10,22 @@ export const getRecent = () => {
 };
 
 export const addPlayData = async (playResult: PlayResult) => {
-  console.log(playResult);
   playData.push(playResult);
   if (!earning[playResult?.address]) {
     earning[playResult.address] = 0;
   }
   earning[playResult.address] += playResult.betAmount * (playResult.won ? 1 : -1);
   if (playData.length > RECENT_LIMIT) playData.splice(0, 1);
-}
+};
 
 export const getLeaderboard = () => {
-  return Object.keys(earning).map(addr => {
-    return {
-      address: addr,
-      profit: earning[addr],
-    }
-  }).sort((a, b) => b.profit - a.profit).slice(0, 10);
-}
+  return Object.keys(earning)
+    .map((addr) => {
+      return {
+        address: addr,
+        profit: earning[addr],
+      };
+    })
+    .sort((a, b) => b.profit - a.profit)
+    .slice(0, 10);
+};
