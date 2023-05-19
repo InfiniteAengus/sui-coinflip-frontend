@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 
-import { cx, buttonClickSfx } from '@/utils/sound';
+import { buttonClickSfx } from '@/utils/sound';
 
 interface Props {
   guess: string;
@@ -31,7 +31,7 @@ const Init: React.FC<Props> = ({ guess, setGuess, betAmount, setBetAmount, play 
   return (
     <div className='space-y-32'>
       <div className='flex flex-col items-center space-y-20'>
-        <img src='/images/coin.png' width={480} />
+        <img src='/images/coin.png' width={360} />
         <div className='mt-10 flex flex-col items-center space-y-6'>
           <div className='flex w-full gap-10'>
             {['heads', 'tails'].map((label: string) => (
@@ -45,7 +45,7 @@ const Init: React.FC<Props> = ({ guess, setGuess, betAmount, setBetAmount, play 
           </div>
           <h4 className='text-5xl'>for</h4>
           <div className='grid grid-cols-3 gap-5'>
-            {[1, 2, 5, 10, 25, 50].map((amount: number, ind: number) => (
+            {[1, 2, 5, 10, 25, 50].map((amount: number) => (
               <Button
                 label={`${amount} sui`}
                 handleClick={() => handleClickBetAmount(amount)}
