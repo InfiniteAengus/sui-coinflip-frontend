@@ -16,7 +16,6 @@ const Header = () => {
   const router = useRouter();
   const [balance, setBalance] = useState<string>('');
   const [recentVisible, setRecentVisible] = useState<boolean>(false);
-  const [muted, setMuted] = useState(false);
   const [recentData, setRecentData] = useState<PlayResult[]>([]);
   const [leaderboardVisible, setLeaderboardVisible] = useState<boolean>(false);
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardProps[]>([]);

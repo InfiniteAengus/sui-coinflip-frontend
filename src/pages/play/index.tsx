@@ -13,8 +13,6 @@ import Flipping from '@/components/pages/play/Flipping';
 import Won from '@/components/pages/play/Won';
 import Lost from '@/components/pages/play/Lost';
 
-import Layout from '@/layouts';
-
 import { winSfx, loseSfx, buttonClickSfx, flippingSfx } from '@/utils/sound';
 import { PlayResult } from '@/utils/types';
 import { getPlayResultFromTx } from '@/utils/web3';
