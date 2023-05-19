@@ -6,7 +6,7 @@ interface Props {
 const Deposit: React.FC<Props> = ({ guess, betAmount }) => {
   return (
     <div className='flex flex-col items-center space-y-16'>
-      <img src='/images/coin.png' width={480} />
+      <img src='/images/coin.png' width={360} />
       <div className='relative'>
         <p className='text-center text-5xl'>waiting for</p>
         <p className='-mt-10  text-center text-[75px]'>Deposit</p>

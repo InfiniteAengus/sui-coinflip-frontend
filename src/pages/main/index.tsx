@@ -24,7 +24,7 @@ const Main = () => {
     <div className='container py-20'>
       <div className='flex flex-col items-center space-y-20'>
         <div className='flex flex-col items-center space-y-12'>
-          <img src='/images/coin.png' width={480} className='mt-10' />
+          <img src='/images/coin.png' width={360} className='mt-10' />
           <ConnectButton />
         </div>
         <div className='flex flex-col items-center'>
