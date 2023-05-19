@@ -21,11 +21,10 @@ const Main = () => {
   }, []);
 
   return (
-    <div className='container py-20' style={{ zoom: '0.5' }}>
+    <div className='container py-20'>
       <div className='flex flex-col items-center space-y-20'>
-        <h3 className='text-[60px]'>sui or nothing?</h3>
         <div className='flex flex-col items-center space-y-12'>
-          <img src='/images/smile-coin.png' width={360} className='mt-10 w-[300px]' />
+          <img src='/images/coin.png' width={360} className='mt-10 w-[300px]' />
           <ConnectButton />
         </div>
         <div className='flex flex-col items-center'>

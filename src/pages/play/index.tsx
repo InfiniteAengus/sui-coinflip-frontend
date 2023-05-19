@@ -156,25 +156,23 @@ const Play = () => {
   };
 
   return (
-    <Layout>
-      <div className='container pb-20'>
-        {status === 'init' && (
-          <Init
-            guess={guess}
-            setGuess={setGuess}
-            betAmount={betAmount}
-            setBetAmount={setBetAmount}
-            play={handlePlayGame}
-          />
-        )}
-        {status === 'deposit' && <Deposit guess={guess} betAmount={betAmount} />}
-        {status === 'flipping' && <Flipping guess={guess} betAmount={betAmount} />}
-        {status === 'won' && (
-          <Won betAmount={playResult.betAmount * 2} claimWinning={handleClaimWinning} />
-        )}
-        {status === 'lost' && <Lost betAmount={playResult.betAmount} tryAgain={handleTryAgain} />}
-      </div>
-    </Layout>
+    <div className='container pb-20'>
+      {status === 'init' && (
+        <Init
+          guess={guess}
+          setGuess={setGuess}
+          betAmount={betAmount}
+          setBetAmount={setBetAmount}
+          play={handlePlayGame}
+        />
+      )}
+      {status === 'deposit' && <Deposit guess={guess} betAmount={betAmount} />}
+      {status === 'flipping' && <Flipping guess={guess} betAmount={betAmount} />}
+      {status === 'won' && (
+        <Won betAmount={playResult.betAmount * 2} claimWinning={handleClaimWinning} />
+      )}
+      {status === 'lost' && <Lost betAmount={playResult.betAmount} tryAgain={handleTryAgain} />}
+    </div>
   );
 };
 
