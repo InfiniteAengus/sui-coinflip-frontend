@@ -5,12 +5,12 @@
 @import url('./button.css');
 
 @font-face {
-  font-family: 'Symtext';
-  src: url('../assets/fonts/Symtext/Symtext.ttf');
+  font-family: 'Akira';
+  src: url('../assets/fonts/Akira/Akira\ Expanded\ Demo.otf');
 }
 
 body {
-  font-family: 'Symtext';
+  font-family: 'Akira';
   @apply bg-primary-palette uppercase;
 }
 

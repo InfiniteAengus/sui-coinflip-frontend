@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import type { AppProps } from 'next/app';
+import Layout from '@/layouts';
 
 const SupportedChains: Chain[] = [
   // ...DefaultChains,
@@ -25,7 +26,9 @@ const SupportedChains: Chain[] = [
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <WalletProvider chains={SupportedChains}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
       <ToastContainer
         position='top-right'
         autoClose={5000}

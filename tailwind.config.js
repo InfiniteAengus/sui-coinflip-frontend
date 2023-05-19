@@ -15,12 +15,14 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
+      backgroundImage: {
+        'primary-palette': "linear-gradient(90deg, #88C8FF, #B6DCFF)",
+      },
       colors: {
         primary: "#2D7BD4",
-        'primary-palette': "#C8F1F7",
         secondary: '#c95a59',
-        red: '#F02323',
-        green: '#53DD82'
+        red: '#F83F3F',
+        green: '#84E021'
       },
     },
   },

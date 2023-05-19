@@ -51,8 +51,7 @@ const Header = () => {
 
     if (!wallet.address) return;
 
-    const provider = new JsonRpcProvider(mode == "dev" ? devnetConnection : undefined);
-    // const provider = new JsonRpcProvider();
+    const provider = new JsonRpcProvider(mode == 'dev' ? devnetConnection : undefined);
     const providerBalance = await provider.getBalance({
       owner: wallet.address || '',
     });
@@ -72,13 +71,10 @@ const Header = () => {
         <div className='flex justify-between'>
           <div className='flex h-fit space-x-6'>
             <SoundButton />
-            <div className='flex h-14 w-24 items-center justify-center rounded-md border-[3px] border-black bg-primary text-xl font-semibold text-black'>
-              BETA
-            </div>
           </div>
           <div className='flex space-x-5'>
             <div
-              className='relative hidden h-fit cursor-pointer items-center space-x-1 rounded-md bg-white px-4 py-3 sm:flex'
+              className='relative hidden h-fit cursor-pointer items-center space-x-1 rounded-md px-4 py-3 sm:flex'
               onClick={() =>
                 setRecentVisible((prev) => {
                   setLeaderboardVisible(false);
@@ -88,11 +84,10 @@ const Header = () => {
             >
               <span className='text-[22px]'>RECENT</span>
               <DropdownIcon width={22} heigth={14} />
-
               <Menu open={recentVisible} data={recentData} />
             </div>
             <div
-              className='relative hidden h-fit cursor-pointer items-center space-x-1 rounded-md bg-white px-4 py-3 sm:flex'
+              className='relative hidden h-fit cursor-pointer items-center space-x-1 rounded-md px-4 py-3 sm:flex'
               onClick={() =>
                 setLeaderboardVisible((prev) => {
                   setRecentVisible(false);
@@ -102,11 +97,10 @@ const Header = () => {
             >
               <span className='text-[22px]'>LEADERBOARD</span>
               <DropdownIcon width={22} heigth={14} />
-
               <LeaderboardMenu open={leaderboardVisible} data={leaderboardData} />
             </div>
             <div className='-mt-2.5 flex cursor-pointer flex-col items-center space-y-1.5'>
-              <img src='/images/small-icon.png' width={80} onClick={disconnect} />
+              <img src='/images/sui.png' width={60} onClick={disconnect} />
               <span className='text-[22px]'>{`${balance ?? '100'} sui`}</span>
             </div>
           </div>

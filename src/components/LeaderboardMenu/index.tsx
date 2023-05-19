@@ -15,7 +15,7 @@ const LeaderboardMenu: React.FC<MenuProps> = (props) => {
     <div
       className={cx(
         open ? 'block' : 'hidden',
-        'absolute right-0 top-[calc(100%+10px)] bg-white p-2',
+        'border-gray absolute left-0 top-[calc(100%+10px)] border-4 border-solid bg-white p-2',
       )}
     >
       {Array.isArray(data) && data.length > 0 ? (
@@ -32,7 +32,7 @@ const LeaderboardMenu: React.FC<MenuProps> = (props) => {
           </div>
         ))
       ) : (
-        <span className='text-md whitespace-nowrap'>No Recent Plays</span>
+        <span className='whitespace-nowrap px-4 text-xl'>No Recent Plays</span>
       )}
     </div>
   );
