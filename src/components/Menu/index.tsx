@@ -15,7 +15,7 @@ const Menu: React.FC<MenuProps> = (props) => {
     <div
       className={cx(
         open ? 'block' : 'hidden',
-        'border-gray absolute left-0 top-[calc(100%+10px)] border-4 border-solid bg-white p-2',
+        'border-gray absolute left-0 top-[calc(100%+10px)] z-[2] border-4 border-solid bg-white p-2',
       )}
     >
       {Array.isArray(data) && data.length > 0 ? (
