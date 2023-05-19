@@ -9,7 +9,7 @@ const Lost: React.FC<Props> = ({ betAmount, tryAgain }) => {
   return (
     <div className='flex flex-col items-center space-y-16'>
       <div className='space-y-8'>
-        <img src='/images/coin.png' width={480} />
+        <img src='/images/coin.png' width={360} />
         <div className='h-3 w-[360px] rounded-[100%] bg-[#242424]' />
       </div>
       <div className='flex flex-col items-center'>
