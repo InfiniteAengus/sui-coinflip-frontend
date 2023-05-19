@@ -14,7 +14,7 @@ const Won: React.FC<Props> = ({ betAmount, claimWinning }) => {
   return (
     <>
       <div className='flex flex-col items-center space-y-16'>
-        <img src='/images/coin.png' width={360} />
+        <img src='/images/coin.png' width={480} />
         <div className='flex flex-col items-center'>
           <p className='text-[80px]'>you won</p>
           <div className='relative w-full rounded-md border-y-8 border-black bg-green px-16 py-2 text-center text-5xl'>

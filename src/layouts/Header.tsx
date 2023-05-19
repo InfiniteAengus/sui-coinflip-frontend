@@ -23,8 +23,6 @@ const Header = () => {
   const wallet = useWallet();
 
   useEffect(() => {
-    refreshBalance();
-
     getRecentActivity();
     getLeaderboardData();
 
@@ -33,6 +31,10 @@ const Header = () => {
       getLeaderboardData();
     }, 10000);
   }, []);
+
+  useEffect(() => {
+    refreshBalance();
+  }, [wallet]);
 
   const getRecentActivity = async () => {
     const data = await getRecent();

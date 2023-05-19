@@ -31,7 +31,7 @@ const Init: React.FC<Props> = ({ guess, setGuess, betAmount, setBetAmount, play 
   return (
     <div className='space-y-32'>
       <div className='flex flex-col items-center space-y-20'>
-        <img src='/images/coin.png' width={360} />
+        <img src='/images/coin.png' width={480} />
         <div className='mt-10 flex flex-col items-center space-y-6'>
           <div className='flex w-full gap-10'>
             {['heads', 'tails'].map((label: string) => (
