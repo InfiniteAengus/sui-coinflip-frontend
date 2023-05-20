@@ -15,16 +15,27 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ label, className, handleClick, selected, arrow }) => {
   const id = useId();
   const audioRef = useRef<any>(null);
+  const playAudioRef = useRef<any>(null);
 
   useEffect(() => {
     audioRef.current = new Audio('sounds/button-click.mp3');
     audioRef.current.load();
+
+    playAudioRef.current = new Audio('sounds/play-button-click.mp3');
+    playAudioRef.current.load();
   }, []);
 
   const onClick = () => {
-    if (audioRef.current) {
-      buttonClickSfx(audioRef.current);
+    if (label.indexOf('play') >= 0) {
+      if (playAudioRef.current) {
+        buttonClickSfx(playAudioRef.current);
+      }
+    } else {
+      if (audioRef.current) {
+        buttonClickSfx(audioRef.current);
+      }
     }
+
     handleClick();
   };
 

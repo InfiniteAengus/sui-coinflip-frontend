@@ -59,7 +59,7 @@ const Init: React.FC<Props> = ({ guess, setGuess, betAmount, setBetAmount, play 
         />
         <div className='flex space-x-4 text-2xl'>
           <a
-            href='https://docs.desuiflip.io/'
+            href='https://docs.desuiflip.io/faqs'
             target='_blank'
             rel='noreferrer'
             className='hover:opacity-80'
@@ -68,7 +68,7 @@ const Init: React.FC<Props> = ({ guess, setGuess, betAmount, setBetAmount, play 
           </a>
           <span>|</span>
           <a
-            href='https://docs.desuiflip.io/'
+            href='https://docs.desuiflip.io/how-to-play'
             target='_blank'
             rel='noreferrer'
             className='hover:opacity-80'
@@ -76,7 +76,12 @@ const Init: React.FC<Props> = ({ guess, setGuess, betAmount, setBetAmount, play 
             how to play
           </a>
           <span>|</span>
-          <a href='' target='_blank' rel='noreferrer' className='hover:opacity-80'>
+          <a
+            href='https://docs.desuiflip.io/flip-responsibly'
+            target='_blank'
+            rel='noreferrer'
+            className='hover:opacity-80'
+          >
             Flip responsibly
           </a>
         </div>
