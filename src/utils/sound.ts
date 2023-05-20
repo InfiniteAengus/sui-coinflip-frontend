@@ -1,17 +1,16 @@
 export const cx = (...args: any[]) => args.filter(Boolean).join(' ');
 
-export const buttonClickSfx = (): void => {
+export const buttonClickSfx = (audio: HTMLAudioElement): void => {
   const muted = JSON.parse(localStorage.getItem('muted') || 'false');
 
-  if (muted) {
+  if (muted || !audio) {
     return;
   }
 
-  const audio = new Audio();
-  audio.autoplay = true;
-  audio.src = 'sounds/button-click.mp3';
-  audio.volume = 1;
-  audio.remove();
+  // Clone the preloaded audio element and play it
+  const audioClone: any = audio.cloneNode();
+  audioClone.volume = 1;
+  (audioClone as HTMLAudioElement).play();
 };
 
 export const winSfx = (): void => {
