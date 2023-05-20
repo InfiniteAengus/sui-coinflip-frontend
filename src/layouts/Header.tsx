@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { devnetConnection, JsonRpcProvider } from '@mysten/sui.js';
+import { devnetConnection, JsonRpcProvider, Connection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 
 import DropdownIcon from '@/assets/icons/dropdown.svg';
@@ -52,7 +52,12 @@ const Header = () => {
 
     if (!wallet.address) return;
 
-    const provider = new JsonRpcProvider(mode == 'dev' ? devnetConnection : undefined);
+    // const provider = new JsonRpcProvider(mode == 'dev' ? devnetConnection : undefined);
+    const provider = new JsonRpcProvider(
+      new Connection({
+        fullnode: `https://fullnode.${mode == 'dev' ? 'devnet' : 'mainnet'}.sui.io:443/`,
+      }),
+    );
     const providerBalance = await provider.getBalance({
       owner: wallet.address || '',
     });
