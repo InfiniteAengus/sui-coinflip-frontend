@@ -1,7 +1,5 @@
 import Button from '@/components/Button';
 
-import { buttonClickSfx } from '@/utils/sound';
-
 interface Props {
   guess: string;
   setGuess: (arg: string) => void;
@@ -12,17 +10,14 @@ interface Props {
 
 const Init: React.FC<Props> = ({ guess, setGuess, betAmount, setBetAmount, play }) => {
   const handleClickGuess = (arg: string): void => {
-    buttonClickSfx();
     setGuess(arg);
   };
 
   const handleClickBetAmount = (arg: number): void => {
-    buttonClickSfx();
     setBetAmount(arg);
   };
 
   const handlePlayGame = (): void => {
-    buttonClickSfx();
     if (guess === '' || betAmount === 0) return;
 
     play(guess, betAmount);
