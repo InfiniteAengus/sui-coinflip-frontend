@@ -103,13 +103,29 @@ const Play = () => {
 
       setStatus('deposit');
 
-      setTimeout(async () => {
-        let playResult: PlayResult = await getPlayResultFromTx(tx);
-        axios.post('/api/add_digest', {
-          playResult,
-        });
-        setPlayResult(playResult);
-      }, 4500);
+      let isRequestInProgress = false;
+
+      const timerId = setInterval(async () => {
+        if (isRequestInProgress) {
+          return;
+        }
+
+        isRequestInProgress = true;
+
+        try {
+          let playResult: PlayResult = await getPlayResultFromTx(tx);
+          if (playResult.address) {
+            axios.post('/api/add_digest', {
+              playResult,
+            });
+            setPlayResult(playResult);
+            clearInterval(timerId);
+          }
+        } catch (e) {
+        } finally {
+          isRequestInProgress = false;
+        }
+      }, 1000);
     } catch (e) {
       console.log(e);
     }
