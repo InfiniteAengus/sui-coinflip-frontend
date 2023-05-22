@@ -76,7 +76,7 @@ const Play = () => {
   const handlePlayGame = async (guess: string) => {
     const txb: any = new TransactionBlock();
     const ser = bytesToHex(randomBytes(16));
-    const coins = txb.splitCoins(txb.gas, [txb.pure((betAmount * 1000000000) / 100)]);
+    const coins = txb.splitCoins(txb.gas, [txb.pure(betAmount * 1000000000)]);
 
     txb.moveCall({
       target: `${PACKAGE_ID}::coin_flip::play`,
@@ -84,7 +84,7 @@ const Play = () => {
         txb.pure(guess === 'head' ? 1 : 0),
         txb.pure(ser),
         coins[0] as any,
-        txb.pure((betAmount * 1000000000) / 100),
+        txb.pure(betAmount * 1000000000),
         txb.pure(HOUSE_DATA_ID),
       ],
     });
@@ -122,6 +122,7 @@ const Play = () => {
             clearInterval(timerId);
           }
         } catch (e) {
+          console.log(e);
         } finally {
           isRequestInProgress = false;
         }
