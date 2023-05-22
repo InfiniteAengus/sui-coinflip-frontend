@@ -21,7 +21,7 @@ export const getPlayResultFromTx = async (txn: any) => {
       id: object.reference.objectId,
       options: { showContent: true },
     });
-    console.log(objectContents);
+
     if (!objectContents.error) {
       let content: any = objectContents.data?.content;
       if (content?.type.includes('Outcome')) {
