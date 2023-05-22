@@ -100,17 +100,16 @@ const Play = () => {
           showBalanceChanges: true,
         },
       });
-      console.log(tx);
 
       setStatus('deposit');
 
       setTimeout(async () => {
-        let playResult: PlayResult = await getPlayResultFromTx((tx as any).digest);
+        let playResult: PlayResult = await getPlayResultFromTx(tx);
         axios.post('/api/add_digest', {
           playResult,
         });
         setPlayResult(playResult);
-      }, 3000);
+      }, 4500);
     } catch (e) {
       console.log(e);
     }
