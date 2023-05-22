@@ -1,4 +1,4 @@
-import { devnetConnection, JsonRpcProvider } from '@mysten/sui.js';
+import { JsonRpcProvider, Connection } from '@mysten/sui.js';
 import { PlayResult } from '@/utils/types';
 import { mode } from '@/config';
 
@@ -14,7 +14,11 @@ export const getPlayResultFromTx = async (txn: any) => {
     betAmount: 0,
   };
 
-  const provider = new JsonRpcProvider(mode == 'dev' ? devnetConnection : undefined);
+  const provider = new JsonRpcProvider(
+    new Connection({
+      fullnode: `https://fullnode.${mode == 'dev' ? 'devnet' : 'mainnet'}.sui.io:443/`,
+    }),
+  );
   let newObjects = txn.effects?.created || [];
   for (let object of newObjects) {
     let objectContents = await provider.getObject({

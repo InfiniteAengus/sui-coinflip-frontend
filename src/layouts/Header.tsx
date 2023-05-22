@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { devnetConnection, JsonRpcProvider, Connection } from '@mysten/sui.js';
+import { JsonRpcProvider, Connection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 
 import DropdownIcon from '@/assets/icons/dropdown.svg';
