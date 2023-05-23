@@ -5,6 +5,7 @@ export interface PlayResult {
   betAmount: number;
   gameId?: string;
   outcomeId?: string;
+  transactionId: string;
 }
 
 export interface LeaderboardProps {

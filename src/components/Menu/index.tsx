@@ -20,8 +20,11 @@ const Menu: React.FC<MenuProps> = (props) => {
     >
       {Array.isArray(data) && data.length > 0 ? (
         data.map((item, key) => (
-          <div
-            className='relative w-full flex-col items-center gap-9 border-2 bg-white px-4 py-3'
+          <a
+            href={`https://suiexplorer.com/txblock/${item.transactionId}`}
+            target='_blank'
+            rel='noreferrer'
+            className='relative block w-full flex-col items-center gap-9 border-2 bg-white px-4 py-3'
             key={`${id}-${key}`}
           >
             <div className='text-md flex gap-2'>
@@ -35,7 +38,7 @@ const Menu: React.FC<MenuProps> = (props) => {
             <div className='flex w-full'>
               <span className='ml-auto text-xs'>{getTimeHistoryString(item.timestamp)}</span>
             </div>
-          </div>
+          </a>
         ))
       ) : (
         <span className='whitespace-nowrap px-4 text-xl'>No Recent Plays</span>
