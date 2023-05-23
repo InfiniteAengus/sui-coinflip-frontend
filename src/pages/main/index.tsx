@@ -4,6 +4,7 @@ import { getRecent } from '@/utils/api';
 
 import HistoryItem from '@/components/HistoryItem';
 import ConnectButton from '@/components/Button/ConnectButton';
+import { PlayResult } from '@/utils/types';
 
 const Main = () => {
   const wallet = useWallet();
@@ -15,9 +16,9 @@ const Main = () => {
   }, [wallet.connected]);
 
   useEffect(() => {
-    (async () => {
+    setInterval(async () => {
       setRecent(await getRecent());
-    })();
+    }, 3000);
   }, []);
 
   return (
@@ -30,7 +31,7 @@ const Main = () => {
         <div className='flex flex-col items-center'>
           <h4 className='text-4xl'>RECENT PLAYERS</h4>
           <div className='mt-5 flex flex-col gap-4'>
-            {recent.map((item: any, id: number) => (
+            {recent.map((item: PlayResult, id: number) => (
               <HistoryItem
                 address={item.address}
                 betAmount={item.betAmount}
