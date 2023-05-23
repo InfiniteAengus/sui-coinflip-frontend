@@ -22,6 +22,7 @@ const mockPlayResult = {
   won: false,
   betAmount: 0,
   address: '',
+  transactionId: '',
 };
 
 const Play = () => {
@@ -116,7 +117,7 @@ const Play = () => {
           let playResult: PlayResult = await getPlayResultFromTx(tx);
           if (playResult.address) {
             axios.post('/api/add_digest', {
-              playResult,
+              playResult: { ...playResult, transactionId: tx.digest },
             });
             setPlayResult(playResult);
             clearInterval(timerId);

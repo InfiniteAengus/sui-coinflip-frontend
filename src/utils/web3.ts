@@ -12,6 +12,7 @@ export const getPlayResultFromTx = async (txn: any) => {
     won: false,
     address: '',
     betAmount: 0,
+    transactionId: '',
   };
 
   const provider = new JsonRpcProvider(
