@@ -14,7 +14,7 @@ class MyDocument extends Document {
           <meta name='robots' content='index,follow' />
           <meta
             name='description'
-            content="Welcome to the ultimate coinflip game on the SUI chain! Test your luck with our provably fair and transparent coinflip game. Backed by the security and speed of the SUI blockchain, experience swift transactions and fair gameplay. Whether you're a seasoned gambler or new to gaming, our coinflip is easy to understand and fun to play. Join us now and flip your way to amazing rewards!"
+            content='Welcome to the #1 coin flip game on Sui Network. Double your $SUI on our smart contract by guessing heads or tails. All results on chain for provable fairness.'
           />
 
           <meta name='twitter:image' content='/images/sui.png' />
@@ -22,13 +22,13 @@ class MyDocument extends Document {
           <meta name='twitter:title' content='DeSui Coinflip' />
           <meta
             name='twitter:description'
-            content="Welcome to the ultimate coinflip game on the SUI chain! Test your luck with our provably fair and transparent coinflip game. Backed by the security and speed of the SUI blockchain, experience swift transactions and fair gameplay. Whether you're a seasoned gambler or new to gaming, our coinflip is easy to understand and fun to play. Join us now and flip your way to amazing rewards!"
+            content='Welcome to the #1 coin flip game on Sui Network. Double your $SUI on our smart contract by guessing heads or tails. All results on chain for provable fairness.'
           />
 
           <meta property='og:title' content='DeSui Coinflip' />
           <meta
             property='og:description'
-            content="Welcome to the ultimate coinflip game on the SUI chain! Test your luck with our provably fair and transparent coinflip game. Backed by the security and speed of the SUI blockchain, experience swift transactions and fair gameplay. Whether you're a seasoned gambler or new to gaming, our coinflip is easy to understand and fun to play. Join us now and flip your way to amazing rewards!"
+            content='Welcome to the #1 coin flip game on Sui Network. Double your $SUI on our smart contract by guessing heads or tails. All results on chain for provable fairness.'
           />
           <meta property='og:type' content='website' />
           <meta property='og:image' content='/images/sui.png' />
