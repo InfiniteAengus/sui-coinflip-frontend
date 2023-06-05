@@ -73,7 +73,7 @@ const Header = () => {
 
   return (
     <header style={{ zoom: '0.7' }}>
-      <div className='container py-10'>
+      <div className='p-10'>
         <div className='flex justify-between'>
           <div className='flex h-fit space-x-6'>
             <SoundButton />
