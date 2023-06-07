@@ -25,14 +25,24 @@ const Header = () => {
     getRecentActivity();
     getLeaderboardData();
 
-    setInterval(() => {
+    const timerId = setInterval(() => {
       getRecentActivity();
       getLeaderboardData();
     }, 10000);
+
+    return () => {
+      clearInterval(timerId);
+    };
   }, []);
 
   useEffect(() => {
-    refreshBalance();
+    const timerId = setInterval(() => {
+      refreshBalance();
+    }, 3000);
+
+    return () => {
+      clearInterval(timerId);
+    };
   }, [wallet]);
 
   const getRecentActivity = async () => {
@@ -46,10 +56,6 @@ const Header = () => {
   };
 
   const refreshBalance = async (): Promise<void> => {
-    setTimeout(() => {
-      refreshBalance();
-    }, 3000);
-
     if (!wallet.address) return;
 
     // const provider = new JsonRpcProvider(mode == 'dev' ? devnetConnection : undefined);
