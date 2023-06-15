@@ -1,5 +1,3 @@
-export const cx = (...args: any[]) => args.filter(Boolean).join(' ');
-
 export const buttonClickSfx = (audio: HTMLAudioElement): void => {
   const muted = JSON.parse(localStorage.getItem('muted') || 'false');
 

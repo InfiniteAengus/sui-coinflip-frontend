@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import SoundOnIcon from '@/assets/icons/sound-on.svg';
 import SoundOffIcon from '@/assets/icons/sound-off.svg';
+import { cx } from '@/utils/helper';
 
 const SoundButton = () => {
   const [muted, setMuted] = useState<boolean>(false);
@@ -18,7 +19,10 @@ const SoundButton = () => {
 
   return (
     <button
-      className='flex h-14 w-16 cursor-pointer items-center justify-center rounded-md border-[3px] border-black transition-all hover:bg-primary hover:bg-opacity-30'
+      className={cx(
+        'flex h-14 w-16 cursor-pointer items-center justify-center rounded-2xl border-[3px] bg-opacity-50  transition-all hover:bg-opacity-70',
+        !muted ? 'border-[#9bdc6f] bg-[#9bdc6f]' : 'border-[#c75151] bg-[#c75151]',
+      )}
       onClick={() => handleMuteClick()}
     >
       {muted ? <SoundOffIcon width={34} height={27} /> : <SoundOnIcon width={34} height={27} />}

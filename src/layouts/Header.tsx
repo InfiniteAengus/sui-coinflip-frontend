@@ -78,15 +78,15 @@ const Header = () => {
   };
 
   return (
-    <header style={{ zoom: '0.7' }}>
+    <header style={{ zoom: '0.7' }} className='relative z-[1]'>
       <div className='p-10'>
         <div className='flex justify-between'>
           <div className='flex h-fit space-x-6'>
             <SoundButton />
           </div>
-          <div className='flex space-x-5'>
+          <div className='flex space-x-8'>
             <div
-              className='relative hidden h-fit cursor-pointer items-center space-x-1 rounded-md px-4 py-3 sm:flex'
+              className='relative hidden h-fit cursor-pointer items-center space-x-5 rounded-full border-[6px] border-[#6397f7] bg-[#2e477d] px-4 py-1 sm:flex'
               onClick={() =>
                 setRecentVisible((prev) => {
                   setLeaderboardVisible(false);
@@ -94,12 +94,12 @@ const Header = () => {
                 })
               }
             >
-              <span className='text-[22px]'>RECENT</span>
-              <DropdownIcon width={22} heigth={14} />
+              <span className='text-[22px]'>RECENT GAMES</span>
+              <DropdownIcon width={22} heigth={14} className='brightness-0 invert' />
               <Menu open={recentVisible} data={recentData} />
             </div>
             <div
-              className='relative hidden h-fit cursor-pointer items-center space-x-1 rounded-md px-4 py-3 sm:flex'
+              className='relative hidden h-fit cursor-pointer items-center space-x-5 rounded-full border-[6px] border-[#c75151] bg-[#753131] px-4 py-1 sm:flex'
               onClick={() =>
                 setLeaderboardVisible((prev) => {
                   setRecentVisible(false);
@@ -108,7 +108,7 @@ const Header = () => {
               }
             >
               <span className='text-[22px]'>LEADERBOARD</span>
-              <DropdownIcon width={22} heigth={14} />
+              <DropdownIcon width={22} heigth={14} className='brightness-0 invert' />
               <LeaderboardMenu open={leaderboardVisible} data={leaderboardData} />
             </div>
             <div className='-mt-2.5 flex cursor-pointer flex-col items-center space-y-1.5'>

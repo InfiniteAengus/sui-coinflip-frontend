@@ -1,4 +1,6 @@
 import Button from '@/components/Button';
+import PlayButton from '@/components/Button/PlayButton';
+import SelectableButton from '@/components/Button/SelectableButton';
 
 interface Props {
   guess: string;
@@ -26,65 +28,35 @@ const Init: React.FC<Props> = ({ guess, setGuess, betAmount, setBetAmount, play 
   return (
     <div className='space-y-32'>
       <div className='flex flex-col items-center space-y-20'>
-        <img src='/images/coin.png' width={360} />
-        <div className='mt-10 flex flex-col items-center space-y-6'>
+        <img src='/images/logo.png' alt='logo' />
+        <div className='mb-10 mt-10 flex flex-col items-center space-y-6'>
           <div className='flex w-full gap-10'>
             {['heads', 'tails'].map((label: string) => (
-              <Button
+              <SelectableButton
+                key={`btn-${label}`}
                 label={label}
                 selected={guess === label}
                 handleClick={() => handleClickGuess(label)}
-                key={`btn-${label}`}
+                className='w-1/2 border-white bg-transparent hover:bg-white/10'
+                selectedClassName='!bg-[#382610]'
               />
             ))}
           </div>
           <h4 className='text-5xl'>for</h4>
-          <div className='grid grid-cols-3 gap-5'>
+          <div className='!mt-14 grid grid-cols-3 gap-5 pb-10'>
             {[1, 2, 5, 10, 25, 50].map((amount: number) => (
-              <Button
+              <SelectableButton
+                key={`btn-${amount}`}
                 label={`${amount} sui`}
                 handleClick={() => handleClickBetAmount(amount)}
-                key={`btn-${amount}`}
                 selected={betAmount === amount}
-                className='w-60 max-w-full'
+                className='w-72 max-w-full border-[#fab600] bg-[#ffdf55] text-black hover:bg-[#fffe80]'
+                selectedClassName='border-[#94523B] bg-[#FF8D65]'
               />
             ))}
           </div>
         </div>
-        <Button
-          label='play'
-          handleClick={handlePlayGame}
-          className='h-36 w-auto !px-12 text-6xl'
-          arrow
-        />
-        <div className='flex space-x-4 text-2xl'>
-          <a
-            href='https://docs.desuiflip.io/faqs'
-            target='_blank'
-            rel='noreferrer'
-            className='hover:opacity-80'
-          >
-            faq
-          </a>
-          <span>|</span>
-          <a
-            href='https://docs.desuiflip.io/how-to-play'
-            target='_blank'
-            rel='noreferrer'
-            className='hover:opacity-80'
-          >
-            how to play
-          </a>
-          <span>|</span>
-          <a
-            href='https://docs.desuiflip.io/flip-responsibly'
-            target='_blank'
-            rel='noreferrer'
-            className='hover:opacity-80'
-          >
-            Flip responsibly
-          </a>
-        </div>
+        <PlayButton handleClick={handlePlayGame} />
       </div>
     </div>
   );
