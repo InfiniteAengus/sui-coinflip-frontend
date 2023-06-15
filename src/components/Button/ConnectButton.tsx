@@ -1,22 +1,17 @@
 import { ConnectButton as SuiConnectButton } from '@suiet/wallet-kit';
 
-import DropdownIcon from '@/assets/icons/dropdown.svg';
-
 const ConnectButton = () => {
   return (
-    <SuiConnectButton className='group !relative !w-auto !rounded-none !border-x-0 !border-y-8 !border-solid !border-black !bg-transparent !py-8 !font-[Akira] !text-5xl !uppercase !leading-none !text-black'>
-      connect <br />
-      wallet
-      <div className='absolute left-0 top-0 h-[20px] w-full border-x-8 border-black' />
-      <div className='absolute bottom-0 left-0 h-[20px] w-full border-x-8 border-black' />
-      <div className='trans absolute -left-10 top-1/2 -translate-y-1/2 -rotate-90 scale-150 group-hover:translate-x-4'>
-        <DropdownIcon />
-        <DropdownIcon />
-      </div>
-      <div className='trans absolute -right-10 top-1/2 -translate-y-1/2 rotate-90 scale-150 group-hover:-translate-x-4'>
-        <DropdownIcon />
-        <DropdownIcon />
-      </div>
+    <SuiConnectButton className='!relative !w-auto !rounded-[40px] !bg-[#2E4D7D] !p-8 !font-[Anja] !font-medium !uppercase !leading-none !text-white'>
+      <span className='relative z-[2]'>
+        <span className='text-[90px]'>
+          connect <br />
+        </span>
+        <span className='text-[100px]'>wallet</span>
+      </span>
+      <div className='absolute left-0 top-0 z-[1] h-full w-full !rounded-[40px] !border-8 !border-solid !border-[#3283b9] !bg-[#2E4D7D]'></div>
+      <div className='absolute -bottom-6 left-0 z-[0] h-full w-full rounded-[40px] bg-[#32678A] ' />
+      <div className='absolute left-0 top-0 z-[0] h-full w-full rounded-[40px] bg-[#5486D1] blur-[80px]' />
     </SuiConnectButton>
   );
 };

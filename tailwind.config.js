@@ -15,9 +15,6 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
-      backgroundImage: {
-        'primary-palette': "linear-gradient(90deg, #88C8FF, #B6DCFF)",
-      },
       colors: {
         primary: "#2D7BD4",
         secondary: '#c95a59',

@@ -5,13 +5,17 @@
 @import url('./button.css');
 
 @font-face {
-  font-family: 'Akira';
-  src: url('../assets/fonts/Akira/Akira\ Expanded\ Demo.otf');
+  font-family: 'Anja';
+  src: url('../assets/fonts/Anja/Anja-Eliane.ttf');
 }
 
 body {
-  font-family: 'Akira';
-  @apply bg-primary-palette uppercase;
+  font-family: 'Anja';
+  @apply bg-black uppercase text-white;
+}
+
+button, select {
+  @apply uppercase;
 }
 
 .container {

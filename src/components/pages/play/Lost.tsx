@@ -8,19 +8,22 @@ interface Props {
 const Lost: React.FC<Props> = ({ betAmount, tryAgain }) => {
   return (
     <div className='flex flex-col items-center space-y-16'>
-      <div className='space-y-8'>
-        <img src='/images/coin.png' width={360} />
-        <div className='h-3 w-[360px] rounded-[100%] bg-[#242424]' />
-      </div>
-      <div className='flex flex-col items-center'>
-        <p className='text-[80px]'>you lost</p>
-        <div className='relative w-full rounded-md border-y-8 border-black bg-red px-16 py-2 text-center text-5xl'>
+      <img src='/images/failed_logo.png' alt='logo' />
+      <div className='relative !mb-20 flex flex-col items-center'>
+        <div className='absolute z-0 h-full w-full bg-red blur-[100px]' />
+        <p className='relative z-[1] rounded-3xl border-8 border-[#d64d4d] bg-[#984040] px-14 py-4 text-[80px] shadow-[0_10px_0_0_#992b2b]'>
+          you lost
+        </p>
+        <p className='relative z-[1] mx-auto w-4/5 rounded-3xl bg-[#d64d4d] text-center text-5xl text-black shadow-[0_10px_0_0_#992b2b]'>
           {betAmount} sui
-          <div className='absolute left-0 top-0 h-4 w-full border-x-8 border-black' />
-          <div className='absolute bottom-0 left-0 h-4 w-full border-x-8 border-black' />
-        </div>
+        </p>
       </div>
-      <Button label='try again' className='h-36 w-auto' arrow handleClick={tryAgain} />
+      <Button
+        label='try again'
+        className='h-36 w-auto border-[#f5cf54] bg-[#c08819]'
+        arrow
+        handleClick={tryAgain}
+      />
     </div>
   );
 };

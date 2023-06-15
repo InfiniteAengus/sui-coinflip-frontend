@@ -2,8 +2,7 @@ import React, { useId } from 'react';
 
 import DropdownIcon from '@/assets/icons/dropdown.svg';
 
-import { shortenAddress, getTimeHistoryString } from '@/utils/helper';
-import { cx } from '@/utils/sound';
+import { shortenAddress, getTimeHistoryString, cx } from '@/utils/helper';
 
 interface HistoryItemProps {
   address: string;

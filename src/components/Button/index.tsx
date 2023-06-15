@@ -1,18 +1,15 @@
 import { useEffect, useId, useRef } from 'react';
 
-import DropdownIcon from '@/assets/icons/dropdown.svg';
-
-import { buttonClickSfx, cx } from '@/utils/sound';
+import { buttonClickSfx } from '@/utils/sound';
+import { cx } from '@/utils/helper';
 
 interface ButtonProps {
   label: string;
   className?: string;
-  selected?: boolean;
-  arrow?: boolean;
   [any: string]: any;
 }
 
-const Button: React.FC<ButtonProps> = ({ label, className, handleClick, selected, arrow }) => {
+const Button: React.FC<ButtonProps> = ({ label, className, handleClick }) => {
   const id = useId();
   const audioRef = useRef<any>(null);
   const playAudioRef = useRef<any>(null);
@@ -42,28 +39,13 @@ const Button: React.FC<ButtonProps> = ({ label, className, handleClick, selected
   return (
     <button
       className={cx(
-        'trans main-button group relative h-24 w-1/2 border-y-8 border-black px-4 text-4xl font-bold hover:bg-primary hover:bg-opacity-30 active:translate-y-0.5',
-        selected ? 'bg-primary' : 'bg-transparent',
+        'relative h-24 w-1/2 rounded-3xl border-8 px-10 text-6xl font-medium transition-all hover:bg-opacity-30 active:translate-y-0.5',
         className ? className : '',
       )}
       onClick={onClick}
       key={`button-${id}`}
     >
-      <div className='absolute left-0 top-0 h-[20px] w-full border-x-8 border-black' />
-      <div className='absolute bottom-0 left-0 h-[20px] w-full border-x-8 border-black' />
       {label}
-      {arrow && (
-        <>
-          <div className='trans absolute -left-10 top-1/2 -translate-y-1/2 -rotate-90 scale-150 group-hover:translate-x-4'>
-            <DropdownIcon />
-            <DropdownIcon />
-          </div>
-          <div className='trans absolute -right-10 top-1/2 -translate-y-1/2 rotate-90 scale-150 group-hover:-translate-x-4'>
-            <DropdownIcon />
-            <DropdownIcon />
-          </div>
-        </>
-      )}
     </button>
   );
 };

@@ -14,14 +14,15 @@ const Won: React.FC<Props> = ({ betAmount, claimWinning }) => {
   return (
     <>
       <div className='flex flex-col items-center space-y-16'>
-        <img src='/images/coin.png' width={360} />
-        <div className='flex flex-col items-center'>
-          <p className='text-[80px]'>you won</p>
-          <div className='relative w-full rounded-md border-y-8 border-black bg-green px-16 py-2 text-center text-5xl'>
+        <img src='/images/win_logo.png' alt='logo' />
+        <div className='relative flex flex-col items-center'>
+          <div className='absolute z-0 h-full w-full bg-[#9bdc6f]  bg-opacity-50 blur-[100px]' />
+          <p className='relative z-[1] rounded-3xl border-8 border-[#9bdc6f] bg-[#325719] px-14 py-4 text-[80px] shadow-[0_10px_0_0_#4f7f2f]'>
+            you won
+          </p>
+          <p className='relative z-[1] mx-auto w-4/5 rounded-3xl bg-[#9bdc6f] text-center text-5xl text-black shadow-[0_10px_0_0_#4f7f2f]'>
             {betAmount} sui
-            <div className='absolute left-0 top-0 h-4 w-full border-x-8 border-black' />
-            <div className='absolute bottom-0 left-0 h-4 w-full border-x-8 border-black' />
-          </div>
+          </p>
         </div>
         <Button label='claim winning' arrow handleClick={claimWinning} className='h-36 w-auto' />
       </div>

@@ -1,5 +1,4 @@
-import { cx } from '@/utils/sound';
-import { shortenAddress } from '@/utils/helper';
+import { shortenAddress, cx } from '@/utils/helper';
 import { useId } from 'react';
 
 interface MenuProps {
