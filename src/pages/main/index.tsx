@@ -1,11 +1,11 @@
 import { useWallet } from '@suiet/wallet-kit';
 import { useEffect, useState } from 'react';
 
-import { getRecent } from '@/utils/api';
+import { getRecent } from 'src/utils/api';
 
-import ConnectButton from '@/components/Button/ConnectButton';
-import HistoryItem from '@/components/HistoryItem';
-import { PlayResult } from '@/utils/types';
+import ConnectButton from 'src/components/Button/ConnectButton';
+import HistoryItem from 'src/components/HistoryItem';
+import { PlayResult } from 'src/utils/types';
 
 const Main = () => {
   const wallet = useWallet();

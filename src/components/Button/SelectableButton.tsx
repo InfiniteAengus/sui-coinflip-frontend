@@ -1,4 +1,4 @@
-import { cx } from '@/utils/helper';
+import { cx } from 'src/utils/helper';
 
 interface SelectableButtonProps {
   label: string;

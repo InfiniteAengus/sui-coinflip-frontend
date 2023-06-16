@@ -1,6 +1,5 @@
-import Button from '@/components/Button';
-import PlayButton from '@/components/Button/PlayButton';
-import SelectableButton from '@/components/Button/SelectableButton';
+import PlayButton from 'src/components/Button/PlayButton';
+import SelectableButton from 'src/components/Button/SelectableButton';
 
 interface Props {
   guess: string;
@@ -51,7 +50,7 @@ const Init: React.FC<Props> = ({ guess, setGuess, betAmount, setBetAmount, play 
                 handleClick={() => handleClickBetAmount(amount)}
                 selected={betAmount === amount}
                 className='w-72 max-w-full border-[#fab600] bg-[#ffdf55] text-black hover:bg-[#fffe80]'
-                selectedClassName='border-[#94523B] bg-[#FF8D65]'
+                selectedClassName='!border-[#94523B] !bg-[#FF8D65]'
               />
             ))}
           </div>

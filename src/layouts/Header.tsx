@@ -1,19 +1,19 @@
-import { useRouter } from 'next/router';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { JsonRpcProvider, Connection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 
-import DropdownIcon from '@/assets/icons/dropdown.svg';
+import { ReactComponent as DropdownIcon } from 'src/assets/icons/dropdown-arrow.svg';
 
-import Menu from '@/components/Menu';
-import { getRecent, getLeaderboard } from '@/utils/api';
-import { PlayResult, LeaderboardProps } from '@/utils/types';
-import LeaderboardMenu from '@/components/LeaderboardMenu';
-import SoundButton from '@/components/Button/SoundButton';
-import { mode } from '@/config';
+import Menu from 'src/components/Menu';
+import { getRecent, getLeaderboard } from 'src/utils/api';
+import { PlayResult, LeaderboardProps } from 'src/utils/types';
+import LeaderboardMenu from 'src/components/LeaderboardMenu';
+import SoundButton from 'src/components/Button/SoundButton';
+import { mode } from 'src/config';
 
 const Header = () => {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [balance, setBalance] = useState<string>('');
   const [recentVisible, setRecentVisible] = useState<boolean>(false);
   const [recentData, setRecentData] = useState<PlayResult[]>([]);
@@ -74,7 +74,7 @@ const Header = () => {
 
   const disconnect = (): void => {
     wallet.disconnect();
-    router.push('/');
+    navigate('/');
   };
 
   return (
@@ -95,7 +95,7 @@ const Header = () => {
               }
             >
               <span className='text-[22px]'>RECENT GAMES</span>
-              <DropdownIcon width={22} heigth={14} className='brightness-0 invert' />
+              <DropdownIcon className='h-[14px] w-[22px] brightness-0 invert' />
               <Menu open={recentVisible} data={recentData} />
             </div>
             <div
@@ -108,7 +108,7 @@ const Header = () => {
               }
             >
               <span className='text-[22px]'>LEADERBOARD</span>
-              <DropdownIcon width={22} heigth={14} className='brightness-0 invert' />
+              <DropdownIcon className='h-[14px] w-[22px] brightness-0 invert ' />
               <LeaderboardMenu open={leaderboardVisible} data={leaderboardData} />
             </div>
             <div className='-mt-2.5 flex cursor-pointer flex-col items-center space-y-1.5'>

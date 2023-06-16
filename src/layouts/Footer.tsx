@@ -1,5 +1,5 @@
-import MyStenLabsIcon from '@/assets/icons/mystenlabs.svg';
-import MyStenLabsText from '@/assets/icons/mystenlabs_text.svg';
+import { ReactComponent as MyStenLabsIcon } from 'src/assets/icons/mystenlabs.svg';
+import { ReactComponent as MyStenLabsText } from 'src/assets/icons/mystenlabs-text.svg';
 
 const Footer = () => {
   return (

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import SoundOnIcon from '@/assets/icons/sound-on.svg';
-import SoundOffIcon from '@/assets/icons/sound-off.svg';
-import { cx } from '@/utils/helper';
+import { ReactComponent as SoundOnIcon } from 'src/assets/icons/sound-on.svg';
+import { ReactComponent as SoundOffIcon } from 'src/assets/icons/sound-off.svg';
+import { cx } from 'src/utils/helper';
 
 const SoundButton = () => {
   const [muted, setMuted] = useState<boolean>(false);

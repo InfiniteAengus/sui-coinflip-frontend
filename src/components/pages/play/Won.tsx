@@ -1,7 +1,7 @@
 import Confetti from 'react-confetti/';
 import { useWindowSize } from '@react-hook/window-size';
 
-import Button from '@/components/Button';
+import Button from 'src/components/Button';
 
 interface Props {
   betAmount: number;

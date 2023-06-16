@@ -21,11 +21,19 @@ export const getRecent = async () => {
   //     won: false,
   //   },
   // ];
-  const playData = (await axios.get('/api/recent')).data;
-  return playData;
+  try {
+    const playData = (await axios.get('/api/recent'))?.data;
+    return playData;
+  } catch {
+    return [];
+  }
 };
 
 export const getLeaderboard = async () => {
-  const leaderboard = (await axios.get('/api/leaderboard')).data;
-  return leaderboard;
+  try {
+    const leaderboard = (await axios.get('/api/leaderboard'))?.data;
+    return leaderboard;
+  } catch {
+    return [];
+  }
 };

@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef } from 'react';
 
-import { buttonClickSfx } from '@/utils/sound';
-import { cx } from '@/utils/helper';
+import { buttonClickSfx } from 'src/utils/sound';
+import { cx } from 'src/utils/helper';
 
 interface ButtonProps {
   label: string;

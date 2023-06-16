@@ -5,17 +5,17 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import { HOUSE_DATA_ID, PACKAGE_ID } from '@/config';
+import { HOUSE_DATA_ID, PACKAGE_ID } from 'src/config';
 
-import Init from '@/components/pages/play/Init';
-import Deposit from '@/components/pages/play/Deposit';
-import Flipping from '@/components/pages/play/Flipping';
-import Won from '@/components/pages/play/Won';
-import Lost from '@/components/pages/play/Lost';
+import Init from 'src/components/pages/play/Init';
+import Deposit from 'src/components/pages/play/Deposit';
+import Flipping from 'src/components/pages/play/Flipping';
+import Won from 'src/components/pages/play/Won';
+import Lost from 'src/components/pages/play/Lost';
 
-import { winSfx, loseSfx, flippingSfx } from '@/utils/sound';
-import { PlayResult } from '@/utils/types';
-import { getPlayResultFromTx } from '@/utils/web3';
+import { winSfx, loseSfx, flippingSfx } from 'src/utils/sound';
+import { PlayResult } from 'src/utils/types';
+import { getPlayResultFromTx } from 'src/utils/web3';
 
 const mockPlayResult = {
   timestamp: 0,
