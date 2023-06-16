@@ -1,4 +1,4 @@
-import { PlayResult } from '@/utils/types';
+import { PlayResult } from 'src/utils/types';
 
 // controller
 let playData: PlayResult[] = [];

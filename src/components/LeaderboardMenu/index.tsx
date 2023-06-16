@@ -1,4 +1,4 @@
-import { shortenAddress, cx } from '@/utils/helper';
+import { shortenAddress, cx } from 'src/utils/helper';
 import { useId } from 'react';
 
 interface MenuProps {

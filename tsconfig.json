@@ -30,5 +30,5 @@
     }
   },
   "exclude": ["./out/**/*", "./node_modules/**/*", "cypress/**/*.ts"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".storybook/*.ts"]
+  "include": ["**/*.ts", "**/*.tsx", ".storybook/*.ts", "src/@types/custom.d.ts", "src"]
 }

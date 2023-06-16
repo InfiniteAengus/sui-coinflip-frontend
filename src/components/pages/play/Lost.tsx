@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import Button from 'src/components/Button';
 
 interface Props {
   betAmount: number;

@@ -1,6 +1,6 @@
 import { JsonRpcProvider, Connection } from '@mysten/sui.js';
-import { PlayResult } from '@/utils/types';
-import { mode } from '@/config';
+import { PlayResult } from 'src/utils/types';
+import { mode } from 'src/config';
 
 export const getPlayResultFromTx = async (txn: any) => {
   if (!txn) {

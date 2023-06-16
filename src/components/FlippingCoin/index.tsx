@@ -1,5 +1,5 @@
 import { useLottie } from 'lottie-react';
-import FlippingAnimation from '@/data/flipping-coin.json';
+import FlippingAnimation from 'src/data/flipping-coin.json';
 
 interface FlippingCoinProps {
   className?: string;

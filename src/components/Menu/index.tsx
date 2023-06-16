@@ -1,4 +1,4 @@
-import { getTimeHistoryString, shortenAddress, cx } from '@/utils/helper';
+import { getTimeHistoryString, shortenAddress, cx } from 'src/utils/helper';
 import { useId } from 'react';
 
 interface MenuProps {

@@ -1,4 +1,4 @@
-import FlippingCoin from '@/components/FlippingCoin';
+import FlippingCoin from 'src/components/FlippingCoin';
 
 interface Props {
   guess: string;
