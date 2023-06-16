@@ -10,13 +10,13 @@ import {
 } from '@suiet/wallet-kit';
 
 import Main from './pages/main';
+import Play from './pages/play';
 import Layout from './layouts';
 
 import './App.css';
 import './styles/global.css';
 import '@suiet/wallet-kit/style.css';
 import 'react-toastify/dist/ReactToastify.css';
-import Play from './pages/play';
 
 const SupportedChains: Chain[] = [SuiDevnetChain, SuiTestnetChain, SuiMainnetChain];
 
