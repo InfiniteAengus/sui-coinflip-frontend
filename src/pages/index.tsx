@@ -1,4 +1,5 @@
 import { useWallet } from '@suiet/wallet-kit';
+
 import Main from './main';
 import Play from './play';
 

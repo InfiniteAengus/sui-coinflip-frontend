@@ -1,9 +1,10 @@
 import { useWallet } from '@suiet/wallet-kit';
 import { useEffect, useState } from 'react';
+
 import { getRecent } from '@/utils/api';
 
-import HistoryItem from '@/components/HistoryItem';
 import ConnectButton from '@/components/Button/ConnectButton';
+import HistoryItem from '@/components/HistoryItem';
 import { PlayResult } from '@/utils/types';
 
 const Main = () => {
