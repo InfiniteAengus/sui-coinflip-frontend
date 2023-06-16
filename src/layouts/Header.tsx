@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react';
 import { JsonRpcProvider, Connection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 
-import { ReactComponent as DropdownIcon } from 'src/assets/icons/dropdown-arrow.svg';
-
 import Menu from 'src/components/Menu';
 import { getRecent, getLeaderboard } from 'src/utils/api';
 import { PlayResult, LeaderboardProps } from 'src/utils/types';
@@ -95,7 +93,7 @@ const Header = () => {
               }
             >
               <span className='text-[22px]'>RECENT GAMES</span>
-              <DropdownIcon className='h-[14px] w-[22px] brightness-0 invert' />
+              <img src='/images/dropdown.png' className='h-[14px] w-[22px] brightness-0 invert' />
               <Menu open={recentVisible} data={recentData} />
             </div>
             <div
@@ -108,7 +106,7 @@ const Header = () => {
               }
             >
               <span className='text-[22px]'>LEADERBOARD</span>
-              <DropdownIcon className='h-[14px] w-[22px] brightness-0 invert ' />
+              <img src='/images/dropdown.png' className='h-[14px] w-[22px] brightness-0 invert' />
               <LeaderboardMenu open={leaderboardVisible} data={leaderboardData} />
             </div>
             <div className='-mt-2.5 flex cursor-pointer flex-col items-center space-y-1.5'>

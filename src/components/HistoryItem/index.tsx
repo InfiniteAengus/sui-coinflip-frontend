@@ -1,7 +1,5 @@
 import React, { useId } from 'react';
 
-import { ReactComponent as DropdownIcon } from 'src/assets/icons/dropdown-arrow.svg';
-
 import { shortenAddress, getTimeHistoryString, cx } from 'src/utils/helper';
 
 interface HistoryItemProps {
@@ -30,12 +28,6 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ address, betAmount, timestamp
 
       <div className='absolute left-0 top-0 h-[20px] w-full border-x-8 border-black' />
       <div className='absolute bottom-0 left-0 h-[20px] w-full border-x-8 border-black' />
-      <div className='absolute -left-10 top-1/2 -translate-y-1/2 -rotate-90 scale-150'>
-        <DropdownIcon />
-      </div>
-      <div className='absolute -right-10 top-1/2 -translate-y-1/2 rotate-90 scale-150'>
-        <DropdownIcon />
-      </div>
     </div>
   );
 };
