@@ -19,12 +19,12 @@ export default function Layout({ children }: LayoutProps) {
           <img
             src='/images/blue_star.png'
             alt='blue-star'
-            className='absolute bottom-0 right-1/4'
+            className='absolute bottom-0 right-1/4 animate-pulse delay-100'
           />
           <img
             src='/images/yellow_star.png'
             alt='yellow-star'
-            className='absolute left-1/4 top-[60%]'
+            className='absolute left-1/4 top-[60%] animate-pulse'
           />
         </main>
         <Footer />
