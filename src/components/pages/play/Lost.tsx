@@ -2,10 +2,10 @@ import Button from 'src/components/Button';
 
 interface Props {
   betAmount: number;
-  tryAgain: () => void;
+  callback: () => void;
 }
 
-const Lost: React.FC<Props> = ({ betAmount, tryAgain }) => {
+const Lost: React.FC<Props> = ({ betAmount, callback }) => {
   return (
     <div className='flex flex-col items-center space-y-16'>
       <img src='/images/failed_logo.png' alt='logo' />
@@ -22,7 +22,7 @@ const Lost: React.FC<Props> = ({ betAmount, tryAgain }) => {
         label='try again'
         className='h-36 w-auto border-[#f5cf54] bg-[#c08819]'
         arrow
-        handleClick={tryAgain}
+        handleClick={callback}
       />
     </div>
   );
