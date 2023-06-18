@@ -18,7 +18,7 @@ export const useGame = () => {
   const handlePlayGame = async (choice: CoinSide, balance: number) => {
     setChoice(choice);
     setBetAmount(balance);
-    setIsLoading(true);
+
     await handleNewGame(choice, balance)
       .then(() => {
         setIsLoading(false);
@@ -41,6 +41,7 @@ export const useGame = () => {
       arguments: [
         tx.pure(choice === 'heads' ? '1' : '0'),
         tx.pure(Array.from(userRandomness)),
+        tx.pure(Number(balance)),
         coin,
         tx.object(HOUSE_DATA_ID),
       ],
@@ -58,6 +59,7 @@ export const useGame = () => {
       })
       .then((resp) => {
         console.log(resp);
+        setIsLoading(true);
         if (resp.effects?.status.status === 'success') {
           const createdObjects = resp.effects?.created;
           const createdGame = createdObjects?.[0];

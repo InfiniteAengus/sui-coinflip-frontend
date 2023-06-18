@@ -9,16 +9,8 @@ import Won from 'src/components/pages/play/Won';
 import Lost from 'src/components/pages/play/Lost';
 
 import { winSfx, loseSfx, flippingSfx } from 'src/utils/sound';
-import { PlayResult } from 'src/utils/types';
 import { useGame } from 'src/hooks/useGame';
-
-const mockPlayResult = {
-  timestamp: 0,
-  won: false,
-  betAmount: 0,
-  address: '',
-  transactionId: '',
-};
+import { CoinSide } from 'src/@types/game';
 
 const Play = () => {
   const wallet = useWallet();
@@ -26,30 +18,32 @@ const Play = () => {
   const [status, setStatus] = useState<string>('init');
   const [guess, setGuess] = useState<string>('');
   const [amount, setAmount] = useState<number>(0);
-  const [playResult, setPlayResult] = useState<PlayResult>(mockPlayResult);
   const { gameResult, currentGameId, betAmount, choice, isLoading, handlePlayGame, handleEndGame } =
     useGame();
 
   useEffect(() => {
     const setWinningStatus = async () => {
       await new Promise((r) => setTimeout(r, 2000));
-      setStatus(playResult.won ? 'won' : 'lost');
-      (playResult.won ? winSfx : loseSfx)();
-      toast[playResult.won ? 'success' : 'error'](`You ${playResult.won ? 'won' : 'lost'} :)`, {
-        position: 'top-right',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-      });
-
-      if (playResult.won) {
-        localStorage.setItem('_gameInfo', JSON.stringify(playResult));
-      }
+      setStatus(gameResult!);
+      (gameResult === 'win' ? winSfx : loseSfx)();
+      toast[gameResult === 'win' ? 'success' : 'error'](
+        `You ${gameResult === 'win' ? 'won' : 'lost'} :)`,
+        {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        },
+      );
     };
+
+    if (status === 'init' && isLoading) {
+      setStatus('deposit');
+    }
 
     if (status == 'deposit') {
       setTimeout(() => {
@@ -58,15 +52,14 @@ const Play = () => {
       }, 2000);
     }
 
-    if (status === 'flipping' && playResult.timestamp) {
+    if (status === 'flipping' && gameResult) {
       setWinningStatus();
     }
-  }, [status, playResult, gameResult]);
+  }, [status, gameResult, isLoading]);
 
   const handleTryAgain = (): void => {
     setStatus('init');
     setGuess('');
-    setPlayResult(mockPlayResult);
     setAmount(0);
     handleEndGame();
   };
@@ -84,8 +77,8 @@ const Play = () => {
       )}
       {status === 'deposit' && <Deposit guess={guess} betAmount={amount} />}
       {status === 'flipping' && <Flipping guess={guess} betAmount={amount} />}
-      {gameResult === 'win' && <Won betAmount={betAmount * 2} callback={handleTryAgain} />}
-      {gameResult === 'lost' && <Lost betAmount={betAmount} callback={handleTryAgain} />}
+      {status === 'win' && <Won betAmount={betAmount * 2} callback={handleTryAgain} />}
+      {status === 'lost' && <Lost betAmount={betAmount} callback={handleTryAgain} />}
     </div>
   );
 };
