@@ -4,7 +4,6 @@ import { JsonRpcProvider, Connection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 
 import Menu from 'src/components/Menu';
-import { getRecent, getLeaderboard } from 'src/utils/api';
 import { PlayResult, LeaderboardProps } from 'src/utils/types';
 import LeaderboardMenu from 'src/components/LeaderboardMenu';
 import SoundButton from 'src/components/Button/SoundButton';
@@ -20,20 +19,6 @@ const Header = () => {
   const wallet = useWallet();
 
   useEffect(() => {
-    getRecentActivity();
-    getLeaderboardData();
-
-    const timerId = setInterval(() => {
-      getRecentActivity();
-      getLeaderboardData();
-    }, 10000);
-
-    return () => {
-      clearInterval(timerId);
-    };
-  }, []);
-
-  useEffect(() => {
     const timerId = setInterval(() => {
       refreshBalance();
     }, 3000);
@@ -43,23 +28,13 @@ const Header = () => {
     };
   }, [wallet]);
 
-  const getRecentActivity = async () => {
-    const data = await getRecent();
-    setRecentData(data);
-  };
-
-  const getLeaderboardData = async () => {
-    const data = await getLeaderboard();
-    setLeaderboardData(data);
-  };
-
   const refreshBalance = async (): Promise<void> => {
     if (!wallet.address) return;
 
     // const provider = new JsonRpcProvider(mode == 'dev' ? devnetConnection : undefined);
     const provider = new JsonRpcProvider(
       new Connection({
-        fullnode: `https://fullnode.${mode == 'dev' ? 'devnet' : 'mainnet'}.sui.io:443/`,
+        fullnode: `https://fullnode.${mode == 'test' ? 'testnet' : 'mainnet'}.sui.io:443/`,
       }),
     );
     const providerBalance = await provider.getBalance({
