@@ -1,8 +1,6 @@
 import { useWallet } from '@suiet/wallet-kit';
 import { useEffect, useState } from 'react';
 
-import { getRecent } from 'src/utils/api';
-
 import ConnectButton from 'src/components/Button/ConnectButton';
 import HistoryItem from 'src/components/HistoryItem';
 import { PlayResult } from 'src/utils/types';
@@ -15,12 +13,6 @@ const Main = () => {
     if (!wallet.connected) return;
     window.location.href = '/play';
   }, [wallet.connected]);
-
-  useEffect(() => {
-    setInterval(async () => {
-      setRecent(await getRecent());
-    }, 3000);
-  }, []);
 
   return (
     <div className='container py-20'>

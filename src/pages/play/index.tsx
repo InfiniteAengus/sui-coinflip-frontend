@@ -63,70 +63,12 @@ const Play = () => {
     }
   }, [status, playResult, gameResult]);
 
-  // const handlePlayGame = async (guess: string) => {
-  //   const txb: any = new TransactionBlock();
-  //   const ser = bytesToHex(randomBytes(16));
-  //   const coins = txb.splitCoins(txb.gas, [txb.pure(betAmount * 1000000000)]);
-
-  //   txb.moveCall({
-  //     target: `${PACKAGE_ID}::coin_flip::play`,
-  //     arguments: [
-  //       txb.pure(guess === 'head' ? 1 : 0),
-  //       txb.pure(ser),
-  //       coins[0] as any,
-  //       txb.pure(betAmount * 1000000000),
-  //       txb.pure(HOUSE_DATA_ID),
-  //     ],
-  //   });
-
-  //   try {
-  //     let tx = await wallet.signAndExecuteTransactionBlock({
-  //       transactionBlock: txb,
-  //       options: {
-  //         showEffects: true,
-  //         showInput: true,
-  //         showEvents: true,
-  //         showObjectChanges: true,
-  //         showBalanceChanges: true,
-  //       },
-  //     });
-
-  //     setStatus('deposit');
-
-  //     let isRequestInProgress = false;
-
-  //     const timerId = setInterval(async () => {
-  //       if (isRequestInProgress) {
-  //         return;
-  //       }
-
-  //       isRequestInProgress = true;
-
-  //       try {
-  //         let playResult: PlayResult = await getPlayResultFromTx(tx);
-  //         if (playResult.address) {
-  //           axios.post('/api/add_digest', {
-  //             playResult: { ...playResult, transactionId: tx.digest },
-  //           });
-  //           setPlayResult(playResult);
-  //           clearInterval(timerId);
-  //         }
-  //       } catch (e) {
-  //         console.log(e);
-  //       } finally {
-  //         isRequestInProgress = false;
-  //       }
-  //     }, 1000);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
   const handleTryAgain = (): void => {
     setStatus('init');
     setGuess('');
     setPlayResult(mockPlayResult);
     setAmount(0);
+    handleEndGame();
   };
 
   return (

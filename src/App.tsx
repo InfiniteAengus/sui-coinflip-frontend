@@ -8,7 +8,6 @@ import {
   SuiMainnetChain,
   Chain,
 } from '@suiet/wallet-kit';
-import { WalletKitProvider } from '@mysten/wallet-kit';
 
 import Main from './pages/main';
 import Play from './pages/play';
@@ -26,14 +25,12 @@ const App = () => {
     <Suspense fallback={<></>}>
       <BrowserRouter>
         <WalletProvider chains={SupportedChains}>
-          <WalletKitProvider enableUnsafeBurner={true}>
-            <Layout>
-              <Routes>
-                <Route path='/' element={<Main />} />
-                <Route path='/play' element={<Play />} />
-              </Routes>
-            </Layout>
-          </WalletKitProvider>
+          <Layout>
+            <Routes>
+              <Route path='/' element={<Main />} />
+              <Route path='/play' element={<Play />} />
+            </Routes>
+          </Layout>
         </WalletProvider>
       </BrowserRouter>
     </Suspense>
