@@ -5,10 +5,10 @@ import Button from 'src/components/Button';
 
 interface Props {
   betAmount: number;
-  claimWinning: () => void;
+  callback: () => void;
 }
 
-const Won: React.FC<Props> = ({ betAmount, claimWinning }) => {
+const Won: React.FC<Props> = ({ betAmount, callback }) => {
   const [width, height] = useWindowSize();
 
   return (
@@ -24,7 +24,12 @@ const Won: React.FC<Props> = ({ betAmount, claimWinning }) => {
             {betAmount} sui
           </p>
         </div>
-        <Button label='claim winning' arrow handleClick={claimWinning} className='h-36 w-auto' />
+        <Button
+          label='try again'
+          className='h-36 w-auto border-[#f5cf54] bg-[#c08819]'
+          arrow
+          handleClick={callback}
+        />
       </div>
       <Confetti
         width={width ? width * 2 : 1920}
