@@ -10,7 +10,6 @@ import Lost from 'src/components/pages/play/Lost';
 
 import { winSfx, loseSfx, flippingSfx } from 'src/utils/sound';
 import { useGame } from 'src/hooks/useGame';
-import { CoinSide } from 'src/@types/game';
 
 const Play = () => {
   const wallet = useWallet();
@@ -18,8 +17,7 @@ const Play = () => {
   const [status, setStatus] = useState<string>('init');
   const [guess, setGuess] = useState<string>('');
   const [amount, setAmount] = useState<number>(0);
-  const { gameResult, currentGameId, betAmount, choice, isLoading, handlePlayGame, handleEndGame } =
-    useGame();
+  const { gameResult, betAmount, isLoading, handlePlayGame, handleEndGame } = useGame();
 
   useEffect(() => {
     const setWinningStatus = async () => {
@@ -77,8 +75,10 @@ const Play = () => {
       )}
       {status === 'deposit' && <Deposit guess={guess} betAmount={amount} />}
       {status === 'flipping' && <Flipping guess={guess} betAmount={amount} />}
-      {status === 'win' && <Won betAmount={betAmount * 2} callback={handleTryAgain} />}
-      {status === 'lost' && <Lost betAmount={betAmount} callback={handleTryAgain} />}
+      {status === 'win' && (
+        <Won betAmount={(betAmount * 2) / 1000000000} callback={handleTryAgain} />
+      )}
+      {status === 'lost' && <Lost betAmount={betAmount / 1000000000} callback={handleTryAgain} />}
     </div>
   );
 };

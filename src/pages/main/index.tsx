@@ -3,11 +3,19 @@ import { useEffect, useState } from 'react';
 
 import ConnectButton from 'src/components/Button/ConnectButton';
 import HistoryItem from 'src/components/HistoryItem';
+import { getRecentHistoryData } from 'src/utils/getRecentHistoryData';
 import { PlayResult } from 'src/utils/types';
 
 const Main = () => {
   const wallet = useWallet();
   const [recent, setRecent] = useState<any[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const recentData = await getRecentHistoryData();
+      console.log(recentData);
+    })();
+  }, []);
 
   useEffect(() => {
     if (!wallet.connected) return;
