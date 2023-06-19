@@ -1,4 +1,4 @@
-import { useWallet } from '@suiet/wallet-kit';
+import { useWalletKit } from '@mysten/wallet-kit';
 import { useEffect, useState } from 'react';
 
 import ConnectButton from 'src/components/Button/ConnectButton';
@@ -7,8 +7,10 @@ import { getRecentHistoryData } from 'src/utils/getRecentHistoryData';
 import { PlayResult } from 'src/@types/game';
 
 const Main = () => {
-  const wallet = useWallet();
+  const { isConnected } = useWalletKit();
   const [recent, setRecent] = useState<any[]>([]);
+
+  console.log(isConnected);
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -21,9 +23,9 @@ const Main = () => {
   }, []);
 
   useEffect(() => {
-    if (!wallet.connected) return;
+    if (!isConnected) return;
     window.location.href = '/play';
-  }, [wallet.connected]);
+  }, [isConnected]);
 
   const recentHistoryData = async () => {
     setRecent(await getRecentHistoryData());
@@ -48,7 +50,7 @@ const Main = () => {
             RECENT PLAYERS
           </h4>
           <div className='mt-5 flex flex-col gap-4'>
-            {recent.map((item: PlayResult, id: number) => (
+            {recent.map((item: PlayResult) => (
               <>
                 <HistoryItem
                   address={item.player}

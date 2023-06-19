@@ -1,6 +1,6 @@
-import { useWallet } from '@suiet/wallet-kit';
+import { useWalletKit } from '@mysten/wallet-kit';
 import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 import Init from 'src/components/pages/play/Init';
 import Deposit from 'src/components/pages/play/Deposit';
@@ -12,7 +12,7 @@ import { winSfx, loseSfx, flippingSfx } from 'src/utils/sound';
 import { useGame } from 'src/hooks/useGame';
 
 const Play = () => {
-  const wallet = useWallet();
+  const wallet = useWalletKit();
 
   const [status, setStatus] = useState<string>('init');
   const [guess, setGuess] = useState<string>('');
@@ -28,13 +28,6 @@ const Play = () => {
         `You ${gameResult === 'win' ? 'won' : 'lost'} :)`,
         {
           position: 'top-right',
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
         },
       );
     };

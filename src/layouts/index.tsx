@@ -1,7 +1,6 @@
-import { ToastContainer } from 'react-toastify';
-
 import Header from './Header';
 import Footer from './Footer';
+import { Toaster } from 'react-hot-toast';
 interface LayoutProps {
   children?: React.ReactNode;
 }
@@ -30,18 +29,8 @@ export default function Layout({ children }: LayoutProps) {
         <Footer />
         <div className='absolute bottom-0 left-0 h-1/6 w-full bg-[#9bdc6f] bg-opacity-30 blur-[100px]' />
       </div>
-      <ToastContainer
-        position='top-right'
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='colored'
-      />
+
+      <Toaster position='top-center' />
     </>
   );
 }

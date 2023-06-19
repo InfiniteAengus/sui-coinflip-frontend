@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { JsonRpcProvider, Connection } from '@mysten/sui.js';
-import { useWallet } from '@suiet/wallet-kit';
+import { useWalletKit } from '@mysten/wallet-kit';
 
 import RecentMenu from 'src/components/RecentMenu';
 import LeaderboardMenu from 'src/components/LeaderboardMenu';
@@ -11,12 +11,12 @@ import { getRecentHistoryData } from 'src/utils/getRecentHistoryData';
 
 const Header = () => {
   const navigate = useNavigate();
+  const { currentAccount, disconnect: walletDisconnect } = useWalletKit();
   const [balance, setBalance] = useState<string>('');
   const [recentVisible, setRecentVisible] = useState<boolean>(false);
   const [recentData, setRecentData] = useState<[]>([]);
   const [leaderboardVisible, setLeaderboardVisible] = useState<boolean>(false);
   const [leaderboardData, setLeaderboardData] = useState<[]>([]);
-  const wallet = useWallet();
 
   useEffect(() => {
     const timerId = setInterval(async () => {
@@ -36,10 +36,10 @@ const Header = () => {
     return () => {
       clearInterval(timerId);
     };
-  }, [wallet]);
+  }, [currentAccount]);
 
   const refreshBalance = async (): Promise<void> => {
-    if (!wallet.address) return;
+    if (!currentAccount?.address) return;
 
     // const provider = new JsonRpcProvider(mode == 'dev' ? devnetConnection : undefined);
     const provider = new JsonRpcProvider(
@@ -48,15 +48,15 @@ const Header = () => {
       }),
     );
     const providerBalance = await provider.getBalance({
-      owner: wallet.address || '',
+      owner: currentAccount?.address || '',
     });
     const accountBalance = Math.round(+providerBalance.totalBalance / 1e8) / 10;
 
     setBalance(accountBalance.toString());
   };
 
-  const disconnect = (): void => {
-    wallet.disconnect();
+  const disconnect = async () => {
+    await walletDisconnect();
     navigate('/');
   };
 

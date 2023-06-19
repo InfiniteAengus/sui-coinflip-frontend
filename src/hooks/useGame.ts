@@ -1,14 +1,16 @@
-import { CoinSide, GameResult } from 'src/@types/game';
 import { useState } from 'react';
-import { useWallet } from '@suiet/wallet-kit';
-import { PACKAGE_ID, HOUSE_DATA_ID } from 'src/config';
-import { toast } from 'react-toastify';
-import { bytesToHex, randomBytes } from '@noble/hashes/utils';
+import { toast } from 'react-hot-toast';
+import { useWalletKit } from '@mysten/wallet-kit';
 import { TransactionBlock } from '@mysten/sui.js';
+import { bytesToHex, randomBytes } from '@noble/hashes/utils';
+
+import { CoinSide, GameResult } from 'src/@types/game';
+
+import { PACKAGE_ID, HOUSE_DATA_ID } from 'src/config';
 import API from 'src/api';
 
 export const useGame = () => {
-  const wallet = useWallet();
+  const { currentAccount, signAndExecuteTransactionBlock } = useWalletKit();
   const [isLoading, setIsLoading] = useState(false);
   const [gameResult, setGameResult] = useState<GameResult | null>(null);
   const [choice, setChoice] = useState<CoinSide | null>(null);
@@ -48,15 +50,15 @@ export const useGame = () => {
     });
 
     console.log('creating game...');
-    return wallet
-      .signAndExecuteTransactionBlock({
-        transactionBlock: tx,
-        requestType: 'WaitForLocalExecution',
-        options: {
-          showEffects: true,
-          showEvents: true,
-        },
-      })
+
+    return signAndExecuteTransactionBlock({
+      transactionBlock: tx as any,
+      requestType: 'WaitForLocalExecution',
+      options: {
+        showEffects: true,
+        showEvents: true,
+      },
+    })
       .then((resp) => {
         console.log(resp);
         setIsLoading(true);
@@ -71,7 +73,7 @@ export const useGame = () => {
               gameObjectId,
               userRandomnessHexString,
               txnDigest,
-              wallet.address!,
+              currentAccount?.address!,
               +balance,
             );
           }
