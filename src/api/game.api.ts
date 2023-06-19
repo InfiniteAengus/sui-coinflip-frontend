@@ -1,8 +1,13 @@
 import { api } from 'src/libs/axios';
 
-export const registerGameRequest = (gameId: string, txnDigest: string) => {
-  const requestUrl = `/game/register`;
-  const body = { gameId, txnDigest };
+export const registerGameRequest = (
+  gameId: string,
+  txnDigest: string,
+  player: string,
+  balance: number,
+) => {
+  const requestUrl = `/register`;
+  const body = { gameId, txnDigest, player, balance };
   return api.post(requestUrl, body);
 };
 
@@ -10,9 +15,11 @@ export const playGameRequest = (
   gameId: string,
   txnDigest: string,
   userRandomnessHexString: string,
+  player: string,
+  balance: number,
 ) => {
   const requestUrl = `/play`;
-  const body = { gameId, txnDigest, userRandomnessHexString };
+  const body = { gameId, txnDigest, userRandomnessHexString, player, balance };
   return api.post(requestUrl, body);
 };
 

@@ -21,7 +21,7 @@ const Init: React.FC<Props> = ({ guess, setGuess, betAmount, setBetAmount, play 
   const handlePlayGame = (): void => {
     if (guess === '' || betAmount === 0) return;
 
-    play(guess, (betAmount * 1000000000) / 1000);
+    play(guess, (betAmount * 1000000000) / 10);
   };
 
   return (

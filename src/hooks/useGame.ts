@@ -67,7 +67,13 @@ export const useGame = () => {
           const txnDigest = resp.digest;
           if (!!gameObjectId) {
             setCurrentGameId(gameObjectId);
-            return playGame(gameObjectId, userRandomnessHexString, txnDigest);
+            return playGame(
+              gameObjectId,
+              userRandomnessHexString,
+              txnDigest,
+              wallet.address!,
+              +balance,
+            );
           }
           setCurrentGameId(null);
         } else {
@@ -88,9 +94,11 @@ export const useGame = () => {
     gameObjectId: string,
     userRandomnessHexString: string,
     txnDigest: string,
+    player: string,
+    balance: number,
   ) => {
     console.log('playing game...');
-    return API.playGameRequest(gameObjectId, txnDigest, userRandomnessHexString)
+    return API.playGameRequest(gameObjectId, txnDigest, userRandomnessHexString, player, balance)
       .then((resp) => {
         console.log(resp);
         const { playerWon } = resp.data;
