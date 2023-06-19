@@ -30,7 +30,6 @@
     "web-vitals": "^3.3.2"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^13.4.1",
     "@types/node": "^20.0.0",
     "@types/react": "^18.2.5",
     "@typescript-eslint/eslint-plugin": "^5.59.2",
