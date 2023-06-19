@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { JsonRpcProvider, Connection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
@@ -10,7 +10,7 @@ import { mode } from 'src/config';
 import { getRecentHistoryData } from 'src/utils/getRecentHistoryData';
 
 const Header = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [balance, setBalance] = useState<string>('');
   const [recentVisible, setRecentVisible] = useState<boolean>(false);
   const [recentData, setRecentData] = useState<[]>([]);
@@ -57,7 +57,7 @@ const Header = () => {
 
   const disconnect = (): void => {
     wallet.disconnect();
-    navigate('/');
+    router.push('/');
   };
 
   return (
