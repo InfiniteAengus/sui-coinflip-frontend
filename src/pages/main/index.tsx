@@ -10,8 +10,6 @@ const Main = () => {
   const { isConnected } = useWalletKit();
   const [recent, setRecent] = useState<any[]>([]);
 
-  console.log(isConnected);
-
   useEffect(() => {
     const timerId = setInterval(() => {
       recentHistoryData();
