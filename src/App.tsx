@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import {
   WalletProvider,
@@ -23,16 +23,14 @@ const SupportedChains: Chain[] = [SuiDevnetChain, SuiTestnetChain, SuiMainnetCha
 const App = () => {
   return (
     <Suspense fallback={<></>}>
-      <BrowserRouter>
-        <WalletProvider chains={SupportedChains}>
-          <Layout>
-            <Routes>
-              <Route path='/' element={<Main />} />
-              <Route path='/play' element={<Play />} />
-            </Routes>
-          </Layout>
-        </WalletProvider>
-      </BrowserRouter>
+      <WalletProvider chains={SupportedChains}>
+        <Layout>
+          <Routes>
+            <Route path='/' element={<Main />} />
+            <Route path='/play' element={<Play />} />
+          </Routes>
+        </Layout>
+      </WalletProvider>
     </Suspense>
   );
 };
