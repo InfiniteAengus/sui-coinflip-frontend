@@ -3,15 +3,11 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "react-app-rewired start --no-ignore",
-    "build": "next build",
-    "start": "next start",
+    "build": "react-app-rewired build",
+    "start": "react-app-rewired start",
     "build-stats": "cross-env ANALYZE=true npm run build",
-    "export": "next export",
     "build-prod": "run-s clean build export",
-    "lint": "next lint",
-    "format": "next lint --fix && prettier '**/*.{json,yaml}' --write --ignore-path .gitignore",
-    "commit": "cz",
-    "postbuild": "next-sitemap"
+    "commit": "cz"
   },
   "dependencies": {
     "@mysten/sui.js": "0.35.1",
