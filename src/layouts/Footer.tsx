@@ -1,10 +1,7 @@
-import { ReactComponent as MyStenLabsIcon } from 'src/assets/icons/mystenlabs.svg';
-import { ReactComponent as MyStenLabsText } from 'src/assets/icons/mystenlabs-text.svg';
-
 const Footer = () => {
   return (
     <footer style={{ zoom: '0.7' }} className='relative z-[1]'>
-      <div className='flex justify-between px-10 pb-10'>
+      <div className='flex flex-col items-center justify-between space-y-3 px-10 pb-10 md:flex-row'>
         <div className='flex items-center space-x-2'>
           <img src='/images/desui_logo.png' className='h-10' />
           <img src='/images/source_code.png ' className='h-6' />

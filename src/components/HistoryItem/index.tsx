@@ -5,7 +5,7 @@ import { shortenAddress, getTimeHistoryString, cx } from 'src/utils/helper';
 interface HistoryItemProps {
   address: string;
   betAmount: number;
-  timestamp: number;
+  timestamp: string;
   won: boolean;
   key: string;
 }
@@ -15,19 +15,18 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ address, betAmount, timestamp
   return (
     <div
       className={cx(
-        'relative flex w-full items-center gap-9 rounded-md border-y-8 border-black px-12 py-6 pr-[100px]',
-        won ? 'bg-green' : 'bg-red',
+        'relative flex w-full items-center gap-9 rounded-3xl border-8 bg-opacity-50 px-12 py-6 pr-[100px]',
+        won ? 'border-[#44811b] bg-[#44811b]' : 'border-[#c75151] bg-[#c75151]',
       )}
       key={`${id}-${key}`}
     >
-      <div className='flex gap-2 text-4xl'>
+      <div className='flex gap-2 text-2xl font-light md:text-4xl'>
         {`${shortenAddress(address)} flipped ${betAmount} sui and `}
         {`${won ? 'claimed glory' : 'got ruggged'}`}
       </div>
-      <span className='absolute bottom-1 right-4 text-xl'>{getTimeHistoryString(timestamp)}</span>
-
-      <div className='absolute left-0 top-0 h-[20px] w-full border-x-8 border-black' />
-      <div className='absolute bottom-0 left-0 h-[20px] w-full border-x-8 border-black' />
+      <span className='absolute bottom-1 right-4 text-xl'>
+        {getTimeHistoryString(new Date(timestamp).getTime())}
+      </span>
     </div>
   );
 };

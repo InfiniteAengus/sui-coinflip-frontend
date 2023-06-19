@@ -11,8 +11,9 @@ export const getRecentHistoryData = async (currentPage: number = 1, PAGE_SIZE: n
     dateCreated: game.details.date_created,
     dateEnded: game.details.date_ended,
     coinSide: game.details.guess === 1 ? 'head' : 'tails',
-    result: game.details.player_won ? 'win' : 'loss',
-    balanceChange: game.details.player_won ? 5000 : -5000,
+    result: game.details.player_won,
+    player: game.details.player,
+    balance: game.details.balance,
   }));
   return result;
 };

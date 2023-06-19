@@ -4,17 +4,20 @@ import { useEffect, useState } from 'react';
 import ConnectButton from 'src/components/Button/ConnectButton';
 import HistoryItem from 'src/components/HistoryItem';
 import { getRecentHistoryData } from 'src/utils/getRecentHistoryData';
-import { PlayResult } from 'src/utils/types';
+import { PlayResult } from 'src/@types/game';
 
 const Main = () => {
   const wallet = useWallet();
   const [recent, setRecent] = useState<any[]>([]);
 
   useEffect(() => {
-    (async () => {
-      const recentData = await getRecentHistoryData();
-      console.log(recentData);
-    })();
+    const timerId = setInterval(() => {
+      recentHistoryData();
+    }, 3000);
+
+    return () => {
+      clearInterval(timerId);
+    };
   }, []);
 
   useEffect(() => {
@@ -22,12 +25,16 @@ const Main = () => {
     window.location.href = '/play';
   }, [wallet.connected]);
 
+  const recentHistoryData = async () => {
+    setRecent(await getRecentHistoryData());
+  };
+
   return (
-    <div className='container py-20'>
+    <div className='container py-5'>
       <div className='flex flex-col items-center space-y-20'>
         <div className='flex flex-col items-center -space-y-10'>
           <div className='relative'>
-            <img src='/images/logo.png' alt='logo' />
+            <img src='/images/logo.png' alt='logo' className='w-[700px]' />
             <img
               src='/images/click_here.png'
               alt='click'
@@ -42,13 +49,15 @@ const Main = () => {
           </h4>
           <div className='mt-5 flex flex-col gap-4'>
             {recent.map((item: PlayResult, id: number) => (
-              <HistoryItem
-                address={item.address}
-                betAmount={item.betAmount}
-                timestamp={item.timestamp}
-                won={item.won}
-                key={`${id}`}
-              />
+              <>
+                <HistoryItem
+                  address={item.player}
+                  betAmount={item.balance / 1000000000}
+                  timestamp={item.dateEnded}
+                  won={item.result}
+                  key={item.id}
+                />
+              </>
             ))}
           </div>
         </div>
