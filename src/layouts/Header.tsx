@@ -3,30 +3,22 @@ import { useState, useEffect } from 'react';
 import { JsonRpcProvider, Connection } from '@mysten/sui.js';
 import { useWalletKit } from '@mysten/wallet-kit';
 
-import RecentMenu from 'src/components/RecentMenu';
-import LeaderboardMenu from 'src/components/LeaderboardMenu';
+import RecentMenu from 'src/components/Recent/Menu';
+import LeaderboardMenu from 'src/components/Leaderboard/Menu';
 import SoundButton from 'src/components/Button/SoundButton';
 import { mode } from 'src/config';
-import { getRecentHistoryData } from 'src/utils/getRecentHistoryData';
+import { useAppSelector } from 'src/hooks/redux';
+import Recent from 'src/components/Recent';
+import Leaderboard from 'src/components/Leaderboard';
 
 const Header = () => {
   const navigate = useNavigate();
+
   const { currentAccount, disconnect: walletDisconnect } = useWalletKit();
   const [balance, setBalance] = useState<string>('');
   const [recentVisible, setRecentVisible] = useState<boolean>(false);
-  const [recentData, setRecentData] = useState<[]>([]);
   const [leaderboardVisible, setLeaderboardVisible] = useState<boolean>(false);
   const [leaderboardData, setLeaderboardData] = useState<[]>([]);
-
-  useEffect(() => {
-    const timerId = setInterval(async () => {
-      setRecentData(await getRecentHistoryData());
-    }, 5000);
-
-    return () => {
-      clearInterval(timerId);
-    };
-  }, []);
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -61,39 +53,15 @@ const Header = () => {
   };
 
   return (
-    <header style={{ zoom: '0.7' }} className='relative z-[1]'>
+    <header style={{ zoom: '0.7' }} className='relative z-[2]'>
       <div className='px-10 py-5'>
         <div className='flex justify-between'>
           <div className='flex h-fit space-x-6'>
             <SoundButton />
           </div>
           <div className='flex space-x-8'>
-            <div
-              className='relative hidden h-fit cursor-pointer items-center space-x-5 rounded-full border-[6px] border-[#6397f7] bg-[#2e477d] px-4 py-1 sm:flex'
-              onClick={() =>
-                setRecentVisible((prev) => {
-                  setLeaderboardVisible(false);
-                  return !prev;
-                })
-              }
-            >
-              <span className='text-[22px]'>RECENT GAMES</span>
-              <img src='/images/dropdown.png' className='h-[14px] w-[22px] brightness-0 invert' />
-              <RecentMenu open={recentVisible} data={recentData} />
-            </div>
-            <div
-              className='relative hidden h-fit cursor-pointer items-center space-x-5 rounded-full border-[6px] border-[#c75151] bg-[#753131] px-4 py-1 sm:flex'
-              onClick={() =>
-                setLeaderboardVisible((prev) => {
-                  setRecentVisible(false);
-                  return !prev;
-                })
-              }
-            >
-              <span className='text-[22px]'>LEADERBOARD</span>
-              <img src='/images/dropdown.png' className='h-[14px] w-[22px] brightness-0 invert' />
-              <LeaderboardMenu open={leaderboardVisible} data={leaderboardData} />
-            </div>
+            <Recent />
+            <Leaderboard />
             <div className='-mt-2.5 flex cursor-pointer flex-col items-center space-y-1.5'>
               <img src='/images/sui.png' width={60} onClick={disconnect} />
               <span className='text-[22px]'>{`${balance ?? '100'} sui`}</span>

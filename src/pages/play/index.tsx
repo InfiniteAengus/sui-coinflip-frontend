@@ -1,4 +1,3 @@
-import { useWalletKit } from '@mysten/wallet-kit';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 
@@ -12,8 +11,6 @@ import { winSfx, loseSfx, flippingSfx } from 'src/utils/sound';
 import { useGame } from 'src/hooks/useGame';
 
 const Play = () => {
-  const wallet = useWalletKit();
-
   const [status, setStatus] = useState<string>('init');
   const [guess, setGuess] = useState<string>('');
   const [amount, setAmount] = useState<number>(0);
@@ -26,9 +23,6 @@ const Play = () => {
       (gameResult === 'win' ? winSfx : loseSfx)();
       toast[gameResult === 'win' ? 'success' : 'error'](
         `You ${gameResult === 'win' ? 'won' : 'lost'} :)`,
-        {
-          position: 'top-right',
-        },
       );
     };
 

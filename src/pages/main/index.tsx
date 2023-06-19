@@ -3,31 +3,17 @@ import { useEffect, useState } from 'react';
 
 import ConnectButton from 'src/components/Button/ConnectButton';
 import HistoryItem from 'src/components/HistoryItem';
-import { getRecentHistoryData } from 'src/utils/getRecentHistoryData';
 import { PlayResult } from 'src/@types/game';
+import { useAppSelector } from 'src/hooks/redux';
 
 const Main = () => {
   const { isConnected } = useWalletKit();
-  const [recent, setRecent] = useState<any[]>([]);
-
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      recentHistoryData();
-    }, 3000);
-
-    return () => {
-      clearInterval(timerId);
-    };
-  }, []);
+  const recent = useAppSelector((state) => state.history);
 
   useEffect(() => {
     if (!isConnected) return;
     window.location.href = '/play';
   }, [isConnected]);
-
-  const recentHistoryData = async () => {
-    setRecent(await getRecentHistoryData());
-  };
 
   return (
     <div className='container py-5'>

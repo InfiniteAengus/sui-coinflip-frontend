@@ -1,11 +1,26 @@
 import Header from './Header';
 import Footer from './Footer';
 import { Toaster } from 'react-hot-toast';
+import { useEffect } from 'react';
+import { getRecentHistory } from 'src/store/slices/history';
+import { useAppDispatch } from 'src/hooks/redux';
 interface LayoutProps {
   children?: React.ReactNode;
 }
 
 export default function Layout({ children }: LayoutProps) {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      dispatch(getRecentHistory());
+    }, 5000);
+
+    return () => {
+      clearInterval(timerId);
+    };
+  }, []);
+
   return (
     <>
       <div
