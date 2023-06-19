@@ -3,20 +3,30 @@ import { useState, useEffect } from 'react';
 import { JsonRpcProvider, Connection } from '@mysten/sui.js';
 import { useWallet } from '@suiet/wallet-kit';
 
-import Menu from 'src/components/Menu';
-import { PlayResult, LeaderboardProps } from 'src/utils/types';
+import RecentMenu from 'src/components/RecentMenu';
 import LeaderboardMenu from 'src/components/LeaderboardMenu';
 import SoundButton from 'src/components/Button/SoundButton';
 import { mode } from 'src/config';
+import { getRecentHistoryData } from 'src/utils/getRecentHistoryData';
 
 const Header = () => {
   const navigate = useNavigate();
   const [balance, setBalance] = useState<string>('');
   const [recentVisible, setRecentVisible] = useState<boolean>(false);
-  const [recentData, setRecentData] = useState<PlayResult[]>([]);
+  const [recentData, setRecentData] = useState<[]>([]);
   const [leaderboardVisible, setLeaderboardVisible] = useState<boolean>(false);
-  const [leaderboardData, setLeaderboardData] = useState<LeaderboardProps[]>([]);
+  const [leaderboardData, setLeaderboardData] = useState<[]>([]);
   const wallet = useWallet();
+
+  useEffect(() => {
+    const timerId = setInterval(async () => {
+      setRecentData(await getRecentHistoryData());
+    }, 5000);
+
+    return () => {
+      clearInterval(timerId);
+    };
+  }, []);
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -52,7 +62,7 @@ const Header = () => {
 
   return (
     <header style={{ zoom: '0.7' }} className='relative z-[1]'>
-      <div className='p-10'>
+      <div className='px-10 py-5'>
         <div className='flex justify-between'>
           <div className='flex h-fit space-x-6'>
             <SoundButton />
@@ -69,7 +79,7 @@ const Header = () => {
             >
               <span className='text-[22px]'>RECENT GAMES</span>
               <img src='/images/dropdown.png' className='h-[14px] w-[22px] brightness-0 invert' />
-              <Menu open={recentVisible} data={recentData} />
+              <RecentMenu open={recentVisible} data={recentData} />
             </div>
             <div
               className='relative hidden h-fit cursor-pointer items-center space-x-5 rounded-full border-[6px] border-[#c75151] bg-[#753131] px-4 py-1 sm:flex'

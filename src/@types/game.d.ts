@@ -14,3 +14,18 @@ export interface GameTransaction {
   type: GameTransactionType;
   id: string;
 }
+
+export interface PlayResult {
+  id: string;
+  balance: number;
+  coinSide: 'head' | 'tails';
+  dateCreated: string;
+  dateEnded: string;
+  player: string;
+  result: boolean;
+}
+
+export interface LeaderboardProps {
+  address: string;
+  profit: number;
+}
