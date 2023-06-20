@@ -53,7 +53,7 @@ const Header = () => {
   };
 
   return (
-    <header style={{ zoom: '0.7' }} className='relative z-[2]'>
+    <header style={{ zoom: '0.61' }} className='relative z-[2]'>
       <div className='px-10 py-5'>
         <div className='flex justify-between'>
           <div className='flex h-fit space-x-6'>

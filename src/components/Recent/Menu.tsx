@@ -44,10 +44,10 @@ const RecentMenu: React.FC<RecentMenuProps> = (props) => {
                   className={`${
                     item.result ? 'text-[#7DD955]' : 'text-[#E33030]'
                   } whitespace-nowrap`}
-                >{`${item.result ? 'doubled 2 times' : 'got ruggged'}`}</span>
+                >{`${item.result ? 'doubled 2 times' : 'got rugged'}`}</span>
               </div>
               <div className='flex w-full'>
-                <span className='text-md ml-auto'>
+                <span className='ml-auto text-sm'>
                   {getTimeHistoryString(new Date(item.dateEnded).getTime())}
                 </span>
               </div>

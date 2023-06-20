@@ -8,7 +8,14 @@ interface Props {
 const Lost: React.FC<Props> = ({ betAmount, callback }) => {
   return (
     <div className='flex flex-col items-center space-y-16'>
-      <img src='/images/failed_logo.png' alt='logo' />
+      <div className='relative'>
+        <img src='/images/logo.png' alt='logo' />
+        <img
+          src='/images/failed_logo.png'
+          alt='win'
+          className='absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2'
+        />
+      </div>
       <div className='relative !mb-20 flex flex-col items-center'>
         <div className='absolute z-0 h-full w-full bg-red blur-[100px]' />
         <p className='relative z-[1] rounded-3xl border-8 border-[#d64d4d] bg-[#984040] px-14 py-4 text-[80px] shadow-[0_10px_0_0_#992b2b]'>

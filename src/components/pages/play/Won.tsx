@@ -14,7 +14,14 @@ const Won: React.FC<Props> = ({ betAmount, callback }) => {
   return (
     <>
       <div className='flex flex-col items-center space-y-16'>
-        <img src='/images/win_logo.png' alt='logo' />
+        <div className='relative'>
+          <img src='/images/logo.png' alt='logo' />
+          <img
+            src='/images/win_logo.png'
+            alt='win'
+            className='absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2'
+          />
+        </div>
         <div className='relative flex flex-col items-center'>
           <div className='absolute z-0 h-full w-full bg-[#9bdc6f]  bg-opacity-50 blur-[100px]' />
           <p className='relative z-[1] rounded-3xl border-8 border-[#9bdc6f] bg-[#325719] px-14 py-4 text-[80px] shadow-[0_10px_0_0_#4f7f2f]'>

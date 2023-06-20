@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
-    <footer style={{ zoom: '0.7' }} className='relative z-[1]'>
+    <footer style={{ zoom: '0.6' }} className='relative z-[1]'>
       <div className='flex flex-col items-center justify-between space-y-3 px-10 pb-10 md:flex-row'>
-        <div className='flex items-center space-x-2'>
+        <div className='flex flex-1 items-center space-x-2'>
           <img src='/images/desui_logo.png' className='h-10' />
           <img src='/images/source_code.png ' className='h-6' />
         </div>
@@ -34,7 +34,7 @@ const Footer = () => {
             Flip responsibly
           </a>
         </div>
-        <div className='flex gap-5'>
+        <div className='flex flex-1 flex-row-reverse gap-5'>
           <a
             href='https://twitter.com/desuilabs?s=21&t=rXuwazhB428wFHsSeJBjgQ'
             target='_blank'

@@ -14,7 +14,8 @@ body {
   @apply bg-black uppercase text-white;
 }
 
-button, select {
+button,
+select {
   @apply uppercase;
 }
 

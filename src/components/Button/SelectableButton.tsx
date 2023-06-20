@@ -31,7 +31,7 @@ const SelectableButton = (props: SelectableButtonProps) => {
   return (
     <button
       className={cx(
-        'rounded-[40px] border-8  py-4 text-3xl  transition-all  md:text-5xl',
+        'rounded-[40px]  border-8 pb-2 pt-4  text-3xl  transition-all md:text-5xl',
         className ? className : '',
         selected ? `${selectedClassName}` : '',
       )}

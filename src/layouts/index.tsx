@@ -28,7 +28,10 @@ export default function Layout({ children }: LayoutProps) {
         style={{ backgroundImage: 'url(/images/net.png)' }}
       >
         <Header />
-        <main className='relative z-[1] flex w-full flex-grow items-center' style={{ zoom: '0.5' }}>
+        <main
+          className='relative z-[1] flex w-full flex-grow items-center'
+          style={{ zoom: '0.45' }}
+        >
           {children}
           <img
             src='/images/blue_star.png'
