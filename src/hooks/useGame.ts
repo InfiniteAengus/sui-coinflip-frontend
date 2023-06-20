@@ -49,8 +49,6 @@ export const useGame = () => {
       ],
     });
 
-    console.log('creating game...');
-
     return signAndExecuteTransactionBlock({
       transactionBlock: tx as any,
       requestType: 'WaitForLocalExecution',
@@ -60,7 +58,6 @@ export const useGame = () => {
       },
     })
       .then((resp) => {
-        console.log(resp);
         setIsLoading(true);
         if (resp.effects?.status.status === 'success') {
           const createdObjects = resp.effects?.created;
@@ -99,12 +96,9 @@ export const useGame = () => {
     player: string,
     balance: number,
   ) => {
-    console.log('playing game...');
     return API.playGameRequest(gameObjectId, txnDigest, userRandomnessHexString, player, balance)
       .then((resp) => {
-        console.log(resp);
         const { playerWon } = resp.data;
-        console.log({ data: resp.data });
         setGameResult(playerWon ? 'win' : 'lost');
       })
       .catch((err) => {

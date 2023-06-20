@@ -30,8 +30,8 @@ const LeaderboardMenu: React.FC<MenuProps> = (props) => {
               className='relative w-full flex-col items-center gap-9 bg-[#1C1E2d] px-4 py-3'
               key={`${id}-${key}`}
             >
-              <div className='text-md flex gap-2'>
-                <span className='whitespace-nowrap'>{`${shortenAddress(item.address)} earned ${
+              <div className='flex gap-2 text-xl'>
+                <span className='whitespace-nowrap'>{`${shortenAddress(item.player)} earned ${
                   item.profit
                 } sui`}</span>
               </div>

@@ -8,7 +8,7 @@ import { useAppSelector } from 'src/hooks/redux';
 
 const Main = () => {
   const { isConnected } = useWalletKit();
-  const recent = useAppSelector((state) => state.history);
+  const recent = useAppSelector((state) => state.history.games);
 
   useEffect(() => {
     if (!isConnected) return;

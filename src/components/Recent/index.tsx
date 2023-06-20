@@ -3,7 +3,7 @@ import RecentMenu from './Menu';
 import { useAppSelector } from 'src/hooks/redux';
 
 const Recent = () => {
-  const recentData = useAppSelector((state) => state.history);
+  const recentData = useAppSelector((state) => state.history.games);
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
 
   return (

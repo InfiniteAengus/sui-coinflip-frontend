@@ -3,11 +3,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import API from 'src/api';
 
 export const getRecentHistory = createAsyncThunk('history/getRecentHistory', async () => {
-  const res = await API.getGamesRequest();
-  const sortedData = res.data.games.sort((a: any, b: any) => {
-    return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
-  });
-  const result = sortedData.map((game: any) => ({
+  const { data } = await API.getGamesRequest();
+
+  const result = data.games.map((game: any) => ({
     id: game.gameId,
     dateCreated: game.createdAt,
     dateEnded: game.updatedAt,
@@ -17,16 +15,17 @@ export const getRecentHistory = createAsyncThunk('history/getRecentHistory', asy
     balance: game.balance,
     txnDigest: game.txnDigest,
   }));
-  return result;
+
+  return { games: result, leaderboards: data.leaderboards };
 });
 
 export const historySlice = createSlice({
   name: 'appStatus',
-  initialState: [] as any[],
+  initialState: { games: [] as any[], leaderboards: [] as any[] },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getRecentHistory.fulfilled, (state, action) => {
-      state = [...action.payload];
+      state = { ...state, ...action.payload };
       return state;
     });
   },
