@@ -7,4 +7,4 @@ export const API_URL = process.env.REACT_APP_API_URL || '';
 
 export const FULL_NODE = `https://fullnode.${mode}.sui.io`;
 
-export const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS || '';
+export const NFT_TYPE = process.env.REACT_APP_NFT_TYPE || '';

@@ -1,6 +1,6 @@
 import { Connection, JsonRpcProvider } from '@mysten/sui.js';
 import { useState, useEffect } from 'react';
-import { mode } from 'src/config';
+import { FULL_NODE } from 'src/config';
 
 const useOwnedObject = (address: string, type: string) => {
   const [ownedObject, setOwnedObject] = useState<any>(null);
@@ -9,7 +9,7 @@ const useOwnedObject = (address: string, type: string) => {
     if (!address) return;
     const provider = new JsonRpcProvider(
       new Connection({
-        fullnode: `https://fullnode.${mode}.sui.io/`,
+        fullnode: FULL_NODE,
       }),
     );
     const { data: ownedObjects } = await provider.getOwnedObjects({
@@ -24,11 +24,7 @@ const useOwnedObject = (address: string, type: string) => {
       });
 
       const { data: objectData } = txn;
-      if (
-        objectData?.content &&
-        (objectData.content as any).type ===
-          '0x80d7de9c4a56194087e0ba0bf59492aa8e6a5ee881606226930827085ddf2332::suifrens::SuiFren<0x80d7de9c4a56194087e0ba0bf59492aa8e6a5ee881606226930827085ddf2332::capy::Capy>'
-      ) {
+      if (objectData?.content && (objectData.content as any).type === type) {
         setOwnedObject(data?.objectId);
       }
     }

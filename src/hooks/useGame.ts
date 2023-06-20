@@ -6,13 +6,13 @@ import { bytesToHex, randomBytes } from '@noble/hashes/utils';
 
 import { CoinSide, GameResult } from 'src/@types/game';
 
-import { PACKAGE_ID, HOUSE_DATA_ID, NFT_ADDRESS } from 'src/config';
+import { PACKAGE_ID, HOUSE_DATA_ID, NFT_TYPE } from 'src/config';
 import API from 'src/api';
 import useOwnedObject from './useOwnedObject';
 
 export const useGame = () => {
   const { currentAccount, signAndExecuteTransactionBlock } = useWalletKit();
-  const { ownedObject } = useOwnedObject(currentAccount?.address!, NFT_ADDRESS);
+  const { ownedObject } = useOwnedObject(currentAccount?.address!, NFT_TYPE);
   const [isLoading, setIsLoading] = useState(false);
   const [gameResult, setGameResult] = useState<GameResult | null>(null);
   const [choice, setChoice] = useState<CoinSide | null>(null);

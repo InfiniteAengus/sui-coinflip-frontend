@@ -1,5 +1,6 @@
 import { getTimeHistoryString, shortenAddress, cx } from 'src/utils/helper';
 import { useId } from 'react';
+import { mode } from 'src/config';
 
 interface RecentMenuProps {
   data: Array<any>;
@@ -30,7 +31,7 @@ const RecentMenu: React.FC<RecentMenuProps> = (props) => {
         {Array.isArray(data) && data.length > 0 ? (
           data.map((item, key) => (
             <a
-              href={`https://suiexplorer.com/txblock/${item.txnDigest}?network=testnet`}
+              href={`https://suiexplorer.com/txblock/${item.txnDigest}?network=${mode}`}
               target='_blank'
               rel='noreferrer'
               className='relative block w-full flex-col items-center gap-9 rounded-lg bg-[#1C1E2d] px-4 py-3 transition-all hover:bg-[#323f68]'

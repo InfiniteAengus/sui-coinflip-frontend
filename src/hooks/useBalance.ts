@@ -1,6 +1,6 @@
 import { Connection, JsonRpcProvider } from '@mysten/sui.js';
 import { useState, useEffect } from 'react';
-import { mode } from 'src/config';
+import { FULL_NODE } from 'src/config';
 
 const useBalance = (address: string) => {
   const [balance, setBalance] = useState<string>('0');
@@ -10,7 +10,7 @@ const useBalance = (address: string) => {
     const timerId = setInterval(async () => {
       const provider = new JsonRpcProvider(
         new Connection({
-          fullnode: `https://fullnode.${mode}.sui.io/`,
+          fullnode: FULL_NODE,
         }),
       );
       const providerBalance = await provider.getBalance({
