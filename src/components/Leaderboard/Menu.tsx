@@ -27,12 +27,12 @@ const LeaderboardMenu: React.FC<MenuProps> = (props) => {
         {Array.isArray(data) && data.length > 0 ? (
           data.map((item, key) => (
             <div
-              className='relative w-full flex-col items-center gap-9 bg-[#1C1E2d] px-4 py-3'
+              className='relative w-full cursor-pointer flex-col items-center gap-9 bg-[#1C1E2d] px-4 py-3 hover:bg-[#323f68]'
               key={`${id}-${key}`}
             >
               <div className='flex gap-2 text-lg'>
                 <span className='whitespace-nowrap'>{`${shortenAddress(item.player)} earned ${
-                  item.profit
+                  item.profit / 1000000000
                 } sui`}</span>
               </div>
             </div>

@@ -6,11 +6,13 @@ import { bytesToHex, randomBytes } from '@noble/hashes/utils';
 
 import { CoinSide, GameResult } from 'src/@types/game';
 
-import { PACKAGE_ID, HOUSE_DATA_ID } from 'src/config';
+import { PACKAGE_ID, HOUSE_DATA_ID, NFT_ADDRESS } from 'src/config';
 import API from 'src/api';
+import useOwnedObject from './useOwnedObject';
 
 export const useGame = () => {
   const { currentAccount, signAndExecuteTransactionBlock } = useWalletKit();
+  const { ownedObject } = useOwnedObject(currentAccount?.address!, NFT_ADDRESS);
   const [isLoading, setIsLoading] = useState(false);
   const [gameResult, setGameResult] = useState<GameResult | null>(null);
   const [choice, setChoice] = useState<CoinSide | null>(null);
@@ -38,16 +40,31 @@ export const useGame = () => {
 
     const tx = new TransactionBlock();
     let coin = tx.splitCoins(tx.gas, [tx.pure(Number(balance))]);
-    tx.moveCall({
-      target: `${PACKAGE_ID}::coin_flip::start_game`,
-      arguments: [
-        tx.pure(choice === 'heads' ? '1' : '0'),
-        tx.pure(Array.from(userRandomness)),
-        tx.pure(Number(balance)),
-        coin,
-        tx.object(HOUSE_DATA_ID),
-      ],
-    });
+
+    if (!ownedObject) {
+      tx.moveCall({
+        target: `${PACKAGE_ID}::coin_flip::start_game`,
+        arguments: [
+          tx.pure(choice === 'heads' ? '1' : '0'),
+          tx.pure(Array.from(userRandomness)),
+          tx.pure(Number(balance)),
+          coin,
+          tx.object(HOUSE_DATA_ID),
+        ],
+      });
+    } else {
+      tx.moveCall({
+        target: `${PACKAGE_ID}::coin_flip::start_game_with_capy`,
+        arguments: [
+          tx.pure(ownedObject),
+          tx.pure(choice === 'heads' ? '1' : '0'),
+          tx.pure(Array.from(userRandomness)),
+          tx.pure(Number(balance)),
+          coin,
+          tx.object(HOUSE_DATA_ID),
+        ],
+      });
+    }
 
     return signAndExecuteTransactionBlock({
       transactionBlock: tx as any,
