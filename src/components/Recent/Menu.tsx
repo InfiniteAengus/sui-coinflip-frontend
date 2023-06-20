@@ -37,9 +37,10 @@ const RecentMenu: React.FC<RecentMenuProps> = (props) => {
               key={`${id}-${key}`}
             >
               <div className='flex gap-2 text-lg font-thin'>
-                <span className='whitespace-nowrap'>{`${shortenAddress(item.player)} flipped ${
-                  item.balance / 1000000000
-                } sui and `}</span>
+                <span className='whitespace-nowrap'>
+                  <span className='text-[#b1c4f8]'>{shortenAddress(item.player)}</span> flipped
+                  {` ${item.balance / 1000000000}`} sui and
+                </span>
                 <span
                   className={`${
                     item.result ? 'text-[#7DD955]' : 'text-[#E33030]'
