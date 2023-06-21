@@ -1,3 +1,5 @@
+import AnimatedCoin from 'src/components/AnimationGif/AnimatedCoin';
+
 interface Props {
   guess: string;
   betAmount: number;
@@ -6,7 +8,7 @@ interface Props {
 const Deposit: React.FC<Props> = ({ guess, betAmount }) => {
   return (
     <div className='flex flex-col items-center space-y-16'>
-      <img src='/images/logo.png' alt='logo' />
+      <AnimatedCoin />
       <div className='relative'>
         <div className='rounded-3xl border-8 border-[#6fbbee] bg-[#2e4d7d] px-14 py-4 shadow-[0_10px_0_0_#2c5977]'>
           <p className='text-center text-5xl'>waiting for</p>

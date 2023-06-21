@@ -5,6 +5,7 @@ import ConnectButton from 'src/components/Button/ConnectButton';
 import HistoryItem from 'src/components/HistoryItem';
 import { PlayResult } from 'src/@types/game';
 import { useAppSelector } from 'src/hooks/redux';
+import AnimatedCoin from 'src/components/AnimationGif/AnimatedCoin';
 
 const Main = () => {
   const { isConnected } = useWalletKit();
@@ -20,7 +21,7 @@ const Main = () => {
       <div className='flex flex-col items-center space-y-20'>
         <div className='flex flex-col items-center -space-y-10'>
           <div className='relative'>
-            <img src='/images/logo.png' alt='logo' className='w-[700px]' />
+            <AnimatedCoin className='w-[730px]' />
             <img
               src='/images/click_here.png'
               alt='click'

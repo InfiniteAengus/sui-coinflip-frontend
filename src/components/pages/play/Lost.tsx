@@ -1,3 +1,4 @@
+import AnimatedCoin from 'src/components/AnimationGif/AnimatedCoin';
 import Button from 'src/components/Button';
 
 interface Props {
@@ -9,7 +10,7 @@ const Lost: React.FC<Props> = ({ betAmount, callback }) => {
   return (
     <div className='flex flex-col items-center space-y-16'>
       <div className='relative'>
-        <img src='/images/logo.png' alt='logo' />
+        <AnimatedCoin />
         <img
           src='/images/failed_logo.png'
           alt='win'

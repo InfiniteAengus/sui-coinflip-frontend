@@ -1,4 +1,5 @@
-import FlippingCoin from 'src/components/FlippingCoin';
+import FlippingCoin from 'src/components/AnimationGif';
+import AnimatedCoin from 'src/components/AnimationGif/AnimatedCoin';
 
 interface Props {
   guess: string;
@@ -9,7 +10,7 @@ const Flipping: React.FC<Props> = ({ guess, betAmount }) => {
   return (
     <div className='flex flex-col items-center space-y-16'>
       <div className='relative'>
-        <img src='/images/logo.png' alt='logo' />
+        <AnimatedCoin />
         {/* <FlippingCoin className='absolute left-0 top-0 mx-auto' /> */}
       </div>
       <div>

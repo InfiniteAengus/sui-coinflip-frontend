@@ -2,6 +2,7 @@ import Confetti from 'react-confetti/';
 import { useWindowSize } from '@react-hook/window-size';
 
 import Button from 'src/components/Button';
+import AnimatedCoin from 'src/components/AnimationGif/AnimatedCoin';
 
 interface Props {
   betAmount: number;
@@ -15,7 +16,7 @@ const Won: React.FC<Props> = ({ betAmount, callback }) => {
     <>
       <div className='flex flex-col items-center space-y-16'>
         <div className='relative'>
-          <img src='/images/logo.png' alt='logo' />
+          <AnimatedCoin />
           <img
             src='/images/win_logo.png'
             alt='win'

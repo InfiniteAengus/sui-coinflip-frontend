@@ -1,3 +1,5 @@
+import AnimationGif from 'src/components/AnimationGif';
+import AnimatedCoin from 'src/components/AnimationGif/AnimatedCoin';
 import PlayButton from 'src/components/Button/PlayButton';
 import SelectableButton from 'src/components/Button/SelectableButton';
 
@@ -27,7 +29,7 @@ const Init: React.FC<Props> = ({ guess, setGuess, betAmount, setBetAmount, play 
   return (
     <div className='space-y-32'>
       <div className='flex flex-col items-center space-y-20'>
-        <img src='/images/logo.png' alt='logo' />
+        <AnimatedCoin />
         <div className='mb-10 mt-10 flex flex-col items-center space-y-6'>
           <div className='flex w-full gap-10'>
             {['heads', 'tails'].map((label: string) => (
