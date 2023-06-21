@@ -22,7 +22,7 @@ const HistoryItem: React.FC<HistoryItemProps> = ({ address, betAmount, timestamp
     >
       <div className='flex gap-2 text-2xl font-light md:text-4xl'>
         {`${shortenAddress(address)} flipped ${betAmount} sui and `}
-        {`${won ? 'claimed glory' : 'got ruggged'}`}
+        {`${won ? 'claimed glory' : 'got rugged'}`}
       </div>
       <span className='absolute bottom-1 right-4 text-xl'>
         {getTimeHistoryString(new Date(timestamp).getTime())}
