@@ -19,7 +19,7 @@ const Main = () => {
   return (
     <div className='container py-5'>
       <div className='flex flex-col items-center space-y-20'>
-        <div className='flex flex-col items-center -space-y-10'>
+        <div className='flex flex-col items-center'>
           <div className='relative'>
             <AnimatedCoin className='w-[730px]' />
             <img
