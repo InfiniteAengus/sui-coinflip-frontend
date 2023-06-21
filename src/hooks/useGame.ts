@@ -19,7 +19,6 @@ export const useGame = () => {
   const [betAmount, setBetAmount] = useState<number>(0);
   const [currentGameId, setCurrentGameId] = useState<string | null>(null);
 
-  console.log(ownedObject);
   const handlePlayGame = async (choice: CoinSide, balance: number) => {
     setChoice(choice);
     setBetAmount(balance);
