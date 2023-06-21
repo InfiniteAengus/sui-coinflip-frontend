@@ -19,6 +19,7 @@ export const useGame = () => {
   const [betAmount, setBetAmount] = useState<number>(0);
   const [currentGameId, setCurrentGameId] = useState<string | null>(null);
 
+  console.log(ownedObject);
   const handlePlayGame = async (choice: CoinSide, balance: number) => {
     setChoice(choice);
     setBetAmount(balance);
@@ -47,7 +48,6 @@ export const useGame = () => {
         arguments: [
           tx.pure(choice === 'heads' ? '1' : '0'),
           tx.pure(Array.from(userRandomness)),
-          tx.pure(Number(balance)),
           coin,
           tx.object(HOUSE_DATA_ID),
         ],
@@ -59,7 +59,6 @@ export const useGame = () => {
           tx.pure(ownedObject),
           tx.pure(choice === 'heads' ? '1' : '0'),
           tx.pure(Array.from(userRandomness)),
-          tx.pure(Number(balance)),
           coin,
           tx.object(HOUSE_DATA_ID),
         ],
