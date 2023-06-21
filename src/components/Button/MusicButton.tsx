@@ -8,7 +8,7 @@ import { cx } from 'src/utils/helper';
 const MusicButton = () => {
   const [muted, setMuted] = useState<boolean>(true);
   const [play, { sound, duration }] = useSound('/sounds/background.mp3', {
-    volume: 0.2,
+    volume: 0.1,
     soundEnabled: true,
   });
 
@@ -19,13 +19,13 @@ const MusicButton = () => {
 
   useEffect(() => {
     if (sound) {
-      sound.volume(muted ? 0 : 0.2);
+      sound.volume(muted ? 0 : 0.1);
     }
   }, [muted, sound]);
 
   useEffect(() => {
     if (sound && play) {
-      sound.volume(0.2);
+      sound.volume(0.1);
       play();
     }
   }, [sound, play]);
