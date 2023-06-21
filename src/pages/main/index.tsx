@@ -24,13 +24,13 @@ const Main = () => {
             <img
               src='/images/click_here.png'
               alt='click'
-              className='absolute -left-[calc(25%-80px)] bottom-0'
+              className='absolute -left-[calc(25%-30px)] bottom-0'
             />
           </div>
           <ConnectButton />
         </div>
         <div className='flex flex-col items-center'>
-          <h4 className='rounded-full border-[4px] border-[#f1cc54] bg-[#2e4d7d] px-10 py-1 text-4xl'>
+          <h4 className='rounded-full border-[4px] border-[#f1cc54] bg-[#2e4d7d] px-10 pb-1 pt-[9px] text-4xl'>
             RECENT PLAYERS
           </h4>
           <div className='mt-5 flex flex-col gap-4'>

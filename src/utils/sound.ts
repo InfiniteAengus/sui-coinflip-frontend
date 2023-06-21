@@ -7,7 +7,7 @@ export const buttonClickSfx = (audio: HTMLAudioElement): void => {
 
   // Clone the preloaded audio element and play it
   const audioClone: any = audio.cloneNode();
-  audioClone.volume = 1;
+  audioClone.volume = 0.8;
   (audioClone as HTMLAudioElement).play();
 };
 
@@ -20,7 +20,7 @@ export const winSfx = (): void => {
   const audio = new Audio();
   audio.autoplay = true;
   audio.src = 'sounds/win.mp3';
-  audio.volume = 1;
+  audio.volume = 0.8;
   audio.remove();
 };
 
@@ -33,7 +33,7 @@ export const loseSfx = (): void => {
   const audio = new Audio();
   audio.autoplay = true;
   audio.src = 'sounds/lose.mp3';
-  audio.volume = 1;
+  audio.volume = 0.8;
   audio.remove();
 };
 
@@ -47,6 +47,6 @@ export const flippingSfx = (): void => {
   const audio = new Audio();
   audio.autoplay = true;
   audio.src = 'sounds/flipping.wav';
-  audio.volume = 1;
+  audio.volume = 0.8;
   audio.remove();
 };

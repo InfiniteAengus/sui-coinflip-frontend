@@ -16,7 +16,7 @@ const Leaderboard = () => {
           })
         }
       >
-        <span className='text-[22px]'>LEADERBOARD</span>
+        <span className='pt-1 text-[22px]'>LEADERBOARD</span>
         <img src='/images/dropdown.png' className='h-[14px] w-[22px] brightness-0 invert' />
       </div>
       <LeaderboardMenu open={menuVisible} data={data} onClose={() => setMenuVisible(false)} />

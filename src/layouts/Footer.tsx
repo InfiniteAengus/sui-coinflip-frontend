@@ -4,7 +4,13 @@ const Footer = () => {
       <div className='flex flex-col items-center justify-between space-y-3 px-10 pb-10 md:flex-row'>
         <div className='flex flex-1 items-center space-x-2'>
           <img src='/images/desui_logo.png' className='h-10' />
-          <img src='/images/source_code.png ' className='h-6' />
+          <a
+            href='https://github.com/DeSuiLabs/DeSuiCoinFlip-Smart-Contract'
+            rel='noreferrer'
+            target='_blank'
+          >
+            <img src='/images/source_code.png ' className='h-6' />
+          </a>
         </div>
         <div className='flex space-x-4 text-2xl'>
           <a

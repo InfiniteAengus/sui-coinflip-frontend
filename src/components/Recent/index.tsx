@@ -16,7 +16,7 @@ const Recent = () => {
           })
         }
       >
-        <span className='text-[22px]'>RECENT GAMES</span>
+        <span className='pt-1 text-[22px]'>RECENT GAMES</span>
         <img src='/images/dropdown.png' className='h-[14px] w-[22px] brightness-0 invert' />
       </div>
       <RecentMenu open={menuVisible} data={recentData} onClose={() => setMenuVisible(false)} />

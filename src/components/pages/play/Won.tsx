@@ -24,10 +24,10 @@ const Won: React.FC<Props> = ({ betAmount, callback }) => {
         </div>
         <div className='relative flex flex-col items-center'>
           <div className='absolute z-0 h-full w-full bg-[#9bdc6f]  bg-opacity-50 blur-[100px]' />
-          <p className='relative z-[1] rounded-3xl border-8 border-[#9bdc6f] bg-[#325719] px-14 py-4 text-[80px] shadow-[0_10px_0_0_#4f7f2f]'>
+          <p className='relative z-[1] rounded-3xl border-8 border-[#9bdc6f] bg-[#325719] px-14 pb-4 pt-8 text-[80px] shadow-[0_10px_0_0_#4f7f2f]'>
             you won
           </p>
-          <p className='relative z-[1] mx-auto w-4/5 rounded-3xl bg-[#9bdc6f] text-center text-5xl text-black shadow-[0_10px_0_0_#4f7f2f]'>
+          <p className='relative z-[1] mx-auto w-4/5 rounded-3xl bg-[#9bdc6f] pt-2 text-center text-5xl text-black shadow-[0_10px_0_0_#4f7f2f]'>
             {betAmount} sui
           </p>
         </div>
