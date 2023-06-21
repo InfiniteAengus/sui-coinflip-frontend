@@ -46,7 +46,7 @@ const RecentMenu: React.FC<RecentMenuProps> = (props) => {
                   className={`${
                     item.result ? 'text-[#7DD955]' : 'text-[#E33030]'
                   } whitespace-nowrap`}
-                >{`${item.result ? 'doubled 2 times' : 'got rugged'}`}</span>
+                >{`${item.result ? 'doubled' : 'got rugged'}`}</span>
               </div>
               <div className='flex w-full'>
                 <span className='ml-auto text-sm'>

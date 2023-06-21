@@ -5,6 +5,7 @@ import SoundButton from 'src/components/Button/SoundButton';
 import Recent from 'src/components/Recent';
 import Leaderboard from 'src/components/Leaderboard';
 import useBalance from 'src/hooks/useBalance';
+import MusicButton from 'src/components/Button/MusicButton';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const Header = () => {
         <div className='flex justify-between'>
           <div className='flex h-fit space-x-6'>
             <SoundButton />
+            <MusicButton />
           </div>
           <div className='flex space-x-8'>
             <Recent />

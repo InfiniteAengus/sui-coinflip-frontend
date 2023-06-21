@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { getRecentHistory } from 'src/store/slices/history';
 import { useAppDispatch } from 'src/hooks/redux';
+
 interface LayoutProps {
   children?: React.ReactNode;
 }
