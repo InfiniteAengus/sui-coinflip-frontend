@@ -1,14 +1,14 @@
 import { useLottie } from 'lottie-react';
-interface AnimationGifProps {
+import FlippingAnimation from 'src/data/flipping-coin.json';
+
+interface FlippingCoinProps {
   className?: string;
-  options?: any;
 }
 
-const AnimationGif = (props: AnimationGifProps) => {
-  const { options } = props;
-
+const FlippingCoin = (props: FlippingCoinProps) => {
   const lottieOptions = {
-    ...options,
+    animationData: FlippingAnimation,
+    autoplay: true,
     style: { display: 'flex', margin: 'auto' },
   };
 
@@ -17,4 +17,4 @@ const AnimationGif = (props: AnimationGifProps) => {
   return View;
 };
 
-export default AnimationGif;
+export default FlippingCoin;

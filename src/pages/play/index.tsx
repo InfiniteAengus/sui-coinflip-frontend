@@ -34,7 +34,7 @@ const Play = () => {
       setTimeout(() => {
         setStatus('flipping');
         flippingSfx();
-      }, 2000);
+      }, 4000);
     }
 
     if (status === 'flipping' && gameResult) {

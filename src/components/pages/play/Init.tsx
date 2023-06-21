@@ -1,4 +1,4 @@
-import AnimationGif from 'src/components/AnimationGif';
+import AnimationGif from 'src/components/AnimationGif/FlippingCoin';
 import AnimatedCoin from 'src/components/AnimationGif/AnimatedCoin';
 import PlayButton from 'src/components/Button/PlayButton';
 import SelectableButton from 'src/components/Button/SelectableButton';
