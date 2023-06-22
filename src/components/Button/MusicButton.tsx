@@ -10,6 +10,7 @@ const MusicButton = () => {
   const [play, { sound, duration }] = useSound('/sounds/background.mp3', {
     volume: 0.1,
     soundEnabled: true,
+    interrupt: true,
   });
 
   useEffect(() => {
