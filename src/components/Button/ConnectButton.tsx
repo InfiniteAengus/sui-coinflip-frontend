@@ -7,7 +7,7 @@ const ConnectButton = () => {
   return (
     <>
       <button
-        className='!relative !w-auto !rounded-[40px] !bg-[#2E4D7D] !p-8 !font-[Anja] !font-medium !uppercase !leading-none !text-white'
+        className='!relative !w-auto !rounded-[40px] !bg-[#2E4D7D] !p-8 !pt-11 !font-[Anja] !font-medium !uppercase !leading-none !text-white'
         onClick={() => {
           setModalOpen(true);
         }}

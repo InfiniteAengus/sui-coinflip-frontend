@@ -48,7 +48,7 @@ const Footer = () => {
           >
             <img src='/images/twitter.png' className='h-7 w-auto cursor-pointer' />
           </a>
-          <a href='https://discord.gg/vdgXN7XZmG' target='_blank' rel='noreferrer'>
+          <a href='https://discord.com/invite/2Cfm9gpTCu' target='_blank' rel='noreferrer'>
             <img src='/images/discord.png' className='h-7 w-auto cursor-pointer' />
           </a>
         </div>
