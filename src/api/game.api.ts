@@ -36,7 +36,12 @@ export const endGameRequest = (gameId: string, blsSig: any) => {
   return api.post(requestUrl, body);
 };
 
-export const getGamesRequest = () => {
-  const requestUrl = `/details`;
+export const getHistoryRequest = () => {
+  const requestUrl = `/history`;
+  return api.get(requestUrl);
+};
+
+export const getLeaderboardRequest = () => {
+  const requestUrl = `/leaderboard`;
   return api.get(requestUrl);
 };

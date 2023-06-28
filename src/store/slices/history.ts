@@ -3,9 +3,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import API from 'src/api';
 
 export const getRecentHistory = createAsyncThunk('history/getRecentHistory', async () => {
-  const { data } = await API.getGamesRequest();
+  const { data: historyData } = await API.getHistoryRequest();
+  const { data: leaderboardData } = await API.getLeaderboardRequest();
 
-  const result = data.games.map((game: any) => ({
+  const result = historyData.rows.map((game: any) => ({
     id: game.gameId,
     dateCreated: game.createdAt,
     dateEnded: game.updatedAt,
@@ -16,7 +17,7 @@ export const getRecentHistory = createAsyncThunk('history/getRecentHistory', asy
     txnDigest: game.txnDigest,
   }));
 
-  return { games: result, leaderboards: data.leaderboards };
+  return { games: result, leaderboards: leaderboardData.rows };
 });
 
 export const historySlice = createSlice({

@@ -3,7 +3,8 @@ import {
   playGameRequest,
   blsSignGameRequest,
   endGameRequest,
-  getGamesRequest,
+  getHistoryRequest,
+  getLeaderboardRequest,
 } from './game.api';
 
 export default {
@@ -11,5 +12,6 @@ export default {
   playGameRequest,
   blsSignGameRequest,
   endGameRequest,
-  getGamesRequest,
+  getHistoryRequest,
+  getLeaderboardRequest,
 };
