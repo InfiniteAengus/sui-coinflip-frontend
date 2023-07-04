@@ -18,23 +18,23 @@ const Main = () => {
 
 	return (
 		<div className='container py-5'>
-			<div className='flex flex-col items-center space-y-20'>
+			<div className='flex flex-col items-center space-y-10'>
 				<div className='flex flex-col items-center'>
 					<div className='relative'>
-						<AnimatedCoin className='w-[730px]' />
+						<AnimatedCoin className='w-[360px]' />
 						<img
 							src='/images/click_here.png'
 							alt='click'
-							className='absolute -left-[calc(25%-30px)] bottom-0'
+							className='absolute -left-[calc(25%-25px)] bottom-0 w-[100px]'
 						/>
 					</div>
 					<ConnectButton />
 				</div>
 				<div className='flex flex-col items-center'>
-					<h4 className='rounded-full border-[4px] border-[#f1cc54] bg-[#2e4d7d] px-10 pb-1 pt-[9px] text-4xl'>
+					<h4 className='rounded-full border-[2px] border-[#f1cc54] bg-[#2e4d7d] px-5 pb-1 pt-[6px] text-base'>
 						RECENT PLAYERS
 					</h4>
-					<div className='mt-5 flex flex-col gap-4'>
+					<div className='mt-3 flex flex-col gap-2'>
 						{recent.map((item: PlayResult) => (
 							<>
 								<HistoryItem

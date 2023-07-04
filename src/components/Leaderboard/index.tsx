@@ -11,17 +11,17 @@ const Leaderboard = () => {
 	return (
 		<div className='relative h-fit'>
 			<div
-				className='hidden h-fit cursor-pointer items-center space-x-5 rounded-full border-[6px] border-[#c75151] bg-[#753131] px-4 py-1 sm:flex'
+				className='hidden h-fit cursor-pointer items-center space-x-3 rounded-full border-[3.5px] border-[#c75151] bg-[#753131] px-4 py-1 sm:flex'
 				onClick={() =>
 					setMenuVisible(prev => {
 						return !prev;
 					})
 				}
 			>
-				<span className='pt-1 text-[22px]'>LEADERBOARD</span>
+				<span className='pt-1 text-sm'>LEADERBOARD</span>
 				<img
 					src='/images/dropdown.png'
-					className='h-[14px] w-[22px] brightness-0 invert'
+					className='h-[8px] w-[12px] brightness-0 invert'
 				/>
 			</div>
 			<LeaderboardMenu

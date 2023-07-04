@@ -62,7 +62,7 @@ const MusicButton = () => {
 	return (
 		<button
 			className={cx(
-				'flex h-14 w-16 cursor-pointer items-center justify-center rounded-2xl border-[3px] bg-opacity-50  transition-all hover:bg-opacity-70',
+				'flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl border-[3px] bg-opacity-50  transition-all hover:bg-opacity-70',
 				!isMuted
 					? 'border-[#8567d8] bg-[#8567d8]'
 					: 'border-[#c75151] bg-[#c75151]'
@@ -72,11 +72,7 @@ const MusicButton = () => {
 			<audio autoPlay loop ref={audioRef}>
 				<source src='/sounds/background.mp3' type='audio/mpeg' />
 			</audio>
-			{isMuted ? (
-				<MusicOffIcon width={40} />
-			) : (
-				<MusicIcon width={34} height={27} />
-			)}
+			{isMuted ? <MusicOffIcon width={28} /> : <MusicIcon width={20} />}
 		</button>
 	);
 };

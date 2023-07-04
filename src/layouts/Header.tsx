@@ -19,20 +19,20 @@ const Header = () => {
 	};
 
 	return (
-		<header style={{ zoom: '0.61' }} className='relative z-[2]'>
+		<header className='relative z-[2]'>
 			<div className='px-10 py-5'>
 				<div className='flex justify-between'>
-					<div className='flex h-fit space-x-6'>
+					<div className='flex h-fit space-x-4'>
 						<SoundButton />
 						<MusicButton />
 					</div>
-					<div className='flex space-x-8'>
+					<div className='flex space-x-4'>
 						<Recent />
 						<Leaderboard />
 						{currentAccount && (
-							<div className='flex cursor-pointer flex-col items-center space-y-1.5'>
-								<img src='/images/sui.png' width={60} onClick={disconnect} />
-								<span className='text-[22px]'>{`${balance ?? '100'} sui`}</span>
+							<div className='flex cursor-pointer flex-col items-center space-y-1'>
+								<img src='/images/sui.png' width={36} onClick={disconnect} />
+								<span className='text-sm'>{`${balance ?? '100'} sui`}</span>
 							</div>
 						)}
 					</div>

@@ -34,7 +34,7 @@ const LeaderboardMenu: React.FC<MenuProps> = props => {
 							className='relative w-full cursor-pointer flex-col items-center gap-9 bg-[#1C1E2d] px-4 py-3 hover:bg-[#323f68]'
 							key={`${id}-${key}`}
 						>
-							<div className='flex gap-2 text-lg'>
+							<div className='flex gap-2 text-base'>
 								<span className='whitespace-nowrap'>{`${shortenAddress(
 									item.player
 								)} earned ${item.profit / 1000000000} sui`}</span>
@@ -42,7 +42,7 @@ const LeaderboardMenu: React.FC<MenuProps> = props => {
 						</div>
 					))
 				) : (
-					<span className='whitespace-nowrap px-4 text-lg'>
+					<span className='whitespace-nowrap px-4 text-sm'>
 						No Recent Plays
 					</span>
 				)}

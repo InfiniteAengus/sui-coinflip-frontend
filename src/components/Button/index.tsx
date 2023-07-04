@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({ label, className, handleClick }) => {
 	return (
 		<button
 			className={cx(
-				'relative h-24 w-1/2 rounded-3xl border-8 px-10 pt-2 text-6xl font-medium transition-all hover:bg-opacity-30 active:translate-y-0.5',
+				'relative h-14 w-1/2 rounded-xl border-4 px-4 pt-1 text-3xl font-medium transition-all hover:bg-opacity-30 active:translate-y-0.5',
 				className
 			)}
 			onClick={onClick}

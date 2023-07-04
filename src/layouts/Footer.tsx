@@ -1,18 +1,18 @@
 const Footer = () => {
 	return (
-		<footer style={{ zoom: '0.6' }} className='relative z-[1]'>
-			<div className='flex flex-col items-center justify-between space-y-3 px-10 pb-10 md:flex-row'>
+		<footer className='relative z-[1]'>
+			<div className='flex flex-col items-center justify-between space-y-3 px-5 pb-5 md:flex-row'>
 				<div className='flex flex-1 items-center space-x-2'>
-					<img src='/images/desui_logo.png' className='h-10' />
+					<img src='/images/desui_logo.png' className='h-6' />
 					<a
 						href='https://github.com/DeSuiLabs/DeSuiCoinFlip-Smart-Contract'
 						rel='noreferrer'
 						target='_blank'
 					>
-						<img src='/images/source_code.png ' className='h-6' />
+						<img src='/images/source_code.png ' className='h-4' />
 					</a>
 				</div>
-				<div className='flex space-x-4 text-2xl'>
+				<div className='flex space-x-2 text-base'>
 					<a
 						href='https://docs.desuiflip.io/faqs'
 						target='_blank'
@@ -40,7 +40,7 @@ const Footer = () => {
 						Flip responsibly
 					</a>
 				</div>
-				<div className='flex flex-1 flex-row-reverse gap-5'>
+				<div className='flex flex-1 flex-row-reverse gap-3'>
 					<a
 						href='https://twitter.com/desuilabs?s=21&t=rXuwazhB428wFHsSeJBjgQ'
 						target='_blank'
@@ -48,7 +48,7 @@ const Footer = () => {
 					>
 						<img
 							src='/images/twitter.png'
-							className='h-7 w-auto cursor-pointer'
+							className='h-4 w-auto cursor-pointer'
 						/>
 					</a>
 					<a
@@ -58,7 +58,7 @@ const Footer = () => {
 					>
 						<img
 							src='/images/discord.png'
-							className='h-7 w-auto cursor-pointer'
+							className='h-4 w-auto cursor-pointer'
 						/>
 					</a>
 				</div>

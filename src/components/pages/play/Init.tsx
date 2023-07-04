@@ -33,10 +33,10 @@ const Init: React.FC<Props> = ({
 
 	return (
 		<div className='space-y-32'>
-			<div className='flex flex-col items-center space-y-20'>
-				<AnimatedCoin />
-				<div className='mb-10 mt-10 flex flex-col items-center space-y-6'>
-					<div className='flex w-full gap-10'>
+			<div className='flex flex-col items-center space-y-10'>
+				<AnimatedCoin className='w-[360px]' />
+				<div className='my-5 flex flex-col items-center space-y-3'>
+					<div className='flex w-full gap-5'>
 						{['heads', 'tails'].map((label: string) => (
 							<SelectableButton
 								key={`btn-${label}`}
@@ -48,15 +48,15 @@ const Init: React.FC<Props> = ({
 							/>
 						))}
 					</div>
-					<h4 className='text-5xl'>for</h4>
-					<div className='!mt-14 grid grid-cols-3 gap-5 pb-10'>
+					<h4 className='text-2xl'>for</h4>
+					<div className='!mt-8 grid grid-cols-3 gap-3 pb-5'>
 						{[1, 2, 5, 10, 25, 50].map((amount: number) => (
 							<SelectableButton
 								key={`btn-${amount}`}
 								label={`${amount} sui`}
 								handleClick={() => handleClickBetAmount(amount)}
 								selected={betAmount === amount}
-								className='w-72 max-w-full border-[#fab600] bg-[#ffdf55] text-black hover:bg-[#fffe80]'
+								className='w-32 max-w-full border-[#fab600] bg-[#ffdf55] text-black hover:bg-[#fffe80]'
 								selectedClassName='!border-[#94523B] !bg-[#FF8D65]'
 							/>
 						))}

@@ -20,18 +20,14 @@ const SoundButton = () => {
 	return (
 		<button
 			className={cx(
-				'flex h-14 w-16 cursor-pointer items-center justify-center rounded-2xl border-[3px] bg-opacity-50  transition-all hover:bg-opacity-70',
+				'flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl border-[3px] bg-opacity-50  transition-all hover:bg-opacity-70',
 				!muted
 					? 'border-[#9bdc6f] bg-[#9bdc6f]'
 					: 'border-[#c75151] bg-[#c75151]'
 			)}
 			onClick={() => handleMuteClick()}
 		>
-			{muted ? (
-				<SoundOffIcon width={34} height={27} />
-			) : (
-				<SoundOnIcon width={34} height={27} />
-			)}
+			{muted ? <SoundOffIcon width={20} /> : <SoundOnIcon width={20} />}
 		</button>
 	);
 };

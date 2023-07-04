@@ -28,9 +28,6 @@ const RecentMenu: React.FC<RecentMenuProps> = props => {
 					open ? 'block' : 'hidden',
 					'absolute left-1/2 top-[calc(100%+10px)] z-[3] -translate-x-1/2 rounded-xl bg-[#1C1E2d] py-2 shadow-lg'
 				)}
-				onBlur={() => {
-					console.log('abc');
-				}}
 			>
 				{Array.isArray(data) && data.length > 0 ? (
 					data.map((item, key) => (
@@ -38,10 +35,10 @@ const RecentMenu: React.FC<RecentMenuProps> = props => {
 							href={`https://suiexplorer.com/txblock/${item.txnDigest}?network=${mode}`}
 							target='_blank'
 							rel='noreferrer'
-							className='relative block w-full flex-col items-center gap-9 rounded-lg bg-[#1C1E2d] px-4 py-3 transition-all hover:bg-[#323f68]'
+							className='relative block w-full flex-col items-center gap-9 rounded-lg bg-[#1C1E2d] px-2 py-3 transition-all hover:bg-[#323f68]'
 							key={`${id}-${key}`}
 						>
-							<div className='flex gap-2 text-lg font-thin'>
+							<div className='flex gap-2 text-base font-thin'>
 								<span className='whitespace-nowrap'>
 									<span className='text-[#b1c4f8]'>
 										{shortenAddress(item.player)}
@@ -63,7 +60,7 @@ const RecentMenu: React.FC<RecentMenuProps> = props => {
 						</a>
 					))
 				) : (
-					<span className='whitespace-nowrap px-4 text-xl'>
+					<span className='whitespace-nowrap px-4 text-sm'>
 						No Recent Plays
 					</span>
 				)}
