@@ -29,10 +29,12 @@ const Header = () => {
 					<div className='flex space-x-8'>
 						<Recent />
 						<Leaderboard />
-						<div className='-mt-2.5 flex cursor-pointer flex-col items-center space-y-1.5'>
-							<img src='/images/sui.png' width={60} onClick={disconnect} />
-							<span className='text-[22px]'>{`${balance ?? '100'} sui`}</span>
-						</div>
+						{currentAccount && (
+							<div className='flex cursor-pointer flex-col items-center space-y-1.5'>
+								<img src='/images/sui.png' width={60} onClick={disconnect} />
+								<span className='text-[22px]'>{`${balance ?? '100'} sui`}</span>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
