@@ -15,15 +15,6 @@ const MusicButton = () => {
 		if (storedMuteStatus) {
 			setIsMuted(JSON.parse(storedMuteStatus));
 		}
-
-		const isChrome =
-			navigator.userAgent.includes('Chrome') &&
-			navigator.vendor.includes('Google Inc');
-		if (!isChrome) {
-			document.getElementById('iframeAudio')?.remove();
-		} else {
-			document.getElementById('playAudio')?.remove();
-		}
 	}, []);
 
 	useEffect(() => {
@@ -78,14 +69,7 @@ const MusicButton = () => {
 			)}
 			onClick={() => toggleMute()}
 		>
-			<iframe
-				src='/sounds/background.mp3'
-				allow='autoplay'
-				id='iframeAudio'
-				className='hidden'
-				ref={audioRef}
-			></iframe>
-			<audio autoPlay loop id='playAudio' ref={audioRef}>
+			<audio autoPlay loop ref={audioRef}>
 				<source src='/sounds/background.mp3' type='audio/mpeg' />
 			</audio>
 			{isMuted ? (
