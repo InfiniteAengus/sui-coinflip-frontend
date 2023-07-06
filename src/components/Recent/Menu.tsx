@@ -38,7 +38,7 @@ const RecentMenu: React.FC<RecentMenuProps> = props => {
 							className='relative block w-full flex-col items-center gap-9 rounded-lg bg-[#1C1E2d] px-2 py-3 transition-all hover:bg-[#323f68]'
 							key={`${id}-${key}`}
 						>
-							<div className='flex gap-2 text-base font-thin'>
+							<div className='flex gap-2 text-xs font-thin'>
 								<span className='whitespace-nowrap'>
 									<span className='text-[#b1c4f8]'>
 										{shortenAddress(item.player)}
@@ -53,7 +53,7 @@ const RecentMenu: React.FC<RecentMenuProps> = props => {
 								>{`${item.result ? 'doubled' : 'got rugged'}`}</span>
 							</div>
 							<div className='flex w-full'>
-								<span className='ml-auto text-sm'>
+								<span className='ml-auto text-xs'>
 									{getTimeHistoryString(new Date(item.dateEnded).getTime())}
 								</span>
 							</div>

@@ -11,6 +11,7 @@
     "lint": "eslint --fix --ext .ts,.tsx ./src"
   },
   "dependencies": {
+    "@mysten/kiosk": "^0.3.3",
     "@mysten/sui.js": "0.35.1",
     "@mysten/wallet-adapter-react": "^11.0.0",
     "@mysten/wallet-kit": "0.4.5",
@@ -22,6 +23,7 @@
     "@types/react-toastify": "^4.1.0",
     "axios": "1.3.6",
     "lottie-react": "^2.4.0",
+    "pusher-js": "^8.2.0",
     "react": "^18.2.0",
     "react-app-rewired": "^2.2.1",
     "react-confetti": "^6.1.0",

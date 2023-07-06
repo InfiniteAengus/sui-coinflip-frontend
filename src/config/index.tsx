@@ -7,4 +7,10 @@ export const API_URL = process.env.REACT_APP_API_URL || '';
 
 export const FULL_NODE = `https://fullnode.${mode}.sui.io`;
 
-export const NFT_TYPE = process.env.REACT_APP_NFT_TYPE || '';
+export const CAPY_NFT_TYPE = process.env.REACT_APP_CAPY_NFT || '';
+export const BULLSHARK_NFT_TYPE = process.env.REACT_APP_BULLSHARK_NFT || '';
+export const DLABS_NFT_TYPE = process.env.REACT_APP_DLABS_NFT || '';
+
+export const KIOSK_TYPE = process.env.REACT_APP_KIOSK || '';
+
+export const PUSHER_KEY = process.env.REACT_APP_PUSHER_KEY || '';

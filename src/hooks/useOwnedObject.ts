@@ -1,9 +1,13 @@
+import { fetchKiosk } from '@mysten/kiosk';
 import { Connection, JsonRpcProvider } from '@mysten/sui.js';
 import { useEffect, useState } from 'react';
 
-import { FULL_NODE } from 'src/config';
+import { FULL_NODE, KIOSK_TYPE } from 'src/config';
 
-const useOwnedObject = (address: string | undefined, type: string) => {
+const useOwnedObject = (
+	address: string | undefined = undefined,
+	type: string | undefined = undefined
+) => {
 	const [ownedObject, setOwnedObject] = useState<any>(null);
 
 	const isOwned = async (address, type) => {
@@ -28,14 +32,35 @@ const useOwnedObject = (address: string | undefined, type: string) => {
 			});
 
 			const { data: objectData } = txn;
+
 			if (objectData?.content && (objectData.content as any).type === type) {
-				setOwnedObject(data?.objectId);
+				setOwnedObject({
+					objectId: data?.objectId,
+				});
+			}
+
+			if (
+				objectData?.content &&
+				(objectData.content as any).type === KIOSK_TYPE
+			) {
+				const { fields } = objectData.content as any;
+				const { data: kioskItems } = await fetchKiosk(
+					provider as any,
+					fields.for,
+					{},
+					{ withListingPrices: true, withKioskFields: true }
+				);
+
+				const ownedObject = kioskItems.items.find(item => item.type === type);
+				if (ownedObject) {
+					setOwnedObject({ objectId: ownedObject.objectId, kiosk: fields.for });
+				}
 			}
 		}
 	};
 
 	useEffect(() => {
-		isOwned(address, type);
+		if (address && type) isOwned(address, type);
 	}, [address, type]);
 
 	return { ownedObject };
