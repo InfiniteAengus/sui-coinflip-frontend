@@ -69,7 +69,7 @@ export const useGame = () => {
 
 		if (ownedDlabsObject) {
 			tx.moveCall({
-				target: `${PACKAGE_ID}::coin_flip::start_game_with_dlabs`,
+				target: `${PACKAGE_ID}::coin_flip::start_game_with_dlab`,
 				arguments: [
 					tx.pure(ownedCapyObject.kiosk),
 					tx.pure(ownedCapyObject.objectId),
