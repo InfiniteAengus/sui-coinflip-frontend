@@ -12,11 +12,12 @@ import {
 	DLABS_NFT_TYPE,
 	HOUSE_DATA_ID,
 	PACKAGE_ID,
+	SOCKET_URL,
 } from 'src/config';
 
 import useOwnedObject from './useOwnedObject';
 
-const socket = io('http://localhost:8080');
+const socket = io(SOCKET_URL);
 
 export const useGame = () => {
 	const { currentAccount, signAndExecuteTransactionBlock } = useWalletKit();
