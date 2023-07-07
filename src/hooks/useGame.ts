@@ -1,9 +1,9 @@
 import { TransactionBlock } from '@mysten/sui.js';
 import { useWalletKit } from '@mysten/wallet-kit';
 import { randomBytes } from '@noble/hashes/utils';
-import Pusher from 'pusher-js';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { io } from 'socket.io-client';
 
 import type { CoinSide, GameResult } from 'src/@types/game';
 import {
@@ -12,10 +12,11 @@ import {
 	DLABS_NFT_TYPE,
 	HOUSE_DATA_ID,
 	PACKAGE_ID,
-	PUSHER_KEY,
 } from 'src/config';
 
 import useOwnedObject from './useOwnedObject';
+
+const socket = io('http://localhost:8080');
 
 export const useGame = () => {
 	const { currentAccount, signAndExecuteTransactionBlock } = useWalletKit();
@@ -41,11 +42,7 @@ export const useGame = () => {
 	const currentGameIdRef = useRef<string | null>(null);
 
 	useEffect(() => {
-		const pusher = new Pusher(PUSHER_KEY, { cluster: 'mt1', forceTLS: true });
-
-		const channel = pusher.subscribe('desuicoinflip');
-
-		channel.bind('game_ended', function (data) {
+		socket.on('game_ended', data => {
 			const { gameId, playerWon } = data;
 
 			if (currentGameIdRef.current === gameId) {
@@ -53,10 +50,6 @@ export const useGame = () => {
 				setGameResult(playerWon ? 'win' : 'lost');
 			}
 		});
-
-		return () => {
-			pusher.unsubscribe('desuicoinflip');
-		};
 	}, []);
 
 	const handlePlayGame = async (choice: CoinSide, balance: number) => {
