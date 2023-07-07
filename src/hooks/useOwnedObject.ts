@@ -22,8 +22,6 @@ const useOwnedObject = (
 			options: { showContent: true },
 		});
 
-		console.log(ownedObjects);
-
 		for (const object of ownedObjects) {
 			const { data } = object;
 			if (!data?.objectId) {
