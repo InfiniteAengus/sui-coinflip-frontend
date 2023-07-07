@@ -19,31 +19,27 @@ const useOwnedObject = (
 		);
 		const { data: ownedObjects } = await provider.getOwnedObjects({
 			owner: address || '',
+			options: { showContent: true },
 		});
+
+		console.log(ownedObjects);
 
 		for (const object of ownedObjects) {
 			const { data } = object;
 			if (!data?.objectId) {
 				continue;
 			}
-			const txn = await provider.getObject({
-				id: data?.objectId,
-				options: { showContent: true },
-			});
 
-			const { data: objectData } = txn;
+			const { content: objectContent } = data;
 
-			if (objectData?.content && (objectData.content as any).type === type) {
+			if (objectContent && (objectContent as any).type === type) {
 				setOwnedObject({
 					objectId: data?.objectId,
 				});
 			}
 
-			if (
-				objectData?.content &&
-				(objectData.content as any).type === KIOSK_TYPE
-			) {
-				const { fields } = objectData.content as any;
+			if (objectContent && (objectContent as any).type === KIOSK_TYPE) {
+				const { fields } = objectContent as any;
 				const { data: kioskItems } = await fetchKiosk(
 					provider as any,
 					fields.for,
