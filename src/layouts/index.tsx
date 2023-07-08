@@ -52,6 +52,10 @@ export default function Layout({ children }: LayoutProps) {
 				</main>
 				<Footer />
 				<div className='absolute bottom-0 left-0 h-1/6 w-full bg-[#9bdc6f] bg-opacity-30 blur-[100px]' />
+				<div className='fixed left-1/2 top-[20px] z-[3] mx-auto flex -translate-x-1/2 items-center gap-x-2 rounded-xl border-4 border-[#ff9e47] bg-[#6e3603] bg-opacity-70 px-4 py-2'>
+					<img src='/images/warning.png' alt='warning' className='w-6' />
+					DEGRADED PERFORMANCE DUE TO EXTREME TRAFFIC.
+				</div>
 			</div>
 
 			<Toaster position='top-center' />
