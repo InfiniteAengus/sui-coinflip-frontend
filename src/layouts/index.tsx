@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { io } from 'socket.io-client';
 
+import { SOCKET_URL } from 'src/config';
 import { useAppDispatch } from 'src/hooks/redux';
-import { getRecentHistory } from 'src/store/slices/history';
+import { setRecentData } from 'src/store/slices/history';
 
 import Footer from './Footer';
 import Header from './Header';
@@ -11,16 +13,20 @@ interface LayoutProps {
 	children?: React.ReactNode;
 }
 
+const socket = io(SOCKET_URL);
+
 export default function Layout({ children }: LayoutProps) {
 	const dispatch = useAppDispatch();
 
+	const getRecentData = data => {
+		dispatch(setRecentData(data));
+	};
+
 	useEffect(() => {
-		const timerId = setInterval(() => {
-			dispatch(getRecentHistory());
-		}, 5000);
+		socket.on('recent', getRecentData);
 
 		return () => {
-			clearInterval(timerId);
+			socket.off('recent', getRecentData);
 		};
 	}, []);
 
