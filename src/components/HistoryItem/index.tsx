@@ -1,6 +1,6 @@
 import React, { useId } from 'react';
 
-import { cx, shortenAddress } from 'src/utils/helper';
+import { cx, getTimeHistoryString, shortenAddress } from 'src/utils/helper';
 
 interface HistoryItemProps {
 	address: string;
@@ -26,10 +26,13 @@ const HistoryItem: React.FC<HistoryItemProps> = ({
 			)}
 			key={`${id}-${key}`}
 		>
-			<div className='flex gap-1 text-sm font-light md:text-base'>
+			<div className='mb-1 flex gap-1 text-sm font-light md:text-sm'>
 				{`${shortenAddress(address)} flipped ${betAmount} sui and `}
 				{`${won ? 'claimed glory' : 'got rugged'}`}
 			</div>
+			<span className='absolute bottom-1 right-3 text-xs'>
+				{getTimeHistoryString(new Date(timestamp).getTime())}
+			</span>
 		</div>
 	);
 };
