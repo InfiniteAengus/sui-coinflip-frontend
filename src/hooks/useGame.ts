@@ -71,10 +71,9 @@ export const useGame = () => {
 			});
 
 			const { player_won: playerWon } = game.data?.content?.fields;
-			console.log(playerWon);
 			if (+playerWon !== 0) {
 				setIsLoading(false);
-				setGameResult(+playerWon === 1 ? 'lost' : 'win');
+				setGameResult(+playerWon === 1 ? 'win' : 'lost');
 				currentGameIdRef.current = null;
 			}
 		}, 2000);
