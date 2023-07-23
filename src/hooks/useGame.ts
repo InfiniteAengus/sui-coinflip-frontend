@@ -1,4 +1,4 @@
-import { TransactionBlock } from '@mysten/sui.js';
+import { Connection, JsonRpcProvider, TransactionBlock } from '@mysten/sui.js';
 import { useWalletKit } from '@mysten/wallet-kit';
 import { randomBytes } from '@noble/hashes/utils';
 import { useEffect, useRef, useState } from 'react';
@@ -10,6 +10,7 @@ import {
 	BULLSHARK_NFT_TYPE,
 	CAPY_NFT_TYPE,
 	DLABS_NFT_TYPE,
+	FULL_NODE,
 	HOUSE_DATA_ID,
 	PACKAGE_ID,
 	SOCKET_URL,
@@ -51,6 +52,33 @@ export const useGame = () => {
 				setGameResult(playerWon ? 'win' : 'lost');
 			}
 		});
+
+		const timerId = setInterval(async () => {
+			if (!currentGameIdRef.current) {
+				return;
+			}
+
+			const provider = new JsonRpcProvider(
+				new Connection({
+					fullnode: FULL_NODE,
+				})
+			);
+
+			const game: any = await provider.getObject({
+				id: currentGameIdRef.current,
+				options: { showContent: true },
+			});
+
+			const { player_won: playerWon } = game.data?.content?.fields;
+			if (+playerWon !== 0) {
+				setIsLoading(false);
+				setGameResult(+playerWon === 1 ? 'lost' : 'win');
+			}
+		}, 2000);
+
+		return () => {
+			clearInterval(timerId);
+		};
 	}, []);
 
 	const handlePlayGame = async (choice: CoinSide, balance: number) => {
