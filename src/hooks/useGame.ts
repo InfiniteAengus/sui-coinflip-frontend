@@ -50,6 +50,7 @@ export const useGame = () => {
 			if (currentGameIdRef.current === gameId) {
 				setIsLoading(false);
 				setGameResult(playerWon ? 'win' : 'lost');
+				currentGameIdRef.current = null;
 			}
 		});
 
@@ -70,9 +71,11 @@ export const useGame = () => {
 			});
 
 			const { player_won: playerWon } = game.data?.content?.fields;
+			console.log(playerWon);
 			if (+playerWon !== 0) {
 				setIsLoading(false);
 				setGameResult(+playerWon === 1 ? 'lost' : 'win');
+				currentGameIdRef.current = null;
 			}
 		}, 2000);
 
