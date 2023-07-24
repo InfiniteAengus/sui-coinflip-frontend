@@ -1,0 +1,52 @@
+name: ReactJS with Webpack
+
+on:
+  push:
+    branches: ['new-design-v2']
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/checkout@v3
+        with:
+          node-version: ${{ matrix.node-version }} # Change this to the version of Node.js you're using
+
+      - name: Install dependencies
+        run: npm install # Use 'npm ci' if you're using npm instead of yarn
+
+      - name: Build the React app
+        run: npm run build # Use 'npm run build' if you're using npm instead of yarn
+        env:
+          REACT_APP_MODE: ${{ secrets.REACT_APP_MODE }}
+          REACT_APP_PACKAGE_ID: ${{ secrets.REACT_APP_PACKAGE_ID }}
+          REACT_APP_HOUSE_DATA_ID: ${{ secrets.REACT_APP_HOUSE_DATA_ID }}
+          REACT_APP_CAPY_NFT: ${{ secrets.REACT_APP_CAPY_NFT }}
+          REACT_APP_DLAB_NFT: ${{ secrets.REACT_APP_DLAB_NFT }}
+          REACT_APP_BULLSHARK_NFT: ${{ secrets.REACT_APP_BULLSHARK_NFT }}
+          REACT_APP_KIOSK: ${{ secrets.REACT_APP_KIOSK }}
+          REACT_APP_SOCKET_URL: ${{ secrets.REACT_APP_SOCKET_URL }}
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+          REACT_APP_SHINAMI_KEY: ${{ secrets.REACT_APP_SHINAMI_KEY }}
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PEM_FILE }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Install SSH client
+        run: sudo apt-get update && sudo apt-get install -y openssh-client
+
+      - name: Deploy via SCP
+        run: |
+          scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -r build/* ec2-user@${{ secrets.REMOTE_SERVER_IP }}:/var/www/html/nft-raffle-frontend/build
