@@ -1,0 +1,18 @@
+.ReactModal__Overlay {
+	@apply relative z-[1000] !bg-[#161616e5] backdrop-blur-sm;
+}
+.ReactModal__Content {
+	@apply !absolute !left-1/2 !top-1/2 h-fit w-fit !-translate-x-1/2 !-translate-y-1/2 !border-none !bg-transparent !p-0;
+}
+
+.ReactModal__Content {
+	@apply -mt-24 opacity-0 transition-all duration-200 ease-in-out sm:-mt-12;
+}
+
+.ReactModal__Content--after-open {
+	@apply mt-0 opacity-100;
+}
+
+.ReactModal__Content--before-close {
+	@apply -mt-24 opacity-0 sm:-mt-12;
+}

@@ -45,3 +45,9 @@ export const getLeaderboardRequest = () => {
 	const requestUrl = `/leaderboard`;
 	return api.get(requestUrl);
 };
+
+export const postAddEmail = (email: string) => {
+	const requestUrl = `/advertise`;
+	const body = { email };
+	return api.post(requestUrl, body);
+};

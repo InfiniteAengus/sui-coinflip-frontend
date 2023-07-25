@@ -3,38 +3,43 @@
 @tailwind utilities;
 
 @import url('./button.css');
+@import url('./modal.css');
 
 @font-face {
-  font-family: 'Anja';
-  src: url('../assets/fonts/Anja/Anja-Eliane.ttf');
+	font-family: 'Anja';
+	src: url('../assets/fonts/Anja/Anja-Eliane.ttf');
 }
 
 body {
-  font-family: 'Anja';
-  @apply bg-black uppercase text-white;
+	font-family: 'Anja';
+	@apply bg-black uppercase text-white;
+}
+
+input {
+	@apply outline-none;
 }
 
 button,
 select {
-  @apply uppercase;
+	@apply uppercase;
 }
 
 .container {
-  @apply mx-auto max-w-[1600px] px-5;
+	@apply mx-auto max-w-[1600px] px-5;
 }
 
 .trans {
-  @apply transition-all duration-300 ease-in-out;
+	@apply transition-all duration-300 ease-in-out;
 }
 
 .content p {
-  @apply my-6;
+	@apply my-6;
 }
 
 .content ul {
-  @apply my-6;
+	@apply my-6;
 }
 
 .anim {
-  @apply transition-all duration-200 ease-in-out;
+	@apply transition-all duration-200 ease-in-out;
 }

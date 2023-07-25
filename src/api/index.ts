@@ -4,6 +4,7 @@ import {
 	getHistoryRequest,
 	getLeaderboardRequest,
 	playGameRequest,
+	postAddEmail,
 	registerGameRequest,
 } from './game.api';
 
@@ -14,4 +15,5 @@ export default {
 	endGameRequest,
 	getHistoryRequest,
 	getLeaderboardRequest,
+	postAddEmail,
 };

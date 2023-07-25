@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { io } from 'socket.io-client';
 
+import PopUp from 'src/components/Modal/PopUp';
 import { SOCKET_URL } from 'src/config';
 import { useAppDispatch } from 'src/hooks/redux';
 import { setRecentData } from 'src/store/slices/history';
@@ -16,6 +17,7 @@ interface LayoutProps {
 const socket = io(SOCKET_URL);
 
 export default function Layout({ children }: LayoutProps) {
+	const [isOpen, setIsOpen] = useState<boolean>(true);
 	const dispatch = useAppDispatch();
 
 	const getRecentData = data => {
@@ -59,6 +61,7 @@ export default function Layout({ children }: LayoutProps) {
 			</div>
 
 			<Toaster position='top-center' />
+			<PopUp isOpen={isOpen} closeModal={() => setIsOpen(false)} />
 		</>
 	);
 }
