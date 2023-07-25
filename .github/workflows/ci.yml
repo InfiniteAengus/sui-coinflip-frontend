@@ -53,8 +53,7 @@ jobs:
 
       - name: Remove build file from server
         run:
-          ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.REMOTE_SERVER_IP }} 'sudo rm -rf /var/www/html/sui-coinflip-frontend/build'
-          ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.REMOTE_SERVER_IP }} 'sudo chown ubuntu /var/www/html/sui-coinflip-frontend'
+          ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.REMOTE_SERVER_IP }} 'rm -rf /var/www/html/sui-coinflip-frontend/build'
 
       - name: Copy via SCP
         run: scp -i ~/.ssh/id_rsa -r ./build ubuntu@${{ secrets.REMOTE_SERVER_IP }}:/var/www/html/sui-coinflip-frontend
