@@ -36,15 +36,13 @@ const Main = () => {
 					</h4>
 					<div className='mt-3 flex flex-col gap-2'>
 						{recent.map((item: PlayResult) => (
-							<>
-								<HistoryItem
-									address={item.player}
-									betAmount={item.balance / 1000000000}
-									timestamp={item.dateEnded}
-									won={item.result}
-									key={item.id}
-								/>
-							</>
+							<HistoryItem
+								address={item.player}
+								betAmount={item.balance / 1000000000}
+								timestamp={item.dateEnded}
+								won={item.result}
+								key={item.id}
+							/>
 						))}
 					</div>
 				</div>
