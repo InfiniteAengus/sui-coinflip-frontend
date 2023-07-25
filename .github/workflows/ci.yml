@@ -52,4 +52,4 @@ jobs:
 
       - name: Deploy via SCP
         run: |
-          scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -r build/* ec2-user@${{ secrets.REMOTE_SERVER_IP }}:/var/www/html/nft-raffle-frontend/build
+          scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -r build/* ec2-user@${{ secrets.REMOTE_SERVER_IP }}:/var/www/html/build
