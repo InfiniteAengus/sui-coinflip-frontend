@@ -56,7 +56,7 @@ const PopUp: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
 						<img
 							src='images/advertisement.jpg'
 							alt='advertisement'
-							className='h-[calc(100vh*0.4)] w-[calc(100vw*0.9)] max-w-none object-cover md:h-[calc(100vh*0.5)] md:w-[calc(100vw*0.8)] lg:h-auto lg:w-[calc(100vw*0.8)]'
+							className='h-[calc(100vh*0.4)] w-[calc(100vw*0.9)] max-w-none object-cover md:h-[calc(100vh*0.5)] md:w-[calc(100vw*0.8)] lg:h-[calc(100vh*0.75)] lg:w-[calc(100vw*0.75)]'
 						/>
 						<div className='absolute top-4 flex w-full flex-col items-center font-["Poppins"] font-semibold md:top-10 md:tracking-wide'>
 							<p className='text-xl md:text-2xl lg:text-3xl'>the</p>
