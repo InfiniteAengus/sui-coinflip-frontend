@@ -67,7 +67,7 @@ const PopUp: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
 								coming soon
 							</button>
 						</div>
-						<div className='flex flex-col items-center gap-4 px-2 py-4 lg:flex-row xl:gap-8'>
+						<div className='flex flex-col items-center gap-4 px-2 py-4 lg:flex-row'>
 							<div className='flex flex-col font-["Poppins"] lowercase'>
 								<p className='text-2xl font-semibold first-letter:uppercase'>
 									Be the first to win big!
@@ -81,10 +81,10 @@ const PopUp: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
 									type='text'
 									value={email}
 									onChange={handleEmailChange}
-									className='h-fit w-full rounded-[10px] border-2 border-pink bg-black px-2 py-2 font-["Poppins"] md:w-auto'
+									className='h-fit w-full rounded-[10px] border-2 border-pink bg-black px-2 py-2 font-["Poppins"] text-base font-normal md:w-[130%]'
 								/>
 								<button
-									className='anim flex h-9 w-full items-center justify-center rounded-[10px] bg-pink font-["Poppins"] text-xl hover:bg-pink/60 md:w-[150px]'
+									className='anim flex h-8 w-full items-center justify-center rounded-[10px] bg-pink font-["Poppins"] text-base font-semibold hover:bg-pink/60 md:w-[190px]'
 									onClick={submit}
 								>
 									submit
