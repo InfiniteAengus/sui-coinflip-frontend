@@ -43,7 +43,7 @@ const PopUp: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
 			<ModalWrapper>
 				<div className='h-full w-full overflow-hidden rounded-[10px] border-2 border-pink bg-black/70'>
 					<button
-						className='absolute right-5 top-5 flex'
+						className='absolute right-5 top-5 z-10 flex'
 						onClick={() => closeModal()}
 					>
 						<img
