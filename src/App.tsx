@@ -7,9 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Layout from './layouts';
 import './styles/global.css';
+import { lazyRetry } from './utils/lazy';
 
-const Main = lazy(() => import('./pages/main'));
-const Play = lazy(() => import('./pages/play'));
+const Main = lazy(() => lazyRetry(() => import('./pages/main'), 'main') as any);
+const Play = lazy(() => lazyRetry(() => import('./pages/play'), 'play') as any);
 
 const App = () => {
 	return (
