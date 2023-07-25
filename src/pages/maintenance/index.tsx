@@ -2,7 +2,7 @@ const Maintenance = () => {
 	return (
 		<div className='flex min-h-screen w-full items-center justify-center'>
 			<img
-				src='/images/maintenance_background.png'
+				src='/images/maintenance_background.jpg'
 				alt='background'
 				className='absolute left-0 top-0 h-full w-full object-cover'
 			/>
