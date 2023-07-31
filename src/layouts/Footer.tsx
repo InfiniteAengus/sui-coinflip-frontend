@@ -3,13 +3,17 @@ const Footer = () => {
 		<footer className='relative z-[1]'>
 			<div className='flex flex-col items-center justify-between space-y-3 px-5 pb-5 md:flex-row'>
 				<div className='flex flex-1 items-center space-x-2'>
-					<img src='/images/desui_logo.png' className='h-6' />
+					<img src='/images/desui_logo.png' className='h-6' loading='lazy' />
 					<a
 						href='https://github.com/DeSuiLabs/DeSuiCoinFlip-Smart-Contract'
 						rel='noreferrer'
 						target='_blank'
 					>
-						<img src='/images/source_code.png ' className='h-4' />
+						<img
+							src='/images/source_code.png '
+							className='h-4'
+							loading='lazy'
+						/>
 					</a>
 				</div>
 				<div className='flex space-x-2 text-base'>
@@ -49,6 +53,7 @@ const Footer = () => {
 						<img
 							src='/images/twitter.png'
 							className='h-4 w-auto cursor-pointer'
+							loading='lazy'
 						/>
 					</a>
 					<a
@@ -59,6 +64,7 @@ const Footer = () => {
 						<img
 							src='/images/discord.png'
 							className='h-4 w-auto cursor-pointer'
+							loading='lazy'
 						/>
 					</a>
 				</div>

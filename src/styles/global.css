@@ -8,6 +8,7 @@
 @font-face {
 	font-family: 'Anja';
 	src: url('../assets/fonts/Anja/Anja-Eliane.ttf');
+	font-display: 'swap';
 }
 
 body {

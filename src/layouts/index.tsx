@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Toaster } from 'react-hot-toast';
 import { io } from 'socket.io-client';
 
@@ -38,6 +39,9 @@ export default function Layout({ children }: LayoutProps) {
 				className='relative flex min-h-screen w-full flex-col overflow-hidden bg-contain bg-center bg-no-repeat'
 				style={{ backgroundImage: 'url(/images/net.png)' }}
 			>
+				<Helmet>
+					<link rel='preload' as='image' href='/images/net.png' />
+				</Helmet>
 				<Header />
 				<main className='relative z-[1] flex w-full flex-grow items-center'>
 					{children}
