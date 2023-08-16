@@ -18,7 +18,7 @@ interface LayoutProps {
 const socket = io(SOCKET_URL);
 
 export default function Layout({ children }: LayoutProps) {
-	const [isOpen, setIsOpen] = useState<boolean>(true);
+	// const [isOpen, setIsOpen] = useState<boolean>(true);
 	const dispatch = useAppDispatch();
 
 	const getRecentData = data => {
@@ -65,7 +65,7 @@ export default function Layout({ children }: LayoutProps) {
 			</div>
 
 			<Toaster position='top-center' />
-			<PopUp isOpen={isOpen} closeModal={() => setIsOpen(false)} />
+			{/* <PopUp isOpen={isOpen} closeModal={() => setIsOpen(false)} /> */}
 		</>
 	);
 }
