@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Toaster } from 'react-hot-toast';
 import { io } from 'socket.io-client';
 
-import PopUp from 'src/components/Modal/PopUp';
 import { SOCKET_URL } from 'src/config';
 import { useAppDispatch } from 'src/hooks/redux';
 import { setRecentData } from 'src/store/slices/history';
